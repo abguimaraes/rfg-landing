@@ -1,4 +1,4 @@
-# RFG Landing — PRD v0.3
+# RFG Landing — PRD v0.4
 
 > **Autor:** Morgan (PM Agent) · **Data:** 2026-05-05
 > **Status:** Draft v0.3 (decisões finais Anderson aplicadas) — pronto para Dex iniciar Story 1.1
@@ -20,6 +20,7 @@
 ---
 
 ## Changelog
+- **v0.4 (2026-05-05):** Anderson informou que os 3 depoimentos antigos (Rômulo, Rodrigo, Marcos Roberto) eram fakes. Substituídos por 4 reais (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos). Layout 2×2 substituindo 3-col uniforme. FR-008 e CON-013 atualizados; Story 1.4 AC-14 ajustada; wireframes Seção 6 redesenhada para 4 cards.
 - **v0.3 (2026-05-05):** aplicadas decisões finais Anderson — Opção A para Seção 6 (3-col uniforme), número SUSEP não será exibido (mantido apenas "desde 1995"), LGPD template padrão sem revisão jurídica hard. Stories 1.1/1.8 Complexity ajustada para L (audit Pax v2 m1+m8 resolvido).
 - **v0.2 (2026-05-05):** aplicação dos findings da auditoria PO Pax (8/10 → ratificação esperada 10/10). Inclui M-001 (3º depoimento Rômulo), M-002 (canonização da copy), M-003 (correções da copy-audit), M-004 (e-mail comercial canônico + nome do sócio Ricardo Farias), M-005 (tipografia formalizada), M-006 (paleta formalizada), M-007 (tabela das 8 mensagens WhatsApp), todos os L/m/I do audit. Total: 7 FRs novos, 4 CONs novos, 1 NFR novo, ajustes em ~15 FRs/Stories existentes.
 - **v0.1 (2026-05-05):** primeira versão — 49 FRs, 25 NFRs, 12 CONs, 8 stories, 5 riscos, 10 dependências.
@@ -128,12 +129,12 @@ Como **visitante alinhado com a persona "Marcelo"**, eu quero...
 - **FR-005:** **Seção 3 (Oportunidade)** — eyebrow + H2 + 3 parágrafos body com destaque em **"Diagnóstico de Ângulo Morto Patrimonial"** (mecanismo único da solução, `01-dna-completo.md` linhas 404-410; copy linhas 43-51)
 - **FR-006:** **Seção 4 (Personas)** — 3 cards em grid 3-col desktop / 1-col mobile, cada card com ícone Lucide + H3 + body curto, **prefixo "Isso é para você se..."** aplicado por padrão em cada card (sugestão do próprio briefing 05 linha 73 — endereça `copy-audit.md` §7 item 6, M-003); linhas 60-69
 - **FR-007:** **Seção 5 (Proposta de Valor)** — grid 2x2 desktop / 1-col mobile, 4 pilares com emoji/ícone + H3 + body. **Headlines em Title Case** (não CAIXA ALTA — endereça `copy-audit.md` §7 item 5, M-003); linhas 81-94. Pilar 3 com verbo "**faz com que**" (não "garante" — compliance SUSEP, endereça `copy-audit.md` §2)
-- **FR-008:** **Seção 6 (Prova)** — **3 quote cards (Rômulo + Rodrigo + Marcos Roberto)** em grid 3-col desktop / 1-col stack mobile, **todos com dimensões/tratamento visual uniformes** (Decisão Anderson 2026-05-05 — Opção A do audit Pax v2; sem destaque entre os 3); endereça **M-001**. Inclui:
+- **FR-008:** **Seção 6 (Prova)** — **4 quote cards (Felipe Alexandre Oliveira + Eder Clemente Pio + Henrique Martins Santos + Walter Campos)** em **grid 2×2 desktop / 1-col stack mobile**, **todos com dimensões/tratamento visual uniformes** (Decisão Anderson 2026-05-05 substituindo a Opção A original de 3-col uniforme; sem destaque entre os 4); cada card exibe nome + profissão (ex.: "Felipe Alexandre Oliveira — Segurança do Trabalho"). Inclui:
   - Faixa marquee de 10 logos parceiros
   - Selo SUSEP visível
   - Ancora visualmente as **3 credenciais oficiais do DNA** (`01-dna-completo.md` linhas 126-154): Experiência de Vida Real (35 anos combinados) + Resultados Comprovados (1.200+ famílias) + Especialização Real (portfólio completo / SUSEP 1995) — endereça **L-004**
-  - **Texto canônico do depoimento de Rômulo** (`01-dna-completo.md` linhas 344-346, a ser inserido literalmente em `05-copy-landing.md` antes da Story 1.4): *"Grato por sempre estarem a disposição para achar a melhor solução de acordo com minha disponibilidade financeira."* — Rômulo, cliente que precisou alterar vigência do seguro para caber no orçamento.
-- **FR-009:** **Seção 7 (Origem)** — bento grid de 4-5 áreas: foto `socios-02-estudio.webp` + bloco "1995" + bloco "2013" + bloco "Hoje" + citação Rodrigo (linhas 124-153). Mobile: stack 1 coluna sequencial. **Copy preserva nomes literais Ricardo Farias + Anderson Guimarães + Mapfre + datas 1995 e 2013** conforme copy aprovada (endereça **m-004**). **Persona-avatar interna "Marcelo" NÃO aparece** nesta seção (endereça `copy-audit.md` §7 item 1, M-003 — versão revisada de `05-copy-landing.md` linha 145 já remove o nome).
+  - **Texto canônico dos 4 depoimentos** definido em `01-dna-completo.md` (seção "Depoimentos Reais") e replicado em `05-copy-landing.md` Seção 6. Ordem sugerida: Felipe Alexandre (consórcio/contemplação) → Eder (parceria longa portfólio completo) → Henrique (sinistro/suporte) → Walter (12+ anos cliente).
+- **FR-009:** **Seção 7 (Origem)** — bento grid de 4-5 áreas: foto `socios-02-estudio.webp` + bloco "1995" + bloco "2013" + bloco "Hoje" + citação do Walter Campos (cliente há 12+ anos, conforme reescrita de copy 2026-05-05 substituindo a antiga citação do Rodrigo). Mobile: stack 1 coluna sequencial. **Copy preserva nomes literais Ricardo Farias + Anderson Guimarães + Mapfre + datas 1995 e 2013** conforme copy aprovada (endereça **m-004**). **Persona-avatar interna "Marcelo" NÃO aparece** nesta seção (endereça `copy-audit.md` §7 item 1, M-003 — versão revisada de `05-copy-landing.md` linha 145 já remove o nome).
 - **FR-010:** **Seção 8 (Como Funciona)** — 3 cards verticais numerados (01/02/03) com ícone + H3 + body + lista bullet, linha conectora sutil entre eles em desktop. **Headlines "Passo 1/2/3" em Title Case** (não CAIXA ALTA — endereça `copy-audit.md` §7 item 5, M-003); linhas 165-200, decisão 7 dos wireframes
 - **FR-011:** **Seção 9 (3 Caminhos)** — 3 cards horizontais desktop / stack mobile, **Caminho 2 destacado** com `card-featured` + badge "MAIS PROCURADO" + shadow-xl, **sem campo de preço**, microcopy "Diagnóstico gratuito antes de qualquer decisão" abaixo de cada CTA, faixa "Como o Investimento É Definido" + CTA único final + selo "Vagas limitadas" (linhas 220-310). **Cada Caminho exibe os bônus literais conforme copy aprovada** (endereça **L-002**):
   - **Caminho 1 (Proteção Essencial):** 1 bônus — Checklist "Meu Patrimônio Blindado — 7 Passos para a Proteção Total"
@@ -299,6 +300,9 @@ Como **visitante alinhado com a persona "Marcelo"**, eu quero...
   | "Sua esposa sente isso" | Seção 11 | "Quem está perto de você sente isso" |
   | Preços (R$ 180 / R$ 380 / R$ 580) | Seção 9 | Removidos (faixa "Como o Investimento É Definido") |
   | Headlines em CAIXA ALTA | Seções 5 e 8 | Title Case |
+  | "Rômulo" / "Rodrigo" / "Marcos Roberto" (nomes de depoimentos) | Qualquer seção (especial Seções 6, 7, 12 e FAQ 6) | Felipe Alexandre Oliveira / Eder Clemente Pio / Henrique Martins Santos / Walter Campos |
+
+  **Nomes canônicos dos depoimentos (decisão Anderson 2026-05-05):** Felipe Alexandre Oliveira (Segurança do Trabalho), Eder Clemente Pio (Empresário), Henrique Martins Santos (Supervisor de Produção), Walter Campos (Agente publicitário). Os nomes anteriores (Rômulo, Rodrigo, Marcos Roberto) eram fakes — qualquer ocorrência fora dos arquivos de audit histórico (`rfg-landing-prd-audit.md`, `rfg-landing-prd-audit-v2.md`) é regressão.
 
   **Qualquer regressão é violação de compliance/qualidade e bloqueia o go-live.**
 
@@ -350,14 +354,14 @@ Como **visitante alinhado com a persona "Marcelo"**, eu quero...
 - `prefers-reduced-motion`: efeitos desativados, opacidade final aplicada
 
 ### Story 1.4 — Seções 4-7 (Personas + Valor + Prova + Origem) com bento grid
-**Descrição:** Implementar Seção 4 (Personas com prefixo "Isso é para você se..."), 5 (Proposta de Valor com Title Case + Pilar 3 sem "garante"), 6 (Prova com **3 depoimentos**), 7 (História de Origem com nomes Ricardo Farias + Anderson Guimarães + Mapfre + 1995 + 2013 + "13 anos") + Efeito #2 (card stagger) + Efeito #6 (icon burst) + Efeito #7 (bento grid scrubbed) + Efeito #8 (marquee logos com fallback grid estático).
+**Descrição:** Implementar Seção 4 (Personas com prefixo "Isso é para você se..."), 5 (Proposta de Valor com Title Case + Pilar 3 sem "garante"), 6 (Prova com **4 depoimentos reais** em grid 2×2), 7 (História de Origem com nomes Ricardo Farias + Anderson Guimarães + Mapfre + 1995 + 2013 + "13 anos") + Efeito #2 (card stagger) + Efeito #6 (icon burst) + Efeito #7 (bento grid scrubbed) + Efeito #8 (marquee logos com fallback grid estático).
 **Complexidade:** **XL**
-**Dependências:** Story 1.3; texto canônico do depoimento de Rômulo inserido em `05-copy-landing.md` antes desta story (endereça **M-001** prerequisite)
+**Dependências:** Story 1.3; textos canônicos dos 4 depoimentos reais (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos) já inseridos em `05-copy-landing.md` Seção 6 (decisão Anderson 2026-05-05 substituindo os 3 fakes anteriores).
 **AC alto nível:**
 - Seção 4: 3 cards uniformes com ícones Lucide e prefixo "Isso é para você se..." em cada bloco
 - Seção 5: grid 2x2 com 4 pilares (headlines em **Title Case**, não CAIXA ALTA) + icon burst back.out elastic; Pilar 3 usa "**faz com que**" (não "garante")
-- **Seção 6: 3 quote cards (Rômulo + Rodrigo + Marcos Roberto)** em grid 3-col desktop / stack mobile + faixa marquee 10 logos parceiros (CSS keyframes 30s) + selo SUSEP + ancoragem das 3 credenciais do DNA (FR-008)
-- Seção 7: bento grid 4-5 áreas com `socios-02-estudio.webp` (1995/2013/Hoje + citação Rodrigo); preserva nomes literais; **NÃO contém o nome "Marcelo"**; texto "13 anos" (não "12 anos")
+- **Seção 6: 4 quote cards (Felipe Alexandre Oliveira + Eder Clemente Pio + Henrique Martins Santos + Walter Campos)** em **grid 2×2 desktop / 1-col stack mobile** + cada card com nome + profissão + faixa marquee 10 logos parceiros (CSS keyframes 30s) + selo SUSEP + ancoragem das 3 credenciais do DNA (FR-008)
+- Seção 7: bento grid 4-5 áreas com `socios-02-estudio.webp` (1995/2013/Hoje + citação do Walter Campos — cliente há 12+ anos); preserva nomes literais; **NÃO contém o nome "Marcelo"**; texto "13 anos" (não "12 anos")
 - Marquee respeita `prefers-reduced-motion` (vira **grid estático 5x2 desktop / 2x5 mobile** com todos os 10 logos visíveis)
 - 10 logos parceiros otimizados em **SVG (preferencial; svgo aplicado) ou PNG/WebP transparente** (Mapfre, SulAmérica, Suhai conforme `parceiros-fontes.md`) carregados de `public/images/parceiros/`
 
@@ -414,7 +418,7 @@ Como **visitante alinhado com a persona "Marcelo"**, eu quero...
 | 1.1 | Setup repo + boilerplate + tokens + CI | L | — |
 | 1.2 | UI primitives + tipografia + analytics infra | L | 1.1 |
 | 1.3 | Seções 1-3 (Hero/Problema/Oportunidade) | L | 1.2 + FR-050 |
-| 1.4 | Seções 4-7 (Personas/Valor/Prova/Origem + bento) | XL | 1.3 + texto Rômulo em copy |
+| 1.4 | Seções 4-7 (Personas/Valor/Prova/Origem + bento) | XL | 1.3 + 4 depoimentos reais já inseridos em copy |
 | 1.5 | Seções 8-10 (Como Funciona/Caminhos/Compromisso) | L | 1.4 |
 | 1.6 | Seções 11-13 (Visão/Objeções/FAQ) + Footer | L | 1.5 |
 | 1.7 | SEO + structured data + LGPD + cookie banner | M | 1.6 + ADR-005 corrigido |
@@ -513,7 +517,7 @@ Itens **fora do escopo de código** que precisam estar prontos para go-live:
 | 7 | **Logos parceiros** otimizados (10 SVG/WebP) | @analyst (Alex — `00-execution-plan.md` Fase 0.3) | Sim para Story 1.4 | Em coleta |
 | 8 | **Fotos sócios** convertidas PNG→WebP <300KB | @dev (script `scripts/optimize-images.ts`) | Sim para Story 1.3 | Pendente |
 | 9 | **Horário de atendimento** (a coletar — `03-contato.md`) | Anderson | Não-bloqueante (default 9-18h) | A coletar |
-| 10 | **Texto canônico do depoimento de Rômulo em `05-copy-landing.md`** (texto-fonte: `01-dna-completo.md` linhas 344-346) | Anderson + @pm (Morgan) | **Sim para Story 1.4** (M-001) | A inserir antes da Story 1.4 |
+| 10 | **Textos canônicos dos 4 depoimentos reais em `05-copy-landing.md`** (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos — texto-fonte: `01-dna-completo.md` seção "Depoimentos Reais") | Anderson + @pm (Morgan) | **Sim para Story 1.4** | ✅ Aplicado 2026-05-05 (substitui os 3 fakes Rômulo/Rodrigo/Marcos Roberto que constavam no briefing inicial) |
 | 11 | **Validação do valor "menos de R$ 200"** com Ricardo/Anderson (Seção 12 objeção #1) | Anderson | Sim para Story 1.6 (ou usar "uma fração disso") | A validar |
 | 12 | **Correção de `architecture.md` ADR-005** — e-mail `comercial@` + founder "Ricardo Farias" | @architect (Aria) | **Sim para Story 1.7** (CON-014, I-006) | A corrigir |
 
@@ -534,7 +538,7 @@ Itens **fora do escopo de código** que precisam estar prontos para go-live:
 Lista completa dos findings da auditoria `rfg-landing-prd-audit.md` e onde foram aplicados:
 
 ### Findings Críticos (M)
-- [x] **M-001 (Rômulo — 3º depoimento)** — aplicado em FR-008 (3 quote cards), Story 1.4 AC e Dependência #10. Sinalizada inserção de texto canônico de Rômulo em `05-copy-landing.md` antes da Story 1.4.
+- [x] **M-001 (Rômulo — 3º depoimento)** — ~~aplicado em FR-008 (3 quote cards), Story 1.4 AC e Dependência #10~~. **Superseded em 2026-05-05 (v0.4):** Anderson informou que os 3 testemunhos originais (Rômulo, Rodrigo, Marcos Roberto) eram fakes. Substituídos por 4 reais (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos) em layout grid 2×2. M-001 não se aplica mais.
 - [x] **M-002 (Copy canônica como CON)** — adicionado **CON-013** com checklist explícito de palavras/expressões proibidas e referência à versão pós-correções 2026-05-05 da copy.
 - [x] **M-003 (Correções da copy-audit como FR/CON)** — adicionado **FR-050** listando os 7 ajustes 🟡/🟢 + reflexões em FR-006 (prefixo "Isso é para você se..."), FR-007 (Title Case + "faz com que"), FR-009 (sem "Marcelo"), FR-010 (Title Case), FR-012 ("13 anos" + "NOSSO COMPROMISSO"), FR-013 ("Quem está perto"), FR-014 (validar "menos de R$ 200"), FR-015 (FAQ 7 reescrita + "13 anos").
 - [x] **M-004 (E-mail divergente)** — adicionado **CON-014** com e-mail canônico `comercial@rfgcorretora.com.br`. Reflexões em FR-016 (footer), FR-037 (JSON-LD), FR-047 (LGPD mailto), Story 1.7 e 1.8 ACs, QG 9.5/9.6, Riscos §10.1, Dependência #12.
@@ -579,6 +583,7 @@ Lista completa dos findings da auditoria `rfg-landing-prd-audit.md` e onde foram
 
 | Data | Versão | Autor | Mudança |
 |------|--------|-------|---------|
+| 2026-05-05 | 0.4 | Pax + Morgan | Anderson informou que os 3 depoimentos antigos (Rômulo, Rodrigo, Marcos Roberto) eram fakes. Substituídos por 4 reais (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos). Layout 2×2 substituindo 3-col uniforme. FR-008 e CON-013 atualizados; Story 1.4 AC-14 ajustada; wireframes Seção 6 redesenhada para 4 cards. |
 | 2026-05-05 | 0.3 | Pax | Aplicadas decisões finais Anderson — Opção A para Seção 6 (3-col uniforme), número SUSEP não será exibido (mantido apenas "desde 1995"), LGPD template padrão sem revisão jurídica hard. Stories 1.1/1.8 Complexity ajustada para L (audit Pax v2 m1+m8 resolvido). Dependência #9 (SUSEP nº) removida e Risco #4 descalonado. |
 | 2026-05-05 | 0.2 | Morgan | Aplicação dos findings da auditoria PO Pax — 7 FRs novos (FR-050..052 + ajustes em ~12 FRs), 4 CONs novos (CON-013..016), 2 NFRs novos (NFR-026..027), tabela canônica das 8 mensagens WhatsApp, todos os ajustes M/m/L/I endereçados |
 | 2026-05-05 | 0.1 | Morgan | PRD inicial — 49 FRs, 25 NFRs, 12 CONs, 8 stories, 5 riscos, 10 dependências |

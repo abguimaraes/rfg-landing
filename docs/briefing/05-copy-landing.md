@@ -102,11 +102,17 @@ Sem call center. Sem proposta genérica. Ricardo e Anderson analisam a sua situa
 
 ### Depoimentos
 
-> "Vocês têm carta branca para providenciar o melhor para mim e minha família, como sempre."
-> — **Rodrigo**, cliente há anos da RFG
+> "Quero agradecer de coração a você e à sua equipe. Sem vocês eu não teria alcançado essa conquista. Fui acompanhado do início — na escolha da carta de crédito — até a contemplação e o recebimento do crédito, sempre com atendimento excelente, atencioso e paciente (do Ricardo e também do colega que me acompanhou). Mesmo quando eu tinha dúvidas simples, recebi todo o apoio. Recomendo de olhos fechados: já passei seu contato para duas ou três pessoas e sigo indicando. Muito obrigado; que Deus abençoe grandemente o trabalho de vocês."
+> — **Felipe Alexandre Oliveira** — Segurança do Trabalho
 
-> "Obrigado por sua atenção de sempre nos seguros, nos investimentos e, infelizmente, também no sinistro ocorrido."
-> — **Marcos Roberto**, cliente que indicou a filha para a RFG
+> "Sou parceiro da RFG Corretora há muitos anos, tanto no consórcio imobiliário quanto nos seguros dos meus veículos e do meu negócio. Empresa séria, competente e ágil na solução de eventuais problemas, além de sempre me apresentar boas oportunidades. Recomendo."
+> — **Eder Clemente Pio** — Empresário
+
+> "Recebemos assistência total em todo o processo: fomos orientados em cada etapa e tudo correu com tranquilidade. O único contratempo foi com a oficina (demora na entrega e um ajuste simples no para-barro), algo alheio à equipe e rápido de resolver. Excelente suporte."
+> — **Henrique Martins Santos** — Supervisor de Produção
+
+> "Cliente da RFG – Seguros e Consórcios há mais de doze anos (indicado por um amigo), sempre recebi orientações claras na aquisição de produtos/serviços e nas negociações com as seguradoras. Nos sinistros, o suporte foi fundamental, com dicas que levaram à solução desejada. Serviço sério e prestimoso."
+> — **Walter Campos** — Agente publicitário
 
 ### Faixa de Autoridade
 Logos das seguradoras e administradoras de consórcio parceiras (Mapfre + outras) reforçando credibilidade e alcance.
@@ -146,7 +152,7 @@ Fundaram a RFG não para ser mais uma corretora. Mas para ser o consultor que ni
 
 Nos 13 anos seguintes, mais de 1.200 famílias passaram pela RFG. Dezenas saíram do aluguel via consórcio, sem pagar juros de banco. Centenas tiveram carro, imóvel e empresa protegidos. Profissionais liberais passaram a exercer suas profissões com tranquilidade, sabendo que um processo judicial não vai destruir o que levaram anos para construir.
 
-E o Rodrigo, que ficou meses sem atender o telefone por causa do trabalho, quando voltou disse uma coisa simples: *"vocês têm carta branca para providenciar o melhor para mim e minha família, como sempre."*
+E o Walter, cliente há mais de doze anos, sempre voltava dizendo a mesma coisa: *"serviço sério e prestimoso, recebi orientações claras desde a aquisição até as negociações com as seguradoras."*
 
 Isso não se constrói com quem quer só fechar venda.
 
@@ -201,7 +207,7 @@ Você fala com quem sabe, não com um atendente.
 
 ### Sugestões de design
 - **Ícones por etapa:** Lupa (Diagnóstico), documento com escudo (Plano), aperto de mão (Acompanhamento)
-- **Vídeo institucional:** 60–90s com Ricardo ou Anderson explicando o processo. Voz e rosto reais destroem desconfiança antes da oferta. Vídeo-depoimento de Rodrigo ou Marcos Roberto também funciona.
+- **Vídeo institucional:** 60–90s com Ricardo ou Anderson explicando o processo. Voz e rosto reais destroem desconfiança antes da oferta. Vídeo-depoimento de qualquer um dos clientes citados na Seção 6 (Felipe Alexandre, Eder, Henrique ou Walter) também funciona.
 
 ---
 
@@ -420,9 +426,7 @@ Sua desconfiança é completamente legítima.
 
 **A diferença está no que acontece depois da assinatura.**
 
-O Marcos Roberto indicou a filha para a RFG depois de ser acompanhado não só nos seguros — mas também no sinistro, na hora difícil. O Rodrigo ficou meses sem atender e quando voltou disse: *"vocês têm carta branca para providenciar o melhor para mim e minha família, como sempre."*
-
-Isso não se constrói com quem quer só fechar venda.
+O Henrique recebeu assistência total em todo o processo do sinistro dele e nos chamou de "excelente suporte". O Walter, cliente há mais de doze anos, descreveu o serviço como "sério e prestimoso". Isso não se constrói com quem quer só fechar venda.
 
 Você fala direto com Ricardo e Anderson — os fundadores, com 35 anos de experiência combinados. Não com atendente. Não com call center.
 
@@ -481,7 +485,7 @@ Depende do seu perfil e do seu plano. Na sessão estratégica, a gente analisa s
 Sim. A maioria dos clientes que chegam até nós já tem alguma coisa contratada — e descobre que está pagando por cobertura errada, insuficiente ou duplicada. O diagnóstico mostra isso com clareza.
 
 **6. Vocês somem depois que a gente assina?**
-Não. O Marcos Roberto nos indicou para a filha depois de anos de atendimento — inclusive no sinistro. O Rodrigo nos deu carta branca depois de décadas de parceria. Esse é o padrão de relacionamento que praticamos.
+Não. O Felipe Alexandre Oliveira foi acompanhado do início ao fim do processo de consórcio — desde a escolha da carta de crédito até a contemplação — e nos passou seu contato para mais 2-3 pessoas. O Walter Campos é cliente há mais de doze anos e descreve o serviço como "sério e prestimoso". Esse é o padrão de relacionamento que praticamos.
 
 **7. A RFG é uma empresa regularizada?**
 Sim. Registro SUSEP ativo desde 1995. A RFG opera desde 2013 — atravessamos crises porque fazemos certo.

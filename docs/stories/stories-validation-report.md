@@ -488,3 +488,24 @@ Anderson ratificou as 3 decisões finais antes de Dex iniciar a Story 1.1. Aplic
 - [x] **Risco #4 (LGPD jurídico)** — descalonado (template padrão). Stories 1.7 e 1.8 + PRD §10 atualizados; revisão jurídica externa fica como melhoria opcional para v1.1.
 
 **Status:** Projeto pronto para Dex iniciar Story 1.1.
+
+---
+
+## Atualização 2026-05-05 — Depoimentos reais
+
+Anderson informou que os 3 testemunhos originais (Rômulo, Rodrigo, Marcos Roberto) eram **fakes**. Substituídos por 4 reais:
+
+1. **Felipe Alexandre Oliveira** — Segurança do Trabalho (consórcio: carta de crédito → contemplação + indicação espontânea + suporte paciente)
+2. **Eder Clemente Pio** — Empresário (parceria longa + portfólio completo seguros + consórcio + agilidade em problemas)
+3. **Henrique Martins Santos** — Supervisor de Produção (suporte total no sinistro + transparência sobre contratempo alheio)
+4. **Walter Campos** — Agente publicitário (12+ anos de cliente + apoio em sinistros + negociação com seguradoras)
+
+**Impactos no relatório anterior:**
+
+- **Story 1.4 AC-14** ajustada para **grid 2×2 desktop / 1-col mobile com 4 cards** (cada um exibindo nome + profissão). Substitui a recomendação anterior de 3-col uniforme.
+- **M1 (Opção A 3-col)** descalonada pela nova decisão de layout — substituída por 2×2 com 4 cards reais.
+- **Cobertura "3 Depoimentos"** (tabela §Cobertura Cruzada) substituída por **4 Depoimentos** reais em Story 1.4 AC-14, sem dependência de pré-flight de inserção de Rômulo (que se tornou irrelevante).
+- **Pré-requisito hard #1** (texto canônico de Rômulo em copy) **removido** — substituído por: "4 textos canônicos dos depoimentos reais inseridos em `05-copy-landing.md` Seção 6", já aplicado em 2026-05-05.
+- **CON-013 (PRD)** atualizado com nota de canonicidade dos 4 nomes reais e proibição de regressão para os 3 nomes antigos fora dos arquivos de audit histórico.
+
+**Cross-refs:** PRD v0.4 (changelog), Story 1.4 (Status/Context/AC-14/Dev Notes), `wireframes.md` (Seção 6 ASCII + Decisão #4), `00-execution-plan.md` D11, `01-dna-completo.md` (seção "Depoimentos Reais"), `05-copy-landing.md` (Seções 6, 7, 12, FAQ 6).

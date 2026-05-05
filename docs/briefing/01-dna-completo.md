@@ -341,17 +341,27 @@ A RFG Corretora de Seguros é a única maneira de proteger o que você construiu
 
 ## Depoimentos Reais
 
-### Rômulo
-> "Grato por sempre estarem a disposição para achar a melhor solução de acordo com minha disponibilidade financeira."
-*(Cliente que precisou alterar vigência do seguro para caber no orçamento.)*
+> **Atualização 2026-05-05:** Anderson informou que os 3 depoimentos anteriores (Rômulo, Rodrigo, Marcos Roberto) eram fakes. Foram substituídos pelos 4 depoimentos reais abaixo. Qualquer ocorrência dos nomes antigos em arquivos não-históricos deve ser tratada como regressão.
 
-### Rodrigo
-> "Estava ausente... em projetos do trabalho mas confio plenamente em suas recomendações e jamais deixaremos de fazer negócio pois vocês têm carta branca para providenciar o melhor para mim e minha família, como sempre."
-*(Cliente que sumiu durante renovação e voltou confiando totalmente.)*
+### Felipe Alexandre Oliveira — Segurança do Trabalho
+> "Quero agradecer de coração a você e à sua equipe. Sem vocês eu não teria alcançado essa conquista. Fui acompanhado do início — na escolha da carta de crédito — até a contemplação e o recebimento do crédito, sempre com atendimento excelente, atencioso e paciente (do Ricardo e também do colega que me acompanhou). Mesmo quando eu tinha dúvidas simples, recebi todo o apoio. Recomendo de olhos fechados: já passei seu contato para duas ou três pessoas e sigo indicando. Muito obrigado; que Deus abençoe grandemente o trabalho de vocês."
 
-### Marcos Roberto
-> "Indiquei vocês para minha filha também fazer o consórcio de imóveis. Disse a ela que você faria o melhor para ela. Obrigado por sua atenção de sempre nos seguros, investimentos e infelizmente também no sinistro ocorrido."
-*(Cliente que indicou a filha + foi acompanhado em sinistro.)*
+**Endereça:** consórcio (carta de crédito → contemplação) + indicação espontânea + suporte paciente.
+
+### Eder Clemente Pio — Empresário
+> "Sou parceiro da RFG Corretora há muitos anos, tanto no consórcio imobiliário quanto nos seguros dos meus veículos e do meu negócio. Empresa séria, competente e ágil na solução de eventuais problemas, além de sempre me apresentar boas oportunidades. Recomendo."
+
+**Endereça:** parceria longa + portfólio completo (consórcio + seguros + negócio) + agilidade em problemas.
+
+### Henrique Martins Santos — Supervisor de Produção
+> "Recebemos assistência total em todo o processo: fomos orientados em cada etapa e tudo correu com tranquilidade. O único contratempo foi com a oficina (demora na entrega e um ajuste simples no para-barro), algo alheio à equipe e rápido de resolver. Excelente suporte."
+
+**Endereça:** suporte total no sinistro/processo + transparência (admite contratempo alheio) — perfeito para FAQ "vocês somem depois?".
+
+### Walter Campos — Agente publicitário
+> "Cliente da RFG – Seguros e Consórcios há mais de doze anos (indicado por um amigo), sempre recebi orientações claras na aquisição de produtos/serviços e nas negociações com as seguradoras. Nos sinistros, o suporte foi fundamental, com dicas que levaram à solução desejada. Serviço sério e prestimoso."
+
+**Endereça:** 12+ anos de cliente + indicação + apoio em sinistros + negociação com seguradoras.
 
 ---
 
