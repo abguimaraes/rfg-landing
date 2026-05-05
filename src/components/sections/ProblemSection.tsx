@@ -47,7 +47,7 @@ export function ProblemSection(): ReactNode {
     <section
       id="problema"
       aria-labelledby="problema-headline"
-      className="bg-neutral-50 py-16 md:py-24 lg:py-28"
+      className="surface-soft py-16 md:py-24 lg:py-28"
     >
       <Container variant="narrow">
         <div ref={containerRef} className="flex flex-col gap-6">

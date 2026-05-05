@@ -32,7 +32,7 @@ export function ValuePillarsSection(): ReactNode {
     <section
       id="valor"
       aria-labelledby="valor-headline"
-      className="bg-neutral-50 py-16 md:py-24 lg:py-28"
+      className="surface-clean py-16 md:py-24 lg:py-28"
     >
       <Container variant="wide">
         <div ref={containerRef} className="flex flex-col gap-10">

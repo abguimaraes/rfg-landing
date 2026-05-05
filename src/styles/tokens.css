@@ -50,6 +50,26 @@
   --bg-tertiary: var(--neutral-100);
   --bg-inverse: var(--neutral-900);
 
+  /* ============ SURFACES — Phase A (5-state system) ============
+   * Origem: docs/plan/visual-upgrade-plan.md §A.1
+   * Substitui o sistema binário (white/neutral-50) por 5 estados
+   * + 1 gradient brand-strong para o fechamento institucional. */
+  --surface-clean: var(--rfg-white); /* #FFFFFF */
+  --surface-soft: var(--neutral-50); /* #F7F9FC */
+  --surface-elevated: var(--neutral-100); /* #EEF2F8 */
+  --surface-deep: var(--neutral-900); /* #0F1A2E */
+  --surface-brand-soft: linear-gradient(
+    180deg,
+    rgba(36, 107, 178, 0.04) 0%,
+    rgba(76, 179, 230, 0.06) 100%
+  );
+  --surface-brand-strong: linear-gradient(
+    180deg,
+    #246bb2 0%,
+    #3688c8 50%,
+    #4cb3e6 100%
+  );
+
   --border-subtle: var(--neutral-100);
   --border-default: var(--neutral-200);
   --border-emphasis: var(--neutral-300);

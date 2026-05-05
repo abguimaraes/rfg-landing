@@ -56,7 +56,7 @@ export function OpportunitySection(): ReactNode {
     <section
       id="oportunidade"
       aria-labelledby="oportunidade-headline"
-      className="bg-white py-16 md:py-24 lg:py-28"
+      className="surface-clean py-16 md:py-24 lg:py-28"
     >
       <Container variant="narrow">
         <div ref={containerRef} className="flex flex-col gap-6">

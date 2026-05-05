@@ -57,9 +57,21 @@ export function HeroSection(): React.ReactNode {
     <section
       id="hero"
       aria-labelledby="hero-headline"
-      className="relative overflow-hidden bg-white pb-16 pt-12 md:pb-24 md:pt-20 lg:pt-28"
+      className="surface-clean relative overflow-hidden pb-16 pt-12 md:pb-24 md:pt-20 lg:min-h-[90vh] lg:pt-28"
     >
-      <Container variant="wide">
+      {/* Phase A — Blur orbs decorativos (§A.3 do plan).
+          Posição absolute dentro de overflow-hidden — não vazam.
+          aria-hidden + pointer-events-none — invisíveis para AT. */}
+      <div
+        aria-hidden="true"
+        className="orb-decor -left-40 top-20 h-96 w-96 bg-rfg-light/30"
+      />
+      <div
+        aria-hidden="true"
+        className="orb-decor bottom-0 right-20 h-80 w-80 bg-rfg-mid/20"
+      />
+
+      <Container variant="wide" className="relative z-[1]">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           {/* Coluna texto */}
           <div className="flex flex-col items-start gap-6">

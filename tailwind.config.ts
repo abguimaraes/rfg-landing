@@ -83,10 +83,23 @@ const config: Config = {
         focus: '0 0 0 4px rgba(76,179,230,0.35)',
         cta: '0 8px 24px -4px rgba(36,107,178,0.4)',
         'cta-hover': '0 12px 32px -6px rgba(36,107,178,0.5)',
+        // Phase A — shadows ousadas para cards
+        'card-default':
+          '0 1px 3px 0 rgba(36,107,178,0.08), 0 1px 2px -1px rgba(36,107,178,0.06)',
+        'card-hover':
+          '0 10px 15px -3px rgba(36,107,178,0.12), 0 4px 6px -4px rgba(36,107,178,0.10)',
+        'card-featured':
+          '0 25px 50px -12px rgba(36,107,178,0.25), 0 0 0 1px rgba(76,179,230,0.5)',
+        'glow-brand': '0 0 40px rgba(76,179,230,0.30)',
       },
       backgroundImage: {
         'rfg-gradient': 'linear-gradient(180deg, #246BB2 0%, #3688C8 50%, #4CB3E6 100%)',
         'rfg-gradient-cta': 'linear-gradient(135deg, #246BB2 0%, #3688C8 60%, #4CB3E6 100%)',
+        // Phase A — surfaces como background-image (gradients)
+        'surface-brand-strong':
+          'linear-gradient(180deg, #246BB2 0%, #3688C8 50%, #4CB3E6 100%)',
+        'surface-brand-soft':
+          'linear-gradient(180deg, rgba(36,107,178,0.04) 0%, rgba(76,179,230,0.06) 100%)',
       },
       transitionTimingFunction: {
         'out-soft': 'cubic-bezier(0.16, 1, 0.3, 1)',

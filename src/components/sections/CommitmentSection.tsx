@@ -37,48 +37,49 @@ export function CommitmentSection(): ReactNode {
     <section
       id="compromisso"
       aria-labelledby="compromisso-headline"
-      className="bg-white py-16 md:py-24 lg:py-28"
+      className="surface-brand-strong relative overflow-hidden py-16 md:py-24 lg:py-28"
     >
-      <Container variant="narrow">
+      <Container variant="narrow" className="relative z-[1]">
         <div ref={containerRef} className="flex flex-col items-center gap-6 text-center">
-          {/* Selo escudo — AC-24 / Effect #6 (icon scale-in burst) */}
+          {/* Selo escudo — AC-24 / Effect #6 (icon scale-in burst).
+              Sobre gradient brand-strong: bg branco translúcido contrasta
+              suficiente com o azul institucional sem competir com o gradient. */}
           <IconBurst className="flex justify-center">
             <span
               data-burst
               aria-hidden="true"
-              className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-rfg-gradient-cta text-white shadow-lg"
+              className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-white/15 text-white shadow-2xl ring-1 ring-white/30 backdrop-blur-sm"
               style={{ willChange: 'transform' }}
             >
               <ShieldCheck size={44} strokeWidth={1.75} />
             </span>
           </IconBurst>
 
-          <Eyebrow data-reveal>{commitment.eyebrow}</Eyebrow>
+          <Eyebrow data-reveal className="text-white/90">
+            {commitment.eyebrow}
+          </Eyebrow>
 
           <h2
             id="compromisso-headline"
             data-reveal
-            className="font-display text-h2 font-bold leading-tight tracking-tight text-neutral-900"
+            className="font-display text-h2 font-bold leading-tight tracking-tight text-white"
           >
             {commitment.headline}
           </h2>
 
-          <p
-            data-reveal
-            className="text-lead font-medium text-neutral-800"
-          >
+          <p data-reveal className="text-lead font-medium text-white/95">
             {commitment.subheadline}
           </p>
 
           <div
             data-reveal
-            className="flex flex-col gap-5 text-left text-body-lg leading-loose text-neutral-700"
+            className="flex flex-col gap-5 text-left text-body-lg leading-loose text-white/90"
           >
             {commitment.paragraphs.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}
 
-            <p className="text-h4 font-display font-semibold leading-snug text-neutral-900">
+            <p className="font-display text-h4 font-semibold leading-snug text-white">
               {commitment.midHighlight}
             </p>
 
@@ -99,17 +100,18 @@ export function CommitmentSection(): ReactNode {
           <p
             data-reveal
             data-testid="commitment-final-line"
-            className="font-display text-h4 font-semibold leading-snug text-rfg-dark"
+            className="font-display text-h4 font-semibold leading-snug text-white"
           >
             {commitment.finalLine}
           </p>
 
-          {/* Selo SUSEP — AC-26 */}
+          {/* Selo SUSEP — AC-26. Variant inverse no gradient: bg branco
+              translúcido + texto branco mantém a leitura sobre o azul. */}
           <div data-reveal className="mt-4 flex justify-center">
             <Badge
-              variant="success"
+              variant="outline"
               size="md"
-              className="!normal-case tracking-normal"
+              className="!normal-case border-white/40 bg-white/10 tracking-normal text-white backdrop-blur-sm"
             >
               {commitment.susepSeal.label}
             </Badge>
