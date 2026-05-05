@@ -65,6 +65,23 @@ describe('<ProofSection />', () => {
     expect(logos.length).toBe(20);
   });
 
+  it('marquee renderiza exatamente 1 track original + 1 clone (fix duplicação 2026-05-05)', () => {
+    const { container } = render(<ProofSection />);
+    const original = container.querySelectorAll(
+      '.marquee__track[data-marquee-clone="false"]',
+    );
+    const clones = container.querySelectorAll(
+      '.marquee__track[data-marquee-clone="true"]',
+    );
+    // Garante que existe APENAS 1 par (track + clone) para evitar a regressão
+    // de logos duplicados em desktop wide reportada por Anderson.
+    expect(original.length).toBe(1);
+    expect(clones.length).toBe(1);
+    // Cada track contém os 10 logos parceiros.
+    expect(original[0]?.querySelectorAll('.marquee__item').length).toBe(10);
+    expect(clones[0]?.querySelectorAll('.marquee__item').length).toBe(10);
+  });
+
   it('marquee tem aria-label "Seguradoras parceiras da RFG" (AC-22)', () => {
     render(<ProofSection />);
     expect(
