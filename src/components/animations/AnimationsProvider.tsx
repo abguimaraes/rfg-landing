@@ -10,10 +10,9 @@ import { useEffect, type ReactNode } from 'react';
  * layout calc antes de fonts/imagens estarem prontas. NÃO importa GSAP no
  * bundle inicial — `await import()` mantém GSAP fora do chunk shared (ADR-003).
  */
-export function AnimationsProvider({ children }: { children: ReactNode }): JSX.Element {
+export function AnimationsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
-    let stRef: { refresh: () => void } | null = null;
 
     (async () => {
       try {
@@ -23,7 +22,6 @@ export function AnimationsProvider({ children }: { children: ReactNode }): JSX.E
         gsap.registerPlugin(ScrollTrigger);
         gsap.config({ nullTargetWarn: false });
         gsap.defaults({ ease: 'power2.out' });
-        stRef = ScrollTrigger;
         // Refresh pós-mount num próximo frame, evita medir layout estale
         requestAnimationFrame(() => {
           if (!cancelled) ScrollTrigger.refresh();
@@ -35,7 +33,6 @@ export function AnimationsProvider({ children }: { children: ReactNode }): JSX.E
 
     return () => {
       cancelled = true;
-      stRef = null;
     };
   }, []);
 

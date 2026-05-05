@@ -6,9 +6,9 @@ describe('trackEvent — FR-044', () => {
   beforeEach(() => {
     process.env.NEXT_PUBLIC_VERCEL_ENV = 'production';
     clearConsent();
-    window.gtag = vi.fn();
-    window.fbq = vi.fn();
-    window.va = vi.fn();
+    window.gtag = vi.fn() as unknown as typeof window.gtag;
+    window.fbq = vi.fn() as unknown as typeof window.fbq;
+    window.va = vi.fn() as unknown as typeof window.va;
   });
 
   it('dispara em GA4 com nome e params', () => {

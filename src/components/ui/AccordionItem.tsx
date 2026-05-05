@@ -39,7 +39,7 @@ export function AccordionItem({
   defaultOpen = false,
   className,
   questionId,
-}: AccordionItemProps): JSX.Element {
+}: AccordionItemProps) {
   const isControlled = typeof open === 'boolean';
   const [internalOpen, setInternalOpen] = useState<boolean>(defaultOpen);
   const isOpen = isControlled ? open : internalOpen;

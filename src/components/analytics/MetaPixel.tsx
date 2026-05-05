@@ -16,7 +16,7 @@ export interface MetaPixelProps {
  * Reage a mudanças no `localStorage.rfg_consent` via `storage` event e custom event
  * `rfg-consent-change` (disparado pelo ConsentBanner) para carregar dinamicamente.
  */
-export function MetaPixel({ pixelId }: MetaPixelProps): JSX.Element | null {
+export function MetaPixel({ pixelId }: MetaPixelProps) {
   const [allowed, setAllowed] = useState<boolean>(false);
 
   useEffect(() => {

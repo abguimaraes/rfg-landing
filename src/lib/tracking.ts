@@ -32,7 +32,6 @@ export function trackEvent<E extends EventName>(name: E, params: EventParams[E])
   // Dev/preview guard — não polui métricas reais.
   if (!isProductionEnv()) {
     if (process.env.NODE_ENV !== 'test') {
-      // eslint-disable-next-line no-console
       console.debug('[tracking:dev]', name, params);
     }
     return;

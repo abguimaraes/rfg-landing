@@ -15,7 +15,7 @@ export function SkipLink({
   children = 'Pular para o conteúdo principal',
   className,
   ...props
-}: SkipLinkProps): JSX.Element {
+}: SkipLinkProps) {
   return (
     <a
       href={href}

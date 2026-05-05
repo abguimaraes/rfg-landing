@@ -33,7 +33,6 @@ export interface EventParams {
   faq_open: { question_id: string; question: string };
   partner_logo_click: { partner: string };
   consent_granted: { categories: string[] };
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   consent_declined: Record<string, never>;
 }
 

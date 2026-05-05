@@ -16,7 +16,7 @@ export interface GoogleAnalyticsProps {
  * (com IP anonimizado). Para opt-in total, basta gatear via `hasConsent('analytics')`
  * no consumidor — manter aqui flexível para o ConsentBanner orquestrar.
  */
-export function GoogleAnalytics({ gaId }: GoogleAnalyticsProps): JSX.Element | null {
+export function GoogleAnalytics({ gaId }: GoogleAnalyticsProps) {
   if (!gaId) return null;
   if (process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production') return null;
 

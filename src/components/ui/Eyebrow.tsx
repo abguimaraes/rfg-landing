@@ -1,7 +1,7 @@
 import { forwardRef, type HTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
-export interface EyebrowProps extends HTMLAttributes<HTMLSpanElement> {}
+export type EyebrowProps = HTMLAttributes<HTMLSpanElement>;
 
 export const Eyebrow = forwardRef<HTMLSpanElement, EyebrowProps>(function Eyebrow(
   { className, children, ...props },

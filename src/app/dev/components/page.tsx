@@ -34,7 +34,7 @@ const WHATSAPP_KEYS: WhatsAppMessageKey[] = [
  * Página interna de smoke visual dos primitives da Story 1.2.
  * Gated server-side: 404 em produção (NUNCA expor em prod).
  */
-export default function DevComponentsPage(): JSX.Element {
+export default function DevComponentsPage() {
   if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'production') {
     notFound();
   }

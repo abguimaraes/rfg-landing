@@ -22,7 +22,7 @@ export function SectionHeader({
   align = 'left',
   as: Tag = 'h2',
   className,
-}: SectionHeaderProps): JSX.Element {
+}: SectionHeaderProps) {
   const titleSize = Tag === 'h1' ? 'text-h1' : Tag === 'h2' ? 'text-h2' : 'text-h3';
 
   return (

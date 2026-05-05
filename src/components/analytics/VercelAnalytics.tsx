@@ -7,7 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
  * Carregam built-in da Vercel; sem PII; sempre habilitados (não dependem de consent).
  * Em previews, ainda funcionam para coletar Web Vitals.
  */
-export function VercelAnalytics(): JSX.Element {
+export function VercelAnalytics() {
   return (
     <>
       <Analytics />

@@ -26,7 +26,7 @@ function dispatchConsentChange(): void {
  * 3 categorias: Necessários (sempre ativo), Analytics, Marketing.
  * Aparece somente se ainda não há decisão válida (não expirada) salva.
  */
-export function ConsentBanner(): JSX.Element | null {
+export function ConsentBanner() {
   const [visible, setVisible] = useState<boolean>(false);
   const [showCustomize, setShowCustomize] = useState<boolean>(false);
   const [choice, setChoice] = useState<ConsentChoice>(ALL_OFF);
