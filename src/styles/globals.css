@@ -1,0 +1,67 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+ * RFG Landing — Base Styles
+ * ============================================================================ */
+
+@layer base {
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: var(--fs-body);
+    line-height: var(--lh-relaxed);
+    color: var(--text-primary);
+    background: var(--bg-primary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--lh-snug);
+  }
+
+  /* Focus visible padrão pra todos interativos */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* ============================================================================
+ * RFG Landing — Component Layer (utility classes)
+ * Drop-in das classes utilitárias do design-system.md §10
+ * Componentes UI primitivos virão na Story 1.2.
+ * ============================================================================ */
+
+@layer components {
+  /* Skip link — atende FR-040 parcialmente; full UI primitive virá na 1.2 */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50
+           focus:rounded-md focus:bg-rfg-dark focus:px-4 focus:py-2 focus:text-white
+           focus:shadow-cta focus:outline-none;
+  }
+
+  .container-narrow {
+    @apply mx-auto max-w-narrow px-4 md:px-6;
+  }
+  .container-wide {
+    @apply mx-auto max-w-container px-4 md:px-6 lg:px-8;
+  }
+}
