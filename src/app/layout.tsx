@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { MetaPixel } from '@/components/analytics/MetaPixel';
 import { ScrollDepthTracker } from '@/components/analytics/ScrollDepthTracker';
 import { VercelAnalytics } from '@/components/analytics/VercelAnalytics';
+import { StickyNav } from '@/components/sections/StickyNav';
 import { SkipLink } from '@/components/ui/SkipLink';
 
 const manrope = Manrope({
@@ -87,6 +88,7 @@ export default function RootLayout({
     <html lang="pt-BR" dir="ltr" className={`${manrope.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">
         <SkipLink />
+        <StickyNav />
         <AnimationsProvider>
           <main id="conteudo">{children}</main>
         </AnimationsProvider>
