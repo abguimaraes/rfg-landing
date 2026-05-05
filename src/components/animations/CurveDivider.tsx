@@ -1,7 +1,11 @@
 'use client';
 
 import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef, type ReactNode } from 'react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface CurveDividerProps {
   /** Cor de cima (origem) — default white. */
@@ -33,18 +37,12 @@ export function CurveDivider({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
-    async () => {
+    () => {
       if (!wrapperRef.current) return;
       const path = wrapperRef.current.querySelector<SVGPathElement>(
         '[data-curve-path]',
       );
       if (!path) return;
-
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-      ]);
-      gsap.registerPlugin(ScrollTrigger);
 
       const mm = gsap.matchMedia();
       mm.add(
@@ -62,10 +60,14 @@ export function CurveDivider({
             // Anima d-attribute do path com scrub.
             gsap.fromTo(
               path,
-              { attr: { d: 'M0,0 C300,0 600,0 1200,0 L1200,120 L0,120 Z' } },
               {
                 attr: {
-                  d: 'M0,0 C300,120 600,120 1200,0 L1200,120 L0,120 Z',
+                  d: `M0,0 C300,0 600,0 1200,0 L1200,${height} L0,${height} Z`,
+                },
+              },
+              {
+                attr: {
+                  d: `M0,0 C300,${height} 600,${height} 1200,0 L1200,${height} L0,${height} Z`,
                 },
                 ease: 'none',
                 scrollTrigger: {
@@ -82,7 +84,7 @@ export function CurveDivider({
 
       return () => mm.revert();
     },
-    { scope: wrapperRef },
+    { scope: wrapperRef, dependencies: [height] },
   );
 
   return (

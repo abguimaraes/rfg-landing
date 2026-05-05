@@ -1,6 +1,7 @@
 'use client';
 
 import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 import { useRef, type ReactNode } from 'react';
 
 export interface HeroTextRevealProps {
@@ -35,13 +36,12 @@ export function HeroTextReveal({
   const words = text.split(/\s+/);
 
   useGSAP(
-    async () => {
+    () => {
       if (!containerRef.current) return;
       const targets =
         containerRef.current.querySelectorAll<HTMLElement>('[data-hero-word]');
       if (targets.length === 0) return;
 
-      const { gsap } = await import('gsap');
       const mm = gsap.matchMedia();
 
       mm.add(
@@ -82,7 +82,7 @@ export function HeroTextReveal({
             style={{ transform: 'translateY(16px)' }}
           >
             {word}
-            {i < words.length - 1 ? ' ' : ''}
+            {i < words.length - 1 ? ' ' : ''}
           </span>
         ))}
       </span>

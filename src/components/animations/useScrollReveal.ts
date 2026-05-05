@@ -1,7 +1,11 @@
 'use client';
 
 import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef } from 'react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface UseScrollRevealOptions {
   /** Delay entre elementos `[data-reveal]` filhos. Default 0.12s. */
@@ -17,8 +21,7 @@ export interface UseScrollRevealOptions {
 /**
  * Hook canonical de scroll reveal — Story 1.2 (AC-9, ADR-003).
  *
- * Carrega GSAP via dynamic import (mantém fora do bundle inicial), aplica
- * `gsap.matchMedia()` cobrindo `isMobile`, `isDesktop` e `reduceMotion`.
+ * Usa `gsap.matchMedia()` cobrindo `isMobile`, `isDesktop` e `reduceMotion`.
  * Quando `prefers-reduced-motion: reduce` está ativo, mantém estado final
  * (opacity 1) sem animar — atende FR-032/NFR-014.
  *
@@ -34,14 +37,8 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
   const containerRef = useRef<T>(null);
 
   useGSAP(
-    async () => {
+    () => {
       if (!containerRef.current) return;
-
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-      ]);
-      gsap.registerPlugin(ScrollTrigger);
 
       const targets = containerRef.current.querySelectorAll<HTMLElement>('[data-reveal]');
       if (targets.length === 0) return;

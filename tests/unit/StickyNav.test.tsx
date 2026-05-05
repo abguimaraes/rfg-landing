@@ -19,18 +19,20 @@ describe('<StickyNav />', () => {
 
   it('renderiza 4 links âncora desktop (#sobre, #como-funciona, #caminhos, #faq)', () => {
     render(<StickyNav />);
-    expect(screen.getByRole('menuitem', { name: 'Sobre' })).toHaveAttribute(
+    // Após FIX #4: removidos roles menubar/menuitem; links âncora puros dentro do
+    // <nav aria-label="Navegação principal">. Buscamos via getByRole('link', ...).
+    expect(screen.getByRole('link', { name: 'Sobre' })).toHaveAttribute(
       'href',
       '#sobre',
     );
     expect(
-      screen.getByRole('menuitem', { name: 'Como funciona' }),
+      screen.getByRole('link', { name: 'Como funciona' }),
     ).toHaveAttribute('href', '#como-funciona');
-    expect(screen.getByRole('menuitem', { name: 'Caminhos' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Caminhos' })).toHaveAttribute(
       'href',
       '#caminhos',
     );
-    expect(screen.getByRole('menuitem', { name: 'Perguntas' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Perguntas' })).toHaveAttribute(
       'href',
       '#faq',
     );
@@ -41,13 +43,20 @@ describe('<StickyNav />', () => {
     const cta = screen.getByTestId('sticky-nav-cta');
     expect(cta.getAttribute('href')).toMatch(/wa\.me\/\d+\?text=/);
     expect(cta).toHaveAttribute('aria-label', expect.stringContaining('RFG'));
+    // Após FIX #5: CTA é <a> direto (sem <button> aninhado), com rel
+    // contendo 'noopener' (segurança em target="_blank").
+    expect(cta).toHaveAttribute('rel', expect.stringContaining('noopener'));
   });
 
-  it('CTA mobile (ícone) também aponta para wa.me', () => {
+  it('CTA mobile (ícone) também aponta para wa.me com rel seguro', () => {
     render(<StickyNav />);
     const ctaMobile = screen.getByTestId('sticky-nav-cta-mobile');
     expect(ctaMobile.getAttribute('href')).toMatch(/wa\.me\/\d+\?text=/);
     expect(ctaMobile).toHaveAttribute('target', '_blank');
+    expect(ctaMobile).toHaveAttribute(
+      'rel',
+      expect.stringContaining('noopener'),
+    );
   });
 
   it('expõe nav com aria-label "Navegação principal"', () => {
