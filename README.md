@@ -1,10 +1,16 @@
 # RFG Corretora de Seguros — Landing v1
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com)
+
 Landing page institucional da **RFG Corretora de Seguros** — Maceió/AL.
 Captação de leads via WhatsApp, sem backend, sem formulários.
 
 > **Status:** em construção (Story 1.1 concluída — fundação do projeto)
 > **Domínio (futuro):** [www.rfgcorretora.com.br](https://www.rfgcorretora.com.br)
+> **Repositório:** público (MIT). **Não commitar secrets** — usar `.env.local` (gitignored) ou Vercel Environment Variables.
 
 ---
 
@@ -158,4 +164,6 @@ Domínio `www.rfgcorretora.com.br` será apontado na Story 1.8 (go-live).
 
 ## Licença
 
-Privado — Direitos reservados RFG Corretora de Seguros.
+[MIT](LICENSE) © 2026 Anderson Guimarães e Ricardo Farias / RFG Corretora de Seguros.
+
+> Repositório público desde 2026-05-05 (decisão Anderson) para liberar Branch Protection no GitHub Free. Conteúdo é landing institucional — sem secrets no repo. Variáveis sensíveis ficam em `.env.local` (gitignored) ou Vercel Env Vars.
