@@ -73,7 +73,7 @@ export const paths: PathsContent = {
       ctaLabel: 'Quero o plano completo — falar no WhatsApp',
       whatsappKey: 'completa',
       isFeatured: true,
-      featuredBadge: 'Mais Procurado',
+      featuredBadge: 'MAIS PROCURADO',
     },
     {
       slug: 'legado',

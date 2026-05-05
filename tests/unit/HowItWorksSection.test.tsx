@@ -37,10 +37,27 @@ describe('<HowItWorksSection />', () => {
     expect(screen.getByText(/Passo 3: Acompanhamento Contínuo/)).toBeInTheDocument();
   });
 
-  it('cada passo expõe 3 bullets "O que acontece aqui" (AC-2)', () => {
+  it('cada passo expõe label "O que acontece aqui" (AC-2)', () => {
     render(<HowItWorksSection />);
     const labels = screen.getAllByText(/O que acontece aqui:/);
     expect(labels).toHaveLength(3);
+  });
+
+  it('cada passo expõe exatamente 3 bullets concretos (AC-2)', () => {
+    const { container } = render(<HowItWorksSection />);
+    const lis = container.querySelectorAll('ol > li');
+    expect(lis).toHaveLength(3);
+    lis.forEach((stepLi) => {
+      const innerBullets = stepLi.querySelectorAll('ul > li');
+      expect(innerBullets.length).toBe(3);
+    });
+    // Cobertura total: 3 passos × 3 bullets = 9 bullets
+    howItWorks.steps.forEach((step) => {
+      expect(step.bullets).toHaveLength(3);
+      step.bullets.forEach((b) => {
+        expect(b.trim().length).toBeGreaterThan(0);
+      });
+    });
   });
 
   it('expõe ancora id="como-funciona" (AC-7)', () => {

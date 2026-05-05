@@ -262,9 +262,9 @@ describe('Story 1.5 — Content compliance (Seções 8-10)', () => {
       expect(legado?.isFeatured).toBe(false);
     });
 
-    it('badge do Caminho 2 é "Mais Procurado" (Decisão 6 wireframes)', () => {
+    it('badge do Caminho 2 é "MAIS PROCURADO" (Decisão 6 wireframes)', () => {
       const completa = paths.paths.find((p) => p.slug === 'completa');
-      expect(completa?.featuredBadge?.toLowerCase()).toContain('procurado');
+      expect(completa?.featuredBadge).toBe('MAIS PROCURADO');
       // NÃO usar "MAIS VENDIDO" (quebra tom consultivo)
       expect(completa?.featuredBadge?.toLowerCase()).not.toContain('vendido');
     });

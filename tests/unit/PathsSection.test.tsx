@@ -33,9 +33,9 @@ describe('<PathsSection />', () => {
     expect(screen.getByTestId('paths-cta-legado')).toBeInTheDocument();
   });
 
-  it('Caminho 2 destacado com badge "Mais Procurado" (AC-10/AC-12)', () => {
+  it('Caminho 2 destacado com badge "MAIS PROCURADO" (AC-10/AC-12)', () => {
     render(<PathsSection />);
-    expect(screen.getByText('Mais Procurado')).toBeInTheDocument();
+    expect(screen.getByText('MAIS PROCURADO')).toBeInTheDocument();
     expect(screen.getByText('(o caminho mais procurado)')).toBeInTheDocument();
   });
 

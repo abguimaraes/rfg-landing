@@ -60,16 +60,16 @@ export function HowItWorksSection(): ReactNode {
             </p>
           </header>
 
-          <ol
-            className="relative grid gap-6 md:grid-cols-3 md:gap-8"
-            aria-label="Três passos do processo da RFG"
-          >
+          <div className="relative">
             {/* Linha conectora decorativa entre os 3 cards (desktop only). */}
             <span
               aria-hidden="true"
               className="pointer-events-none absolute left-0 right-0 top-12 hidden h-px bg-gradient-to-r from-transparent via-neutral-300 to-transparent md:block"
             />
-
+            <ol
+              className="grid gap-6 md:grid-cols-3 md:gap-8"
+              aria-label="Três passos do processo da RFG"
+            >
             {howItWorks.steps.map((step) => {
               const Icon = ICON_MAP[step.iconKey];
               return (
@@ -128,7 +128,8 @@ export function HowItWorksSection(): ReactNode {
                 </li>
               );
             })}
-          </ol>
+            </ol>
+          </div>
         </div>
       </Container>
     </section>
