@@ -17,9 +17,10 @@ const SCROLL_THRESHOLD_PX = 80;
  * - Posição `sticky top-0 z-50`.
  * - Slide-down 200ms ao detectar `scrollY > 80`.
  * - Backdrop-blur 12px aplicado quando scrolled.
- * - Desktop (>=1024px): logo (40px h, recolhe a 36px ao scroll) + 4 links
- *   âncora + CTA `btn-secondary md` "Falar no WhatsApp" (chave `sticky_nav`).
- * - Mobile (<1024px): logo (32px h) + ícone WhatsApp 24px (sem hambúrguer).
+ * - Desktop (>=1024px): logo (52px h, recolhe a 44px ao scroll — Phase B+C
+ *   Tier 1; era 40/36) + 4 links âncora + CTA `btn-secondary md` "Falar no
+ *   WhatsApp" (chave `sticky_nav`).
+ * - Mobile (<1024px): logo (40px h, era 32) + ícone WhatsApp 24px (sem hambúrguer).
  * - Altura desktop 72px / mobile 56px.
  *
  * Tracking: `cta_click` (category: 'sticky_nav') + `whatsapp_redirect`
@@ -92,13 +93,15 @@ export function StickyNav(): ReactNode {
           <Image
             src={stickyNav.brandLogo.src}
             alt={stickyNav.brandLogo.alt}
-            width={120}
-            height={40}
-            priority={false}
+            width={156}
+            height={52}
+            priority
             className={cn(
               'object-contain transition-all duration-[200ms]',
-              'h-8 w-auto lg:h-10',
-              scrolled && 'lg:h-9',
+              // Phase B+C Tier 1: logo aumentada (era h-8 / lg:h-10)
+              // pra dar peso visual à marca (feedback Anderson 2026-05-05).
+              'h-10 w-auto lg:h-[52px]',
+              scrolled && 'lg:h-11',
             )}
           />
         </a>

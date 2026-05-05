@@ -70,6 +70,31 @@
     #4cb3e6 100%
   );
 
+  /* ============ SURFACES — Phase B+C Tier 1 ============
+   * Origem: docs/plan/visual-upgrade-phase-bc.md §2.2
+   * surface-deep-rich: dark gradient para Prova (diferenciação vs surface-deep
+   *   chapado de OriginStory). Cria continuum dark mas com nuance.
+   * surface-hero: wash gradient azul institucional para Hero (substitui white
+   *   chato sem virar "saturado"). */
+  --surface-deep-rich: linear-gradient(
+    180deg,
+    #0f1a2e 0%,
+    #1e293b 60%,
+    #0f1a2e 100%
+  );
+  --surface-hero: linear-gradient(
+    180deg,
+    rgba(36, 107, 178, 0.05) 0%,
+    rgba(76, 179, 230, 0.08) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  --surface-spotlight: radial-gradient(
+    ellipse 1200px 600px at 70% 40%,
+    rgba(76, 179, 230, 0.12) 0%,
+    rgba(36, 107, 178, 0.06) 30%,
+    transparent 70%
+  );
+
   --border-subtle: var(--neutral-100);
   --border-default: var(--neutral-200);
   --border-emphasis: var(--neutral-300);
@@ -92,6 +117,18 @@
   --fs-body-sm: 0.9375rem;
   --fs-caption: 0.875rem;
   --fs-small: 0.75rem;
+
+  /* ============ TYPOGRAPHY — Editorial Mega Scale (Phase B+C Tier 1) ============
+   * Origem: docs/plan/visual-upgrade-phase-bc.md §2.1
+   * Usado em: Hero (display-xl/lg) + ProofSection (mega) + filigranas (motif). */
+  --fs-mega: 8rem; /* 128px desktop — número herói (1.200, 1995) */
+  --fs-display-xl: 6rem; /* 96px desktop — headline mega Hero */
+  --fs-display-lg: 5rem; /* 80px desktop — headline editorial */
+  --fs-motif: 12rem; /* 192px desktop — filigrana decorativa (Tier 2) */
+
+  --tracking-mega: -0.04em; /* tracking ultra-tight para mega numbers */
+  --tracking-display: -0.035em; /* tracking display headlines */
+  --tracking-loose-caps: 0.4em; /* palavra-motif uppercase (Tier 2) */
 
   --lh-tight: 1.1;
   --lh-snug: 1.2;
@@ -181,6 +218,11 @@
     --fs-eyebrow: 0.8125rem;
     --fs-lead: 1.125rem;
     --fs-body-lg: 1.0625rem;
+    /* Phase B+C Tier 1 — escala mega ainda dominante mas legível em 375px. */
+    --fs-mega: 4rem; /* 64px mobile (era 8rem) */
+    --fs-display-xl: 3rem; /* 48px mobile (era 6rem) */
+    --fs-display-lg: 2.5rem; /* 40px mobile (era 5rem) */
+    --fs-motif: 6rem; /* 96px mobile (era 12rem) */
   }
 }
 

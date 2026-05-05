@@ -52,6 +52,13 @@ const config: Config = {
         'body-sm': ['0.9375rem', { lineHeight: '1.55', fontWeight: '400' }],
         caption: ['0.875rem', { lineHeight: '1.5', fontWeight: '500' }],
         small: ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.02em', fontWeight: '500' }],
+        // Phase B+C Tier 1 — editorial mega scale (Hero + Prova).
+        // clamp() garante que escalam suavemente entre mobile e desktop sem
+        // estouro horizontal em headlines com acentos pt-BR.
+        mega: ['clamp(4rem, 8vw + 1rem, 8rem)', { lineHeight: '0.95', letterSpacing: '-0.04em', fontWeight: '800' }],
+        'display-xl': ['clamp(3rem, 6vw + 1rem, 6rem)', { lineHeight: '1.0', letterSpacing: '-0.035em', fontWeight: '800' }],
+        'display-lg': ['clamp(2.5rem, 5vw + 1rem, 5rem)', { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '700' }],
+        motif: ['clamp(4rem, 12vw, 12rem)', { lineHeight: '0.9', letterSpacing: '0.4em', fontWeight: '200' }],
       },
       spacing: {
         'section-mobile': '3rem',
@@ -100,6 +107,13 @@ const config: Config = {
           'linear-gradient(180deg, #246BB2 0%, #3688C8 50%, #4CB3E6 100%)',
         'surface-brand-soft':
           'linear-gradient(180deg, rgba(36,107,178,0.04) 0%, rgba(76,179,230,0.06) 100%)',
+        // Phase B+C Tier 1 — surfaces editoriais novas
+        'surface-deep-rich':
+          'linear-gradient(180deg, #0F1A2E 0%, #1E293B 60%, #0F1A2E 100%)',
+        'surface-hero':
+          'linear-gradient(180deg, rgba(36,107,178,0.05) 0%, rgba(76,179,230,0.08) 60%, rgba(255,255,255,1) 100%)',
+        'surface-spotlight':
+          'radial-gradient(ellipse 1200px 600px at 70% 40%, rgba(76,179,230,0.12) 0%, rgba(36,107,178,0.06) 30%, transparent 70%)',
       },
       transitionTimingFunction: {
         'out-soft': 'cubic-bezier(0.16, 1, 0.3, 1)',
