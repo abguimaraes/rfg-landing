@@ -88,19 +88,13 @@ export function CommitmentSection(): ReactNode {
               <p>{commitment.susepLine}</p>
             </div>
 
-            <p>
-              Não precisamos de cliente que não está convencido — precisamos de
-              cliente que está protegido de verdade.
-            </p>
+            <p>{commitment.realCommitmentIntro}</p>
 
             <p className="text-body-lg leading-relaxed">
-              {commitment.realCommitment}
+              {commitment.realCommitmentOutroTop}
             </p>
 
-            <p>
-              Sem sumir após a venda. Sem surpresa no sinistro. Sem letra miúda
-              que você só descobre quando já é tarde.
-            </p>
+            <p>{commitment.realCommitmentOutroBottom}</p>
           </div>
 
           <p
