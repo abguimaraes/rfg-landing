@@ -73,7 +73,7 @@ gh api --method POST \
 
 ### Resposta da API
 
-```
+```text
 HTTP 403
 {
   "message": "Upgrade to GitHub Pro or make this repository public to enable this feature.",

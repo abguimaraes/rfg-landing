@@ -252,7 +252,7 @@
 | # | Decisão |
 |---|---------|
 | D1 | ✓ Stack: **Next.js 15 + Tailwind + GSAP + Vercel** |
-| D2 | ✓ Repo privado `abguimaraes/rfg-landing` (a criar por @devops) |
+| D2 | ✓ Repo `abguimaraes/rfg-landing` (a criar por @devops) — **supersedida por D10** (público em 2026-05-05) |
 | D3 | ✓ Lead capture: **só WhatsApp direto v1** |
 | D4 | ✓ Domínio: **Registro.br** com nameservers default → apontar A/AAAA records pra Vercel |
 | D5 | ✓ **Domínio limpo** — nenhum site rodando atualmente, deploy direto sem migração |
