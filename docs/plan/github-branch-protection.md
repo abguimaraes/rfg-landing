@@ -42,7 +42,7 @@ PUT /repos/abguimaraes/rfg-landing/branches/main/protection
 {
   "required_status_checks": {
     "strict": true,
-    "contexts": ["lint", "typecheck", "build"]
+    "contexts": ["Lint, Typecheck, Build"]
   },
   "enforce_admins": false,
   "required_pull_request_reviews": {
@@ -79,7 +79,7 @@ gh api -X PUT repos/abguimaraes/rfg-landing/branches/main/protection \
 
 | Regra | Status | Efeito |
 |-------|--------|--------|
-| Required status checks (`lint`, `typecheck`, `build`) | ✅ ativo | PR só pode ser merge se os 3 checks passarem |
+| Required status check (`Lint, Typecheck, Build`) | ✅ ativo | PR só pode ser merge se o job CI da pipeline (`.github/workflows/ci.yml` → `quality`) passar com seus 3 steps internos: `pnpm lint` + `pnpm typecheck` + `pnpm build`. O nome do context é o `name:` do job no workflow. |
 | `strict: true` (status checks) | ✅ ativo | Branch precisa estar atualizada com `main` antes do merge |
 | Required linear history | ✅ ativo | Sem merge commits — só squash ou rebase |
 | Allow force pushes | ❌ bloqueado | Ninguém pode reescrever histórico de `main` |
@@ -108,7 +108,7 @@ Saída esperada (campos relevantes):
 {
   "required_status_checks": {
     "strict": true,
-    "contexts": ["lint", "typecheck", "build"]
+    "contexts": ["Lint, Typecheck, Build"]
   },
   "required_linear_history": { "enabled": true },
   "allow_force_pushes": { "enabled": false },
