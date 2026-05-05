@@ -1,7 +1,11 @@
 'use client';
 
 import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef, useState, type ReactNode } from 'react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface CounterTweenProps {
   /** Valor final (e.g. 1200). */
@@ -50,13 +54,8 @@ export function CounterTween({
   const [display, setDisplay] = useState<string>(format(from));
 
   useGSAP(
-    async () => {
+    () => {
       if (!ref.current) return;
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-      ]);
-      gsap.registerPlugin(ScrollTrigger);
 
       const mm = gsap.matchMedia();
       mm.add(
@@ -92,7 +91,7 @@ export function CounterTween({
       ref={ref}
       className={className}
       aria-label={ariaLabel}
-      role={ariaLabel ? 'text' : undefined}
+      role={ariaLabel ? 'img' : undefined}
     >
       <span aria-hidden={ariaLabel ? 'true' : undefined}>
         {prefix}

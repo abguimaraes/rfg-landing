@@ -1,5 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 // Mock next/image — em jsdom o componente real tem comportamento de SSR
 // que polui o snapshot. Mantemos os atributos relevantes (alt, src, priority).
@@ -28,8 +29,23 @@ vi.mock('@gsap/react', () => ({
   useGSAP: () => undefined,
 }));
 
+// Mock tracking — Nitpick #3: queremos asserir que o handler do CTA dispara
+// `cta_click` + `whatsapp_redirect` (AC-11).
+vi.mock('@/lib/tracking', () => ({
+  trackEvent: vi.fn(),
+}));
+
 import { HeroSection } from '@/components/sections/HeroSection';
 import { hero } from '@/content/hero';
+import { trackEvent } from '@/lib/tracking';
+
+beforeEach(() => {
+  vi.mocked(trackEvent).mockClear();
+});
+
+afterEach(() => {
+  vi.mocked(trackEvent).mockClear();
+});
 
 describe('<HeroSection />', () => {
   it('renderiza o `<h1>` com a headline literal de 05-copy-landing.md', () => {
@@ -86,5 +102,24 @@ describe('<HeroSection />', () => {
   it('CTA microcopy "Sem custo. Sem compromisso."', () => {
     render(<HeroSection />);
     expect(screen.getByText('Sem custo. Sem compromisso.')).toBeInTheDocument();
+  });
+
+  it('CTA click dispara cta_click + whatsapp_redirect (AC-11, Nitpick #3)', async () => {
+    const user = userEvent.setup();
+    render(<HeroSection />);
+    await user.click(screen.getByTestId('hero-cta'));
+    expect(trackEvent).toHaveBeenCalledWith(
+      'cta_click',
+      expect.objectContaining({
+        category: 'hero',
+        label: hero.cta.label,
+      }),
+    );
+    expect(trackEvent).toHaveBeenCalledWith(
+      'whatsapp_redirect',
+      expect.objectContaining({
+        destination: hero.cta.whatsappKey,
+      }),
+    );
   });
 });

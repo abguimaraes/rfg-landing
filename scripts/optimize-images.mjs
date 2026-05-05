@@ -15,13 +15,13 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
-// pnpm hoisting — Sharp vem via Next.js (sharp@0.34.5).
-// Carregamos via path direto pra contornar resolução strict do pnpm.
 let sharp;
 try {
   sharp = require('sharp');
 } catch {
-  sharp = require('../node_modules/.pnpm/sharp@0.34.5/node_modules/sharp');
+  throw new Error(
+    '[optimize-images] sharp não encontrado. Rode: pnpm add -D sharp',
+  );
 }
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

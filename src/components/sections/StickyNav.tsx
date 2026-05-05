@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useCallback, useEffect, useState, type MouseEvent, type ReactNode } from 'react';
 import { MessageCircle } from 'lucide-react';
 
-import { Button } from '@/components/ui/Button';
 import { stickyNav } from '@/content/stickyNav';
 import { cn } from '@/lib/utils';
 import { trackEvent } from '@/lib/tracking';
@@ -105,12 +104,11 @@ export function StickyNav(): ReactNode {
         </a>
 
         {/* Links desktop */}
-        <ul className="hidden items-center gap-8 lg:flex" role="menubar">
+        <ul className="hidden items-center gap-8 lg:flex">
           {stickyNav.links.map((link) => (
-            <li key={link.href} role="none">
+            <li key={link.href}>
               <a
                 href={link.href}
-                role="menuitem"
                 className={cn(
                   'text-body-sm font-medium text-neutral-700',
                   'transition-colors duration-150',
@@ -129,19 +127,21 @@ export function StickyNav(): ReactNode {
           href={whatsappProps.href}
           target={whatsappProps.target}
           rel={whatsappProps.rel}
-          aria-label={whatsappProps['aria-label']}
+          aria-label={ARIA_LABELS[stickyNav.cta.whatsappKey]}
           onClick={handleCtaClick}
-          className="hidden lg:inline-block"
+          className={cn(
+            'hidden lg:inline-flex items-center justify-center gap-2',
+            'h-11 px-6 rounded-md',
+            'text-body font-sans font-semibold',
+            'text-rfg-dark bg-transparent border-2 border-rfg-dark',
+            'hover:bg-rfg-dark hover:text-white',
+            'active:scale-[0.98]',
+            'focus-visible:outline-none focus-visible:shadow-focus',
+            'transition-all duration-normal ease-out-soft',
+          )}
           data-testid="sticky-nav-cta"
         >
-          <Button
-            variant="secondary"
-            size="md"
-            tabIndex={-1}
-            aria-label={ARIA_LABELS[stickyNav.cta.whatsappKey]}
-          >
-            {stickyNav.cta.label}
-          </Button>
+          {stickyNav.cta.label}
         </a>
 
         {/* CTA mobile (apenas ícone) */}
