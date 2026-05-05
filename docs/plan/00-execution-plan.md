@@ -260,6 +260,7 @@
 | D7 | ✓ **Spec Pipeline curto** — projeto novo merece definição formal (PM→PO→SM→PO) |
 | D8 | ✓ GitHub: conta `abguimaraes` (mesma do PostFeito) |
 | D9 | ✓ Vercel: **mesma conta** dos outros projetos (Anderson) — cada projeto é deploy isolado com domínio próprio, sem mistura |
+| D10 | ✓ **Repo público (decisão 2026-05-05).** `abguimaraes/rfg-landing` virou público + LICENSE MIT para liberar Branch Protection no GitHub Free (Opção A vs Pro/$4 mês ou ruleset bloqueado). Justificativa: landing institucional sem secrets/IP sensível. Branch protection aplicada via `gh api PUT /branches/main/protection`. Documentação: `docs/plan/github-branch-protection.md`. Story 1.1 AC-2 ✅ resolvido. |
 
 ## ⚠️ Separação de Projetos — RFG ≠ PostFeito
 
