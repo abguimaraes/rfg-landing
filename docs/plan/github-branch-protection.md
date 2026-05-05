@@ -32,7 +32,7 @@ A branch `main` de `abguimaraes/rfg-landing` está protegida server-side via **G
 
 ### Endpoint
 
-```
+```http
 PUT /repos/abguimaraes/rfg-landing/branches/main/protection
 ```
 

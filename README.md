@@ -148,7 +148,7 @@ Detalhes em [`docs/plan/architecture.md`](docs/plan/architecture.md).
 - **Branch `main`** → auto-deploy production na Vercel
 - **Branches `feature/*` / PRs** → preview deploy automático com URL única
 - **Região:** `gru1` (Brasil) — config em `vercel.json`
-- **Headers de segurança:** X-Frame-Options, CSP nosniff, HSTS preload (vercel.json)
+- **Headers de segurança:** X-Frame-Options, X-Content-Type-Options: nosniff, HSTS preload (vercel.json)
 
 Domínio `www.rfgcorretora.com.br` será apontado na Story 1.8 (go-live).
 
