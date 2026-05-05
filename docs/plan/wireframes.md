@@ -15,7 +15,7 @@
 | 1 | Foto Hero | **`socios-01-perfil-rfg.png`** (close peito-pra-cima, ambos blazer azul + camisa branca, fundo escuro) | Tráfego principal vem do Instagram (mobile). Em 320-414px o close lê melhor que corpo inteiro — rosto reconhecível como ativo de credibilidade. A formalidade do close ancora a "Tríade da Credencial" (35 anos / SUSEP 1995 / 1.200 famílias) sem competir com a headline. `socios-02-estudio.png` fica reservado para Seção 7 (História) — corpo inteiro casual casa com tom fraternal/storytelling. |
 | 2 | Layout 3 personas (Seção 4) | **3 colunas desktop / 1 col stacked mobile**. Cards `default` com ícone Lucide no topo + H4 + body curto. Prefixo "Isso é para você se..." conforme briefing. | Cards uniformes evitam hierarquia entre personas (todas igualmente importantes). Stack mobile preserva legibilidade do body curto. |
 | 3 | Pilares de valor (Seção 5) | **Grid 2x2 desktop / 1 col stacked mobile**. Cards `card-hover` (border-1, shadow-sm, lift no hover). | 4 cards em linha única ficariam apertados em 1024px. 2x2 dá respiro visual e cria pares semânticos (proteger/realizar / família/consultor). |
-| 4 | Depoimentos (Seção 6) | **Grid estático 2 colunas desktop / 1 col stacked mobile** + faixa marquee de logos parceiros embaixo. Sem carousel. | Apenas 2 depoimentos confirmados (Rodrigo + Marcos Roberto). Carousel para 2 itens é overkill — grid estático cria simetria e força leitura completa. Carousel virá em v2 quando houver 5+ depoimentos. |
+| 4 | Depoimentos (Seção 6) | **Decisão Anderson 2026-05-05:** 4 testimonials reais (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos) em **grid 2×2 desktop / 1-col stack mobile** + faixa marquee de logos parceiros embaixo. Sem carousel. Substitui as decisões anteriores (2-col com Rodrigo+Marcos Roberto, depois 3-col uniforme com Rômulo+Rodrigo+Marcos Roberto) — Anderson informou que os 3 nomes anteriores eram fakes. | 4 depoimentos reais confirmados; grid 2×2 cria simetria e força leitura completa de todos. Carousel virá em v2 quando houver 6+ depoimentos. |
 | 5 | Marquee logos parceiros (Seção 6) | **Confirmado — marquee infinito CSS keyframes** (padrão #8 effects-reference). 30s linear infinite. Respeita `prefers-reduced-motion: reduce` (vira grid estático). 10 logos em loop. | Padrão validado em PostFeito. CSS-only é leve (não usa JS), GPU-friendly. |
 | 6 | 3 caminhos (Seção 9) | **Desktop: 3 cards horizontais, Caminho 2 (Proteção Completa) destacado** com `card-featured` (border-2 rfg-mid, shadow-xl, badge "MAIS PROCURADO" — posicionado discretamente, não gritado). Mobile: stack 1 coluna; Caminho 2 elevado por shadow + border, mas SEM scroll horizontal (visitante mobile precisa ver os 3). | Decisão alinhada à copy: "o caminho mais procurado" é descritivo, não selo de marketing. Stack mobile garante visibilidade dos 3 sem swipe. |
 | 7 | Como Funciona (Seção 8) | **Steps verticais simples desktop + mobile** (NÃO scroll-pinned). 3 cards numerados (01/02/03) com ícone + H3 + body + lista bullet. Em desktop, cards lado-a-lado com linha conectora sutil. | Scroll-pinned (padrão #3) é poderoso mas pesa em performance — meta Lighthouse 95+ é prioridade. Steps verticais com `Card grid stagger` (padrão #2) entrega impacto sem custo de pin. Reservar pin para v2 caso métricas justifiquem. |
@@ -36,7 +36,7 @@
 | 4 | Para Quem É | **#2 Card grid stagger** (3 cards, 150ms entre) | — |
 | 5 | Proposta de Valor | **#2 Card grid stagger** + **#6 Icon scale-in burst** (back.out elastic) nos 4 ícones | — |
 | 6 | Prova | Quote cards fade-in stagger + **#8 Marquee infinito** logos | `--bg-secondary` |
-| 7 | História de Origem | **#7 Bento grid scrubbed** (5 fases: foto, 1995, 2013, hoje, citação Rodrigo) | `--bg-primary` |
+| 7 | História de Origem | **#7 Bento grid scrubbed** (5 fases: foto, 1995, 2013, hoje, citação do Walter Campos — cliente há 12+ anos) | `--bg-primary` |
 | 8 | Como Funciona | **#2 Card grid stagger** vertical (3 steps, 200ms entre) + **#5 Counter tween** opcional ("35 anos", "1.200 famílias") | — |
 | 9 | O Caminho (3 pacotes) | **#2 Card grid stagger** (3 cards, Caminho 2 com leve scale-up no destaque) | `--bg-secondary` (separa visualmente) |
 | 10 | Compromisso | Fade-in + selo SUSEP icon scale | `--bg-primary` |
@@ -613,7 +613,9 @@
 
 ## Seção 6: Prova
 
-### Mobile (320-768)
+> **Atualizado 2026-05-05:** layout 2×2 com 4 depoimentos reais (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos). Substitui o layout 3-col uniforme original (Rômulo+Rodrigo+Marcos Roberto, fakes).
+
+### Mobile (320-768) — 4 cards stacked (1 col)
 ```
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  --bg-secondary
 ┌──────────────────────────────────────────┐
@@ -627,24 +629,47 @@
 │   ════════════════════════════════════   │
 │                                          │
 │   ┌────────────────────────────────────┐ │
-│   │ "                                  │ │  card-quote
-│   │  Vocês têm carta branca para       │ │  border-left-4 rfg-light
-│   │  providenciar o melhor para mim    │ │  --bg-primary
-│   │  e minha família, como sempre."    │ │
+│   │ "                                  │ │  card-quote 1
+│   │  Quero agradecer de coração...     │ │  border-left-4 rfg-light
+│   │  Fui acompanhado do início — na    │ │  --bg-primary
+│   │  escolha da carta de crédito —     │ │
+│   │  até a contemplação..."            │ │
 │   │                                    │ │
-│   │  — Rodrigo                         │ │
-│   │  Cliente há anos da RFG            │ │
+│   │  — Felipe Alexandre Oliveira       │ │
+│   │    Segurança do Trabalho           │ │
 │   └────────────────────────────────────┘ │
 │                                          │
 │   ┌────────────────────────────────────┐ │
 │   │ "                                  │ │  card-quote 2
-│   │  Obrigado por sua atenção de       │ │
-│   │  sempre nos seguros, nos           │ │
-│   │  investimentos e, infelizmente,    │ │
-│   │  também no sinistro ocorrido."     │ │
+│   │  Sou parceiro da RFG há muitos     │ │
+│   │  anos, tanto no consórcio          │ │
+│   │  imobiliário quanto nos seguros... │ │
+│   │  Empresa séria, competente..."     │ │
 │   │                                    │ │
-│   │  — Marcos Roberto                  │ │
-│   │  Cliente que indicou a filha       │ │
+│   │  — Eder Clemente Pio               │ │
+│   │    Empresário                      │ │
+│   └────────────────────────────────────┘ │
+│                                          │
+│   ┌────────────────────────────────────┐ │
+│   │ "                                  │ │  card-quote 3
+│   │  Recebemos assistência total em    │ │
+│   │  todo o processo: fomos            │ │
+│   │  orientados em cada etapa.         │ │
+│   │  Excelente suporte."               │ │
+│   │                                    │ │
+│   │  — Henrique Martins Santos         │ │
+│   │    Supervisor de Produção          │ │
+│   └────────────────────────────────────┘ │
+│                                          │
+│   ┌────────────────────────────────────┐ │
+│   │ "                                  │ │  card-quote 4
+│   │  Cliente da RFG há mais de doze    │ │
+│   │  anos. Nos sinistros, o suporte    │ │
+│   │  foi fundamental. Serviço sério    │ │
+│   │  e prestimoso."                    │ │
+│   │                                    │ │
+│   │  — Walter Campos                   │ │
+│   │    Agente publicitário             │ │
 │   └────────────────────────────────────┘ │
 │                                          │
 │                                          │
@@ -661,7 +686,7 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ```
 
-### Desktop (>=1024)
+### Desktop (>=1024) — Grid 2×2 (4 cards uniformes)
 ```
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -675,12 +700,25 @@
 │   ════════════════════════════════════════════════════════           │
 │                                                                      │
 │   ┌──────────────────────────────┐  ┌──────────────────────────────┐│
-│   │ "Vocês têm carta branca      │  │ "Obrigado por sua atenção    ││  Grid 2 col
-│   │  para providenciar o melhor  │  │  de sempre nos seguros, nos  ││  card-quote
-│   │  para mim e minha família,   │  │  investimentos e também no   ││
-│   │  como sempre."               │  │  sinistro ocorrido."         ││
-│   │  — Rodrigo                   │  │  — Marcos Roberto            ││
-│   │    Cliente há anos da RFG    │  │    Cliente que indicou filha ││
+│   │ "Quero agradecer de coração. │  │ "Sou parceiro da RFG há      ││  Linha 1
+│   │  Fui acompanhado do início — │  │  muitos anos, tanto no       ││  card-quote
+│   │  na escolha da carta de      │  │  consórcio imobiliário       ││
+│   │  crédito — até a             │  │  quanto nos seguros dos      ││
+│   │  contemplação..."            │  │  meus veículos e do meu      ││
+│   │                              │  │  negócio. Empresa séria..."  ││
+│   │ — Felipe Alexandre Oliveira  │  │ — Eder Clemente Pio          ││
+│   │   Segurança do Trabalho      │  │   Empresário                 ││
+│   └──────────────────────────────┘  └──────────────────────────────┘│
+│                                                                      │
+│   ┌──────────────────────────────┐  ┌──────────────────────────────┐│
+│   │ "Recebemos assistência       │  │ "Cliente da RFG há mais de   ││  Linha 2
+│   │  total em todo o processo:   │  │  doze anos (indicado por um  ││  card-quote
+│   │  fomos orientados em cada    │  │  amigo). Nos sinistros, o    ││
+│   │  etapa e tudo correu com     │  │  suporte foi fundamental.    ││
+│   │  tranquilidade. Excelente    │  │  Serviço sério e             ││
+│   │  suporte."                   │  │  prestimoso."                ││
+│   │ — Henrique Martins Santos    │  │ — Walter Campos              ││
+│   │   Supervisor de Produção     │  │   Agente publicitário        ││
 │   └──────────────────────────────┘  └──────────────────────────────┘│
 │                                                                      │
 │   ── SEGURADORAS PARCEIRAS ──                                        │
@@ -713,13 +751,13 @@
 - Conforme `parceiros-fontes.md`: NÃO recolorir, NÃO distorcer. Renderizar em fundo `--bg-primary` (branco) com respiro mínimo 16px.
 
 ### Efeitos
-- Quote cards: fade-in stagger 200ms entre os 2
+- Quote cards: fade-in stagger 150ms entre os 4 (Padrão #2 — Card grid stagger)
 - **Padrão #8 — Marquee infinito** (CSS keyframes 30s linear infinite, 2 cópias dos 10 logos para loop sem corte). Respeita `prefers-reduced-motion: reduce` (vira grid estático 5x2).
 - Mask-image fade nas bordas do marquee: visualmente os logos "entram" e "saem" suavemente
 
 ### Responsividade
-- Mobile: 1 col stacked nos depoimentos. Marquee mantém-se infinito (mais lento — 40s para evitar parecer correndo).
-- Desktop: 2 col depoimentos, marquee 30s.
+- Mobile: 1 col stacked com 4 depoimentos sequenciais. Marquee mantém-se infinito (mais lento — 40s para evitar parecer correndo).
+- Desktop: grid 2×2 dos 4 depoimentos (cards de altura uniforme), marquee 30s.
 
 ### CTA
 - Nenhum direto. SUSEP badge funciona como prova final.
@@ -784,9 +822,12 @@
 │   └────────────────────────────────────┘ │
 │                                          │
 │   ┌────────────────────────────────────┐ │
-│   │ "Vocês têm carta branca para       │ │  card-quote final
-│   │  providenciar o melhor..."         │ │
-│   │  — Rodrigo                         │ │
+│   │ "Serviço sério e prestimoso,       │ │  card-quote final
+│   │  recebi orientações claras desde   │ │
+│   │  a aquisição até as negociações    │ │
+│   │  com as seguradoras."              │ │
+│   │  — Walter Campos                   │ │
+│   │    Cliente há 12+ anos             │ │
 │   └────────────────────────────────────┘ │
 │                                          │
 └──────────────────────────────────────────┘
@@ -822,8 +863,8 @@
 │   ┌─────────────────────────────────────────────────────────────────┐│
 │   │  HOJE — 13 anos depois                                          ││  área full-width
 │   │  +1.200 famílias atendidas. 35 anos de experiência combinada.   ││  --bg-secondary
-│   │  Registro SUSEP ativo desde 1995. "Vocês têm carta branca..."   ││  card elevated
-│   │  — Rodrigo                                                      ││
+│   │  Registro SUSEP ativo desde 1995. "Serviço sério e prestimoso." ││  card elevated
+│   │  — Walter Campos, cliente há 12+ anos                           ││
 │   └─────────────────────────────────────────────────────────────────┘│
 │                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
@@ -838,7 +879,7 @@
 | Bento bloco | `card` ou `card-elevated`, `--radius-xl`, `--shadow-md` |
 | Year label ("1995", "2013", "HOJE") | `text-h3` Manrope 700 `--rfg-blue-dark` (numeral grande) |
 | Body bloco | `text-body-lg` Inter 400 `--lh-loose` |
-| Quote final (Rodrigo) | `card-quote` integrado ao bloco "HOJE" |
+| Quote final (Walter Campos — cliente há 12+ anos) | `card-quote` integrado ao bloco "HOJE" |
 | Grid desktop | `grid-cols-2` com áreas: foto (col-span-1 row-span-2), 1995 (col-span-1), 2013 (col-span-1), HOJE (col-span-2 full-width) |
 
 ### Foto/Asset

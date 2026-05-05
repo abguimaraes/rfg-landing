@@ -13,7 +13,7 @@
 | Logos parceiros | 10 seguradoras: Porto, Yelum, Bradesco, Mapfre, Allianz, Akad, SulAmérica, Tokio Marine, Suhai, HDI — scraping institucional |
 | Vídeo institucional | ❌ Não nesta versão |
 | Logo RFG | ✓ `assets/brand/logo-rfg.png` |
-| Depoimentos | Os 3 já enviados (Rômulo, Rodrigo, Marcos Roberto) — sem dados numéricos |
+| Depoimentos | 4 testimonials reais (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos) em grid 2×2 — ver D11. Substitui os 3 fakes originais (Rômulo, Rodrigo, Marcos Roberto). |
 | Paleta | ✓ Definida em `assets/brand/colors.md` (gradiente azul + branco) |
 | Tipografia | **A criar por agente** (@ux-design-expert) |
 | Efeitos | Reaproveitar do **PostFeito** (GSAP, bento grid, animações) — preservados como sagrados (memória) |
@@ -261,6 +261,7 @@
 | D8 | ✓ GitHub: conta `abguimaraes` (mesma do PostFeito) |
 | D9 | ✓ Vercel: **mesma conta** dos outros projetos (Anderson) — cada projeto é deploy isolado com domínio próprio, sem mistura |
 | D10 | ✓ **Repo público (decisão 2026-05-05).** `abguimaraes/rfg-landing` virou público + LICENSE MIT para liberar Branch Protection no GitHub Free (Opção A vs Pro/$4 mês ou ruleset bloqueado). Justificativa: landing institucional sem secrets/IP sensível. Branch protection aplicada via `gh api PUT /branches/main/protection`. Documentação: `docs/plan/github-branch-protection.md`. Story 1.1 AC-2 ✅ resolvido. |
+| D11 | ✓ **Depoimentos (decisão 2026-05-05):** 4 testimonials reais (Felipe Alexandre Oliveira — Segurança do Trabalho, Eder Clemente Pio — Empresário, Henrique Martins Santos — Supervisor de Produção, Walter Campos — Agente publicitário) em **grid 2×2 desktop / 1-col mobile**. Substitui os 3 fakes originais (Rômulo, Rodrigo, Marcos Roberto) que constavam no briefing inicial e a Opção A de 3-col uniforme ratificada anteriormente. Cada card exibe nome + profissão. Reflexões em PRD FR-008 + CON-013, Story 1.4 AC-14, wireframes Seção 6, copy `05-copy-landing.md` Seções 6/7/12 e FAQ 6, DNA `01-dna-completo.md`. |
 
 ## ⚠️ Separação de Projetos — RFG ≠ PostFeito
 

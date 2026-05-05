@@ -5,6 +5,8 @@
 > **Inputs auditados:** `docs/briefing/01-dna-completo.md` (DNA + compliance) e `docs/briefing/05-copy-landing.md` (copy das 13 seções)
 > **Critérios:** gramática/ortografia pt-BR, palavras proibidas pelo DNA, aderência ao tom (fraternal + urgência construtiva + transparência vulnerável), consistência factual e compliance SUSEP.
 
+> **Superseded em 2026-05-05 (depoimentos):** Anderson informou que os 3 testemunhos originais (Rômulo, Rodrigo, Marcos Roberto) eram fakes. Substituídos por 4 reais (Felipe Alexandre Oliveira, Eder Clemente Pio, Henrique Martins Santos, Walter Campos). Qualquer referência neste audit aos 3 nomes antigos (incluindo a observação "M-001" sobre ausência do Rômulo, registrada na auditoria PRD em `rfg-landing-prd-audit.md`) deve ser lida como histórica — **M-001 não se aplica mais**. O resto da auditoria (gramática, palavras proibidas, tom, compliance SUSEP, inconsistências factuais) permanece válido.
+
 ---
 
 ## 1. Erros Gramaticais e Ortográficos
