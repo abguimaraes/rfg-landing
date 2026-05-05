@@ -12,6 +12,13 @@
 .marquee {
   position: relative;
   width: 100%;
+  /* `display: flex` coloca os dois tracks (original + clone aria-hidden) lado
+     a lado num único viewport horizontal. Sem isso, os tracks ficam
+     empilhados verticalmente e ambos podem ficar visíveis em desktop wide,
+     duplicando os logos (bug 2026-05-05). */
+  display: flex;
+  flex-wrap: nowrap;
+  /* `overflow: hidden` esconde o que sair da viewport (clone fora da tela). */
   overflow: hidden;
   /* Fade nas bordas — máscara CSS sutil. */
   -webkit-mask-image: linear-gradient(
@@ -33,8 +40,11 @@
 .marquee__track {
   display: flex;
   flex-wrap: nowrap;
+  flex-shrink: 0;
   width: max-content;
   gap: 3.5rem;
+  /* Margem entre track e clone para manter o gap visual durante o loop. */
+  padding-right: 3.5rem;
   align-items: center;
   animation: marquee-scroll 30s linear infinite;
   will-change: transform;
@@ -52,8 +62,11 @@
     transform: translate3d(0, 0, 0);
   }
   to {
-    /* -50% pois o conteúdo é duplicado (track + clone aria-hidden). */
-    transform: translate3d(-50%, 0, 0);
+    /* -100% da largura do próprio track: como o clone (segundo track) está
+       imediatamente à direita via `display: flex` no `.marquee`, ao
+       deslocar -100% o clone toma a posição do original e o loop é
+       seamless (linear infinite). */
+    transform: translate3d(-100%, 0, 0);
   }
 }
 
@@ -72,6 +85,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .marquee {
+    /* Reverter para block container para o grid estático ocupar largura
+       total (flex-wrap requer width: 100% no track, e flex container outer
+       atrapalha). */
+    display: block;
     overflow: visible;
     -webkit-mask-image: none;
     mask-image: none;
@@ -83,6 +100,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem 2rem;
+    padding-right: 0;
   }
   /* Esconder o clone duplicado (aria-hidden) para não duplicar logos visíveis. */
   .marquee__track[data-marquee-clone='true'] {
