@@ -2,6 +2,14 @@ import type { Metadata, Viewport } from 'next';
 import { Manrope, Inter } from 'next/font/google';
 import '@/styles/globals.css';
 
+import { AnimationsProvider } from '@/components/animations/AnimationsProvider';
+import { ConsentBanner } from '@/components/analytics/ConsentBanner';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
+import { MetaPixel } from '@/components/analytics/MetaPixel';
+import { ScrollDepthTracker } from '@/components/analytics/ScrollDepthTracker';
+import { VercelAnalytics } from '@/components/analytics/VercelAnalytics';
+import { SkipLink } from '@/components/ui/SkipLink';
+
 const manrope = Manrope({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
@@ -78,10 +86,17 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" dir="ltr" className={`${manrope.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">
-        <a href="#conteudo" className="skip-link">
-          Pular para o conteúdo
-        </a>
-        <main id="conteudo">{children}</main>
+        <SkipLink />
+        <AnimationsProvider>
+          <main id="conteudo">{children}</main>
+        </AnimationsProvider>
+
+        {/* Analytics & compliance — Story 1.2 */}
+        <ConsentBanner />
+        <ScrollDepthTracker />
+        <VercelAnalytics />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
+        <MetaPixel pixelId={process.env.NEXT_PUBLIC_META_PIXEL_ID} />
       </body>
     </html>
   );

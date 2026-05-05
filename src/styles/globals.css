@@ -51,17 +51,28 @@
  * ============================================================================ */
 
 @layer components {
-  /* Skip link — atende FR-040 parcialmente; full UI primitive virá na 1.2 */
+  /* Skip link helper (mantido como fallback CSS — primitive `<SkipLink>` é o canonical) */
   .skip-link {
     @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50
            focus:rounded-md focus:bg-rfg-dark focus:px-4 focus:py-2 focus:text-white
            focus:shadow-cta focus:outline-none;
   }
 
+  /* Containers helpers (também expostos via primitive `<Container>`) */
   .container-narrow {
     @apply mx-auto max-w-narrow px-4 md:px-6;
   }
   .container-wide {
     @apply mx-auto max-w-container px-4 md:px-6 lg:px-8;
+  }
+
+  /* Eyebrow helper class (também via primitive `<Eyebrow>`) */
+  .eyebrow {
+    @apply font-display text-eyebrow font-semibold uppercase tracking-[0.12em] text-rfg-dark;
+  }
+
+  /* Section spacing helper */
+  .section {
+    @apply py-12 md:py-16 lg:py-24;
   }
 }
