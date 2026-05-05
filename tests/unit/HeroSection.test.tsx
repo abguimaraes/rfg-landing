@@ -84,8 +84,12 @@ describe('<HeroSection />', () => {
 
   it('exibe tríade de credenciais (1.200+ famílias / 35 anos)', () => {
     render(<HeroSection />);
+    // Phase B+C Tier 1: trust row em cards glass-light com CounterTween +
+    // labels secundárias. Em jsdom (useGSAP mockado) o counter renderiza o
+    // valor inicial 0; usamos accessible name (`aria-label`) que permanece
+    // estável independente da animação.
     expect(
-      screen.getByText('1.200+ famílias atendidas'),
+      screen.getByLabelText('1.200 famílias atendidas'),
     ).toBeInTheDocument();
     expect(
       screen.getByText('35 anos de experiência combinada'),
@@ -102,6 +106,21 @@ describe('<HeroSection />', () => {
   it('CTA microcopy "Sem custo. Sem compromisso."', () => {
     render(<HeroSection />);
     expect(screen.getByText('Sem custo. Sem compromisso.')).toBeInTheDocument();
+  });
+
+  it('exibe eyebrow editorial "Estabelecida em 1995" (Phase B+C Tier 1)', () => {
+    render(<HeroSection />);
+    expect(screen.getByText('Estabelecida em 1995')).toBeInTheDocument();
+  });
+
+  it('exibe vinheta sócios nomeados (Phase B+C Tier 1)', () => {
+    render(<HeroSection />);
+    // Os nomes e a caption ficam num card glass-light abaixo da foto.
+    expect(screen.getByText(/Ricardo Farias/)).toBeInTheDocument();
+    expect(screen.getByText(/Anderson Guimarães/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Sócios fundadores · Desde 1995/),
+    ).toBeInTheDocument();
   });
 
   it('CTA click dispara cta_click + whatsapp_redirect (AC-11, Nitpick #3)', async () => {

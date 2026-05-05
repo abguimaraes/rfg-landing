@@ -97,6 +97,20 @@
     background-image: var(--surface-brand-strong);
     color: var(--text-inverse);
   }
+
+  /* ===== Phase B+C Tier 1 — Surface helpers adicionais =====
+   * surface-deep-rich: gradient dark mais saturado (Prova) — diferencia
+   * de surface-deep chapado que OriginStory usa. Cria ritmo entre dark
+   * sections.
+   * surface-hero: wash gradient azul institucional para Hero, substituindo
+   * `bg-white` chapado sem virar saturado demais. */
+  .surface-deep-rich {
+    background-image: var(--surface-deep-rich);
+    color: var(--text-inverse);
+  }
+  .surface-hero {
+    background-image: var(--surface-hero);
+  }
 }
 
 /* ============================================================================
@@ -166,3 +180,134 @@
     filter: blur(120px);
   }
 }
+
+/* ============================================================================
+ * Phase B+C Tier 1 — Photo treatments, glass, orbs mega
+ * Origem: docs/plan/visual-upgrade-phase-bc.md §2.3-2.5
+ * ============================================================================ */
+
+/* ----- Photo masks (mask-image) ------------------------------------------ */
+/* Hero foto: borda esquerda funde com texto via gradient mask. Aplicado
+ * apenas em desktop via media query (em mobile a coluna foto ocupa width
+ * total e o fade cortaria conteúdo essencial). */
+@media (min-width: 1024px) {
+  .lg\:photo-fade-left {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
+    mask-image: linear-gradient(to right, transparent 0%, black 25%);
+  }
+}
+/* Variants base disponíveis para todos os breakpoints. */
+.photo-fade-left {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
+  mask-image: linear-gradient(to right, transparent 0%, black 25%);
+}
+.photo-fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+/* Ring glow institucional ao redor da foto (Hero). Pseudo-element azul
+ * blur 12px atrás da foto, ancorando-a sobre o orb sem efeito recortado. */
+.photo-ring-glow {
+  position: relative;
+}
+.photo-ring-glow::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(36, 107, 178, 0.4), rgba(76, 179, 230, 0.3));
+  filter: blur(12px);
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ----- Orb mega (Hero) --------------------------------------------------- */
+/* 720px orb azul brand atrás da foto Hero. Blur grande + opacity baixa
+ * cria depth real sem chamar atenção. */
+.orb-mega-brand {
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  border-radius: 9999px;
+  filter: blur(140px);
+  background: radial-gradient(
+    circle,
+    rgba(36, 107, 178, 0.35) 0%,
+    rgba(76, 179, 230, 0.25) 40%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Pílula vertical decorativa atrás de mega numbers ou foto. */
+.shape-pill-decorative {
+  position: absolute;
+  width: 240px;
+  height: 480px;
+  border-radius: 9999px;
+  background: var(--rfg-gradient-primary);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ----- Glassmorphism premium (pontual) ----------------------------------- */
+/* glass-light: cards Hero (trust badges, vinheta sócios) sobre wash claro. */
+.glass-light {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 24px 48px -12px rgba(36, 107, 178, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* glass-dark: cards Prova sobre surface-deep-rich. */
+.glass-dark {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Fallback para browsers sem backdrop-filter (Firefox antigo, alguns
+ * webviews). Mantém a leitura sem o efeito glass. */
+@supports not ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) {
+  .glass-light {
+    background: rgba(255, 255, 255, 0.92);
+  }
+  .glass-dark {
+    background: rgba(15, 26, 46, 0.92);
+  }
+}
+
+/* ----- Mega number gradient text (Prova) --------------------------------- */
+/* Aplica gradient text white → rfg-light em mega numbers sobre dark. */
+.text-mega-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #4cb3e6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ----- Marquee dark (Prova) ---------------------------------------------- */
+/* Aplica filtro monocromático nos logos parceiros para harmonizar sobre
+ * surface-deep-rich. invert(1) inverte cor; brightness(2) compensa o claro
+ * que vira escuro; opacity 0.7 mantém presença sutil; hover restaura. */
+.proof-marquee-dark .marquee__item img {
+  filter: brightness(0) invert(1);
+  opacity: 0.55;
+  transition: opacity 250ms ease-out, filter 250ms ease-out;
+}
+.proof-marquee-dark .marquee__item img:hover {
+  opacity: 0.95;
+}
+/* Em reduced-motion ainda valem o filter / opacity (não dependem de animação). */

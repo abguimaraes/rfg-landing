@@ -94,4 +94,22 @@ describe('<ProofSection />', () => {
     const allText = document.body.textContent ?? '';
     expect(allText).not.toMatch(/Rômulo|Rodrigo|Marcos Roberto/);
   });
+
+  it('section em surface-deep-rich (Phase B+C Tier 1 — dark)', () => {
+    const { container } = render(<ProofSection />);
+    const section = container.querySelector('section#prova');
+    expect(section).not.toBeNull();
+    expect(section?.className).toMatch(/surface-deep-rich/);
+  });
+
+  it('expõe stats acessíveis: "35 anos" + "1995" (Phase B+C Tier 1)', () => {
+    render(<ProofSection />);
+    expect(screen.getByText('35 anos')).toBeInTheDocument();
+    expect(screen.getByText('1995')).toBeInTheDocument();
+  });
+
+  it('rotula região "Parceiros que confiam" antes do marquee', () => {
+    render(<ProofSection />);
+    expect(screen.getByText('Parceiros que confiam')).toBeInTheDocument();
+  });
 });
