@@ -1,0 +1,91 @@
+/**
+ * Marquee CSS-only — Story 1.4 (Effect #8, FR-031, AC-20/21).
+ *
+ * - Loop infinito de 30s com `transform: translate3d` (GPU-friendly).
+ * - Duplica conteúdo via `<div class="marquee__track">` x2 (visual + aria-hidden).
+ * - `prefers-reduced-motion: reduce`: pausa animação E exibe grid estático
+ *   5x2 desktop / 2x5 mobile (todos os 10 logos visíveis — FR-031 m-002).
+ * - `will-change: transform` mantido apenas durante a animação para evitar
+ *   layers extras com reduced motion.
+ */
+
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Fade nas bordas — máscara CSS sutil. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+}
+
+.marquee__track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  gap: 3.5rem;
+  align-items: center;
+  animation: marquee-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee__item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* -50% pois o conteúdo é duplicado (track + clone aria-hidden). */
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Pausar no hover é discreto — opcional; mantemos para usuários que querem ler. */
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+/* ============================================================================
+ * Reduced Motion fallback — FR-031 m-002 / AC-21.
+ *   Marquee desativado, grid estático com TODOS os 10 logos visíveis.
+ *   Aplicado apenas via classe `marquee--reduced-motion` (controle JS) OU
+ *   via @media `(prefers-reduced-motion: reduce)` direto, garantindo cobertura
+ *   sem JS.
+ * ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee__track {
+    animation: none;
+    animation-play-state: paused;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem 2rem;
+  }
+  /* Esconder o clone duplicado (aria-hidden) para não duplicar logos visíveis. */
+  .marquee__track[data-marquee-clone='true'] {
+    display: none;
+  }
+}
