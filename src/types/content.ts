@@ -215,3 +215,134 @@ export interface OriginStoryContent {
   /** Closing literal — linhas 157-159. */
   closing: string;
 }
+
+/* ============================================================================
+ * Como Funciona (Seção 8) — FR-010, FR-025
+ * ========================================================================== */
+
+/** Chave canônica de ícone Lucide consumida pelo `<HowItWorksSection>`. */
+export type HowItWorksIconKey = 'search' | 'shield-check' | 'handshake';
+
+export interface HowItWorksStep {
+  /** Número do passo formatado (ex: "01"). */
+  number: string;
+  /** Ícone Lucide associado. */
+  iconKey: HowItWorksIconKey;
+  /** Emoji literal opcional do briefing (🔍 / 🛡️ / 🤝). */
+  emoji: string;
+  /** Título em Title Case — CON-013/AC-3. */
+  titulo: string;
+  /** Body literal — `05-copy-landing.md` linhas 177-200. */
+  body: string;
+  /** Bullets "O que acontece aqui" — 3 itens literais. */
+  bullets: ReadonlyArray<string>;
+}
+
+export interface HowItWorksContent {
+  eyebrow: string;
+  /** Bridge text literal — linhas 173-175. */
+  bridge: string;
+  steps: ReadonlyArray<HowItWorksStep>;
+}
+
+/* ============================================================================
+ * Caminhos / Oferta (Seção 9) — FR-011, FR-021 mensagens 2/3/4/5
+ * ========================================================================== */
+
+export interface PathBonus {
+  /** Texto literal do bônus (ex: "Checklist Meu Patrimônio Blindado..."). */
+  label: string;
+}
+
+export interface PathItem {
+  /** Slug estável (essencial / completa / legado). */
+  slug: 'essencial' | 'completa' | 'legado';
+  /** Emoji literal do briefing (🛡️ / 🌟 / 👑). */
+  emoji: string;
+  /** Título em Title Case — CON-013. */
+  titulo: string;
+  /** Subtítulo opcional ("(o caminho mais procurado)" para Caminho 2). */
+  subtitulo?: string;
+  /** "Para quem é" — copy literal. */
+  forWho: string;
+  /** Body curto explicativo — copy literal. */
+  body: string;
+  /** Lista "O que costuma fazer parte deste plano". */
+  planItems: ReadonlyArray<string>;
+  /** Lista de bônus literais (FR-011 + L-002): 1 / 2 / 3 conforme caminho. */
+  bonusItems: ReadonlyArray<PathBonus>;
+  /** Label literal do CTA WhatsApp. */
+  ctaLabel: string;
+  /** Chave canônica WhatsApp — FR-021. */
+  whatsappKey: WhatsAppMessageKey;
+  /** True para Caminho 2 (destacado visualmente). */
+  isFeatured: boolean;
+  /** Texto do badge se `isFeatured` (ex: "MAIS PROCURADO"). */
+  featuredBadge?: string;
+}
+
+export interface PathsInvestmentBlock {
+  /** Headline em Title Case — "Como o Investimento É Definido". */
+  headline: string;
+  /** Parágrafos explicativos — copy literal linhas 292-296. */
+  paragraphs: ReadonlyArray<string>;
+}
+
+export interface PathsFinalCta {
+  /** Headline opcional — "Não Sabe Ainda em Qual Caminho Você Se Encaixa?". */
+  headline: string;
+  /** Body literal — linhas 304-306. */
+  body: string;
+  /** Linha de reforço bold — "Sem custo. Sem compromisso...". */
+  reinforcement: string;
+  /** Selo "Vagas limitadas" — sugestão wireframes Decisão 6. */
+  scarcityLabel: string;
+  /** Label do CTA principal. */
+  ctaLabel: string;
+  /** Chave WhatsApp para o CTA único — `cta_unico`. */
+  whatsappKey: WhatsAppMessageKey;
+  /** Microcopy abaixo do CTA. */
+  microcopy: string;
+}
+
+export interface PathsContent {
+  eyebrow: string;
+  /** H2 literal em Title Case — linha 217. */
+  headline: string;
+  subheadline: string;
+  /** Bridge text literal — linhas 223-227. */
+  bridge: string;
+  /** Microcopy padronizado abaixo de cada CTA. */
+  ctaMicrocopy: string;
+  paths: ReadonlyArray<PathItem>;
+  investment: PathsInvestmentBlock;
+  finalCta: PathsFinalCta;
+  /** Selo SUSEP — AC-17. */
+  susepSeal: { label: string };
+}
+
+/* ============================================================================
+ * Compromisso (Seção 10) — FR-012, CON-003, CON-013
+ * ========================================================================== */
+
+export interface CommitmentContent {
+  eyebrow: string;
+  /** Headline literal "Nosso Compromisso" (Title Case — CON-013). */
+  headline: string;
+  /** Subheadline "Você não arrisca nada. O risco é todo nosso." */
+  subheadline: string;
+  /** Parágrafos do body — copy literal linhas 327-348. */
+  paragraphs: ReadonlyArray<string>;
+  /** Linha intermediária em destaque ("Você só avança se fizer sentido para você."). */
+  midHighlight: string;
+  /** Linha "Trabalhamos com mais de 1.200 famílias em 13 anos." */
+  trustLine: string;
+  /** Linha SUSEP "Temos registro SUSEP ativo desde 1995." */
+  susepLine: string;
+  /** Compromisso real em destaque (linha 348). */
+  realCommitment: string;
+  /** Frase final em destaque "Se não fizer sentido para você...". */
+  finalLine: string;
+  /** Selo SUSEP "Registro ativo desde 1995". */
+  susepSeal: { label: string };
+}

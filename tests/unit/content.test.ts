@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
+import { commitment } from '@/content/commitment';
+import { howItWorks } from '@/content/howItWorks';
 import { originStory } from '@/content/originStory';
 import { partners } from '@/content/partners';
+import { paths } from '@/content/paths';
 import { personas } from '@/content/personas';
 import { proof } from '@/content/proof';
 import { valueProps } from '@/content/valueProps';
@@ -191,6 +194,187 @@ describe('Story 1.4 — Content compliance (CON-013)', () => {
         ' ' +
         originStory.closing;
       expect(allText).not.toMatch(/garantia|garantir/i);
+    });
+  });
+});
+
+/**
+ * Compliance textual da Story 1.5 — checklist CON-002 + CON-003 + CON-013
+ * (AC-3 / AC-19 / AC-22 / AC-23) para Seções 8 / 9 / 10.
+ */
+describe('Story 1.5 — Content compliance (Seções 8-10)', () => {
+  describe('howItWorks.ts', () => {
+    it('contém 3 passos numerados', () => {
+      expect(howItWorks.steps).toHaveLength(3);
+      const numbers = howItWorks.steps.map((s) => s.number);
+      expect(numbers).toEqual(['01', '02', '03']);
+    });
+
+    it('títulos dos 3 passos em Title Case (NÃO CAIXA ALTA — CON-013/AC-3)', () => {
+      howItWorks.steps.forEach((step) => {
+        expect(step.titulo).not.toBe(step.titulo.toUpperCase());
+      });
+    });
+
+    it('cada passo tem 3 bullets "O que acontece aqui" (AC-2)', () => {
+      howItWorks.steps.forEach((step) => {
+        expect(step.bullets).toHaveLength(3);
+      });
+    });
+
+    it('passos preservam emojis canônicos do briefing (🔍 / 🛡️ / 🤝)', () => {
+      const emojis = howItWorks.steps.map((s) => s.emoji);
+      expect(emojis).toEqual(['🔍', '🛡️', '🤝']);
+    });
+
+    it('NÃO contém "garantia/garantir/garante" (CON-013)', () => {
+      const allText =
+        howItWorks.bridge +
+        ' ' +
+        howItWorks.steps
+          .map((s) => `${s.titulo} ${s.body} ${s.bullets.join(' ')}`)
+          .join(' ');
+      expect(allText).not.toMatch(/garantia|garantir|garante/i);
+    });
+  });
+
+  describe('paths.ts', () => {
+    it('contém 3 caminhos com slugs canônicos', () => {
+      expect(paths.paths).toHaveLength(3);
+      const slugs = paths.paths.map((p) => p.slug);
+      expect(slugs).toEqual(['essencial', 'completa', 'legado']);
+    });
+
+    it('headline em Title Case (NÃO CAIXA ALTA — CON-013/AC-8)', () => {
+      expect(paths.headline).not.toBe(paths.headline.toUpperCase());
+      expect(paths.headline.toLowerCase()).toContain(
+        'o caminho começa pelo diagnóstico',
+      );
+    });
+
+    it('Caminho 2 marcado como `isFeatured: true` (AC-10/AC-12)', () => {
+      const completa = paths.paths.find((p) => p.slug === 'completa');
+      expect(completa?.isFeatured).toBe(true);
+      expect(completa?.featuredBadge).toBeTruthy();
+      const essencial = paths.paths.find((p) => p.slug === 'essencial');
+      const legado = paths.paths.find((p) => p.slug === 'legado');
+      expect(essencial?.isFeatured).toBe(false);
+      expect(legado?.isFeatured).toBe(false);
+    });
+
+    it('badge do Caminho 2 é "MAIS PROCURADO" (Decisão 6 wireframes)', () => {
+      const completa = paths.paths.find((p) => p.slug === 'completa');
+      expect(completa?.featuredBadge).toBe('MAIS PROCURADO');
+      // NÃO usar "MAIS VENDIDO" (quebra tom consultivo)
+      expect(completa?.featuredBadge?.toLowerCase()).not.toContain('vendido');
+    });
+
+    it('Caminho 1 lista exatamente 1 bônus literal (FR-011/L-002)', () => {
+      const essencial = paths.paths.find((p) => p.slug === 'essencial');
+      expect(essencial?.bonusItems).toHaveLength(1);
+      expect(essencial?.bonusItems[0]?.label.toLowerCase()).toContain(
+        'patrimônio blindado',
+      );
+    });
+
+    it('Caminho 2 lista exatamente 2 bônus literais (FR-011/L-002)', () => {
+      const completa = paths.paths.find((p) => p.slug === 'completa');
+      expect(completa?.bonusItems).toHaveLength(2);
+      const labels = completa?.bonusItems.map((b) => b.label.toLowerCase()) ?? [];
+      expect(labels.some((l) => l.includes('previdência inteligente'))).toBe(true);
+      expect(labels.some((l) => l.includes('patrimônio blindado'))).toBe(true);
+    });
+
+    it('Caminho 3 lista exatamente 3 bônus literais (FR-011/L-002)', () => {
+      const legado = paths.paths.find((p) => p.slug === 'legado');
+      expect(legado?.bonusItems).toHaveLength(3);
+      const labels = legado?.bonusItems.map((b) => b.label.toLowerCase()) ?? [];
+      expect(labels.some((l) => l.includes('previdência inteligente'))).toBe(true);
+      expect(labels.some((l) => l.includes('patrimônio blindado'))).toBe(true);
+      expect(labels.some((l) => l.includes('consórcio'))).toBe(true);
+    });
+
+    it('chaves WhatsApp canônicas por caminho (FR-021)', () => {
+      const byKey = (slug: string) =>
+        paths.paths.find((p) => p.slug === slug)?.whatsappKey;
+      expect(byKey('essencial')).toBe('essencial');
+      expect(byKey('completa')).toBe('completa');
+      expect(byKey('legado')).toBe('legado');
+      expect(paths.finalCta.whatsappKey).toBe('cta_unico');
+    });
+
+    it('NÃO contém preços / R$ / "preço" em parte alguma (CON-002/AC-19)', () => {
+      const allText = JSON.stringify(paths);
+      expect(allText).not.toMatch(/R\$\s?\d/);
+      expect(allText).not.toMatch(/\bpreço\b/i);
+      expect(allText).not.toMatch(/\bR\$ ?180\b/);
+      expect(allText).not.toMatch(/\bR\$ ?380\b/);
+      expect(allText).not.toMatch(/\bR\$ ?580\b/);
+    });
+
+    it('NÃO contém "garantia/garantir/garante" em nenhum caminho (CON-013/AC-19)', () => {
+      const allText = JSON.stringify(paths);
+      expect(allText).not.toMatch(/garantia|garantir|garante/i);
+    });
+
+    it('contém faixa "Como o Investimento É Definido" (AC-14)', () => {
+      expect(paths.investment.headline).toBe('Como o Investimento É Definido');
+      expect(paths.investment.paragraphs.length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('selo "Vagas limitadas" presente no CTA final (AC-15)', () => {
+      expect(paths.finalCta.scarcityLabel.toLowerCase()).toContain(
+        'vagas de diagnóstico',
+      );
+    });
+
+    it('microcopy padrão "Diagnóstico gratuito antes de qualquer decisão." (AC-11/12/13)', () => {
+      expect(paths.ctaMicrocopy).toBe(
+        'Diagnóstico gratuito antes de qualquer decisão.',
+      );
+    });
+
+    it('selo SUSEP "Registro ativo desde 1995" (AC-17)', () => {
+      expect(paths.susepSeal.label).toContain('1995');
+    });
+  });
+
+  describe('commitment.ts', () => {
+    it('headline literal "Nosso Compromisso" (AC-21 — NÃO "GARANTIA")', () => {
+      expect(commitment.headline).toBe('Nosso Compromisso');
+      expect(commitment.headline).not.toBe(commitment.headline.toUpperCase());
+    });
+
+    it('subheadline literal "Você não arrisca nada. O risco é todo nosso."', () => {
+      expect(commitment.subheadline).toBe(
+        'Você não arrisca nada. O risco é todo nosso.',
+      );
+    });
+
+    it('NÃO contém "garantia/garantir/garante" em nenhum trecho (CON-003/CON-013/AC-22)', () => {
+      const allText = JSON.stringify(commitment);
+      expect(allText).not.toMatch(/garantia|garantir|garante/i);
+    });
+
+    it('contém "13 anos" e NÃO "12 anos" (CON-013/I-002/AC-23)', () => {
+      const allText = JSON.stringify(commitment);
+      expect(allText).toMatch(/13 anos/);
+      expect(allText).not.toMatch(/\b12 anos\b/);
+    });
+
+    it('linha final em destaque presente (AC-25)', () => {
+      expect(commitment.finalLine).toContain(
+        'Se não fizer sentido para você',
+      );
+      expect(commitment.finalLine).toContain('Simples assim.');
+    });
+
+    it('selo SUSEP "Registro ativo desde 1995" (AC-26)', () => {
+      expect(commitment.susepSeal.label).toContain('1995');
+    });
+
+    it('contém "1.200 famílias" (AC-23 contexto trust line)', () => {
+      expect(commitment.trustLine).toContain('1.200 famílias');
     });
   });
 });
