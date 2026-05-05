@@ -273,8 +273,8 @@ export interface PathItem {
   bonusItems: ReadonlyArray<PathBonus>;
   /** Label literal do CTA WhatsApp. */
   ctaLabel: string;
-  /** Chave canônica WhatsApp — FR-021. */
-  whatsappKey: WhatsAppMessageKey;
+  /** Chave canônica WhatsApp para os 3 caminhos — FR-021 mensagens 2/3/4. */
+  whatsappKey: 'essencial' | 'completa' | 'legado';
   /** True para Caminho 2 (destacado visualmente). */
   isFeatured: boolean;
   /** Texto do badge se `isFeatured` (ex: "MAIS PROCURADO"). */
@@ -299,8 +299,8 @@ export interface PathsFinalCta {
   scarcityLabel: string;
   /** Label do CTA principal. */
   ctaLabel: string;
-  /** Chave WhatsApp para o CTA único — `cta_unico`. */
-  whatsappKey: WhatsAppMessageKey;
+  /** Chave WhatsApp para o CTA único — `cta_unico` (FR-021 mensagem 5). */
+  whatsappKey: 'cta_unico';
   /** Microcopy abaixo do CTA. */
   microcopy: string;
 }
@@ -339,8 +339,12 @@ export interface CommitmentContent {
   trustLine: string;
   /** Linha SUSEP "Temos registro SUSEP ativo desde 1995." */
   susepLine: string;
+  /** Parágrafo introdutório antes do "compromisso real" — copy literal. */
+  realCommitmentIntro: string;
   /** Compromisso real em destaque (linha 348). */
-  realCommitment: string;
+  realCommitmentOutroTop: string;
+  /** Parágrafo de fechamento abaixo do compromisso real — copy literal. */
+  realCommitmentOutroBottom: string;
   /** Frase final em destaque "Se não fizer sentido para você...". */
   finalLine: string;
   /** Selo SUSEP "Registro ativo desde 1995". */
