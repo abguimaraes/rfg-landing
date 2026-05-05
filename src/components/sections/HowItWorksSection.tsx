@@ -42,7 +42,7 @@ export function HowItWorksSection(): ReactNode {
     <section
       id="como-funciona"
       aria-labelledby="como-funciona-headline"
-      className="bg-white py-16 md:py-24 lg:py-28"
+      className="surface-soft pattern-blueprint py-16 md:py-24 lg:py-28"
     >
       <Container variant="wide">
         <div ref={containerRef} className="flex flex-col gap-10">

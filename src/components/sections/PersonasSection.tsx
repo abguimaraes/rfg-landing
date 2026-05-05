@@ -40,7 +40,7 @@ export function PersonasSection(): ReactNode {
     <section
       id="personas"
       aria-labelledby="personas-headline"
-      className="bg-white py-16 md:py-24 lg:py-28"
+      className="surface-soft pattern-dot-grid py-16 md:py-24 lg:py-28"
     >
       <Container variant="wide">
         <div ref={containerRef} className="flex flex-col gap-8">

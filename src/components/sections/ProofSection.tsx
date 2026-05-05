@@ -38,7 +38,7 @@ export function ProofSection(): ReactNode {
     <section
       id="prova"
       aria-labelledby="prova-headline"
-      className="bg-white py-16 md:py-24 lg:py-28"
+      className="surface-soft py-16 md:py-24 lg:py-28"
     >
       <Container variant="wide">
         <div ref={containerRef} className="flex flex-col gap-10">

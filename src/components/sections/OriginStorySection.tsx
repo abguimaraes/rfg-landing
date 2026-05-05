@@ -36,27 +36,37 @@ export function OriginStorySection(): ReactNode {
     <section
       id="historia"
       aria-labelledby="historia-headline"
-      className="bg-white py-16 md:py-24 lg:py-28"
+      className="surface-deep pattern-noise relative overflow-hidden py-16 md:py-24 lg:py-28"
     >
-      <Container variant="wide">
+      {/* Phase A — Blur orb (§A.3 do plan).
+          Centro da seção, opacity baixa, dialoga com fundo escuro do estúdio
+          da foto socios-02 — cria fusão tonal que Anderson pediu. */}
+      <div
+        aria-hidden="true"
+        className="orb-decor left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 bg-rfg-dark/30"
+      />
+
+      <Container variant="wide" className="relative z-[1]">
         <header className="mb-10 flex max-w-3xl flex-col gap-4 md:mb-14">
-          <Eyebrow>{originStory.eyebrow}</Eyebrow>
+          <Eyebrow className="text-rfg-light">{originStory.eyebrow}</Eyebrow>
           <h2
             id="historia-headline"
-            className="font-display text-h2 font-bold leading-tight tracking-tight text-neutral-900"
+            className="font-display text-h2 font-bold leading-tight tracking-tight text-white"
           >
             {originStory.headline}
           </h2>
         </header>
 
         <BentoGrid className="grid gap-6 md:grid-cols-12 md:gap-8">
-          {/* Foto — área superior esquerda em desktop, topo no mobile */}
+          {/* Foto — área superior esquerda em desktop, topo no mobile.
+              Fundo dark da seção + fundo de estúdio da foto criam fusão tonal
+              natural — sem precisar mask/frame extra. */}
           <div
             data-bento-block
             data-bento-variant="photo"
             className="relative md:col-span-5 md:row-span-2"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-2xl md:h-full md:aspect-auto">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10 md:aspect-auto md:h-full">
               <Image
                 src={originStory.photo.src}
                 alt={originStory.photo.alt}
@@ -70,39 +80,42 @@ export function OriginStorySection(): ReactNode {
             </div>
           </div>
 
-          {/* 3 marcos temporais (1995, 2013, Hoje) */}
+          {/* 3 marcos temporais (1995, 2013, Hoje) — adaptados para dark.
+              bg-neutral-800/60 sobre surface-deep cria um leve relevo;
+              border white/10 substitui neutral-200; texto inverso. */}
           {originStory.milestones.map((milestone, i) => (
             <article
               key={milestone.year}
               data-bento-block
               data-bento-variant={MILESTONE_VARIANTS[i] ?? 'up'}
-              className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 md:col-span-7 md:p-8"
+              className="rounded-2xl border border-white/10 bg-neutral-800/60 p-6 backdrop-blur-sm md:col-span-7 md:p-8"
             >
               <div className="flex items-baseline gap-3">
-                <span className="font-display text-h3 font-bold text-rfg-dark">
+                <span className="font-display text-h3 font-bold text-rfg-light">
                   {milestone.year}
                 </span>
-                <span className="h-px flex-1 bg-neutral-300" aria-hidden="true" />
+                <span className="h-px flex-1 bg-white/15" aria-hidden="true" />
               </div>
-              <h3 className="mt-2 font-display text-h4 font-semibold text-neutral-900">
+              <h3 className="mt-2 font-display text-h4 font-semibold text-white">
                 {milestone.title}
               </h3>
-              <p className="mt-3 text-body leading-relaxed text-neutral-700">
+              <p className="mt-3 text-body leading-relaxed text-neutral-300">
                 {milestone.body}
               </p>
             </article>
           ))}
 
-          {/* Citação Walter Campos (cliente 12+ anos) */}
+          {/* Citação Walter Campos — border accent rfg-light + bg sutil.
+              text neutral-200 sobre dark mantém WCAG AA (>4.5:1). */}
           <blockquote
             data-bento-block
             data-bento-variant="up"
-            className="rounded-2xl border-l-4 border-rfg-light bg-neutral-50 p-6 md:col-span-12 md:p-8"
+            className="rounded-2xl border-l-4 border-rfg-light bg-neutral-800/60 p-6 backdrop-blur-sm md:col-span-12 md:p-8"
           >
-            <p className="text-body-lg italic leading-relaxed text-neutral-700">
+            <p className="text-body-lg italic leading-relaxed text-neutral-200">
               “{originStory.quote.text}”
             </p>
-            <footer className="mt-3 not-italic font-sans text-caption font-semibold text-neutral-900">
+            <footer className="mt-3 font-sans text-caption font-semibold not-italic text-white">
               {originStory.quote.attribution}
             </footer>
           </blockquote>
@@ -111,7 +124,7 @@ export function OriginStorySection(): ReactNode {
           <p
             data-bento-block
             data-bento-variant="up"
-            className="text-body-lg leading-relaxed text-neutral-700 md:col-span-12"
+            className="text-body-lg leading-relaxed text-neutral-300 md:col-span-12"
           >
             {originStory.closing}
           </p>

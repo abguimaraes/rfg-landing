@@ -76,7 +76,9 @@ function PathCard({ path }: PathCardProps): ReactNode {
       hoverable={!path.isFeatured}
       className={cn(
         'flex h-full flex-col gap-5',
-        path.isFeatured && 'pt-12 md:pt-14',
+        // Phase A — shadow ousada no featured ("Mais Procurado") + glow brand
+        path.isFeatured && 'pt-12 shadow-card-featured md:pt-14',
+        path.isFeatured && 'after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-xl after:shadow-glow-brand',
       )}
       badge={
         path.isFeatured && path.featuredBadge ? (
@@ -211,7 +213,7 @@ export function PathsSection(): ReactNode {
     <section
       id="caminhos"
       aria-labelledby="caminhos-headline"
-      className="bg-neutral-50 py-16 md:py-24 lg:py-28"
+      className="surface-clean py-16 md:py-24 lg:py-28"
     >
       <Container variant="wide">
         <div ref={containerRef} className="flex flex-col gap-10">

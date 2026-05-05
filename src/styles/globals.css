@@ -76,4 +76,93 @@
   .section {
     @apply py-12 md:py-16 lg:py-24;
   }
+
+  /* ===== Phase A — Surface helpers (5-state system) =====
+   * Aplicáveis em <section> via className. Não substituem `bg-white`
+   * mecanicamente — atribuem semântica + permitem patterns combinados. */
+  .surface-clean {
+    background-color: var(--surface-clean);
+  }
+  .surface-soft {
+    background-color: var(--surface-soft);
+  }
+  .surface-elevated {
+    background-color: var(--surface-elevated);
+  }
+  .surface-deep {
+    background-color: var(--surface-deep);
+    color: var(--text-inverse);
+  }
+  .surface-brand-strong {
+    background-image: var(--surface-brand-strong);
+    color: var(--text-inverse);
+  }
+}
+
+/* ============================================================================
+ * Phase A — Patterns sutis (texturas) e Blur orbs decorativos
+ * Origem: docs/plan/visual-upgrade-plan.md §A.2 / §A.3
+ * Aplicar como utility classes em <section className="relative ...">.
+ * Patterns são CSS estático — sobrevivem ao prefers-reduced-motion.
+ * ============================================================================ */
+
+/* Dot grid sutil — pontos rgba(36,107,178,0.06) em grid 24×24
+ * Uso recomendado: PersonasSection (surface-soft + dot-grid) */
+.pattern-dot-grid {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(36, 107, 178, 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* Blueprint grid — linhas finas rgba(36,107,178,0.04) em grid 32×32
+ * Uso recomendado: HowItWorksSection (passo-a-passo metáfora blueprint) */
+.pattern-blueprint {
+  background-image:
+    linear-gradient(rgba(36, 107, 178, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 107, 178, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Subtle SVG noise — texture leve para tirar a chapadice de dark sections.
+ * Inline data-URI evita request extra; opacity 0.05 mantém imperceptível
+ * mas adiciona "grão" de profundidade. */
+.pattern-noise {
+  position: relative;
+}
+.pattern-noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* Garante que conteúdo da seção fique acima do overlay de noise. */
+.pattern-noise > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================================
+ * Phase A — Blur orbs decorativos
+ * Círculos com blur grande, opacity baixa, posicionados absolutamente.
+ * Fica DENTRO de <section className="relative overflow-hidden">.
+ * Performance: limitar a 2-3 orbs por página (blur-3xl é heavy).
+ * ============================================================================ */
+.orb-decor {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(96px);
+  pointer-events: none;
+  z-index: 0;
+}
+@media (min-width: 1024px) {
+  .orb-decor {
+    filter: blur(120px);
+  }
 }
