@@ -2,8 +2,12 @@ import type { Metadata } from 'next';
 
 import { CurveDivider } from '@/components/animations/CurveDivider';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { ProblemSection } from '@/components/sections/ProblemSection';
 import { OpportunitySection } from '@/components/sections/OpportunitySection';
+import { OriginStorySection } from '@/components/sections/OriginStorySection';
+import { PersonasSection } from '@/components/sections/PersonasSection';
+import { ProblemSection } from '@/components/sections/ProblemSection';
+import { ProofSection } from '@/components/sections/ProofSection';
+import { ValuePillarsSection } from '@/components/sections/ValuePillarsSection';
 
 export const metadata: Metadata = {
   title:
@@ -19,9 +23,12 @@ export default function HomePage(): React.ReactNode {
       <CurveDivider fromColor="#FFFFFF" toColor="#F7F9FC" />
       <ProblemSection />
       <OpportunitySection />
+      <PersonasSection />
+      <ValuePillarsSection />
+      <ProofSection />
+      <OriginStorySection />
 
-      {/* Âncoras placeholders das seções 7/8/9/13 — preenchidas em Stories 1.4-1.7 */}
-      <div id="sobre" aria-hidden="true" />
+      {/* Âncoras placeholders das seções 8/9/13 — preenchidas nas Stories 1.5-1.7 */}
       <div id="como-funciona" aria-hidden="true" />
       <div id="caminhos" aria-hidden="true" />
       <div id="faq" aria-hidden="true" />

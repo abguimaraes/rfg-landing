@@ -27,13 +27,19 @@ try {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
-/** Configuração canônica das imagens da Story 1.3. */
+/** Configuração canônica das imagens das Stories 1.3-1.4. */
 const IMAGES = [
   {
     source: 'assets/socios/socios-01-perfil-rfg.png',
     target: 'public/images/socios/socios-01-perfil-rfg.webp',
     quality: 85,
     maxWidth: 1600,
+  },
+  {
+    source: 'assets/socios/socios-02-estudio.png',
+    target: 'public/images/socios/socios-02-estudio.webp',
+    quality: 85,
+    maxWidth: 1400,
   },
 ];
 
