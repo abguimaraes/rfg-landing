@@ -25,8 +25,12 @@ export const commitment: CommitmentContent = {
   midHighlight: 'Você só avança se fizer sentido para você.',
   trustLine: 'Trabalhamos com mais de 1.200 famílias em 13 anos.',
   susepLine: 'Temos registro SUSEP ativo desde 1995.',
-  realCommitment:
+  realCommitmentIntro:
+    'Não precisamos de cliente que não está convencido — precisamos de cliente que está protegido de verdade.',
+  realCommitmentOutroTop:
     'Esse é o nosso compromisso real: transparência total antes, durante e depois.',
+  realCommitmentOutroBottom:
+    'Sem sumir após a venda. Sem surpresa no sinistro. Sem letra miúda que você só descobre quando já é tarde.',
   finalLine:
     'Se não fizer sentido para você, não tem negócio. Simples assim.',
   susepSeal: {
