@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+import { getWhatsAppLinkProps } from '@/lib/whatsapp';
 
 export const metadata: Metadata = {
   title: 'RFG Corretora de Seguros — Em construção',
@@ -7,9 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const whatsappProps = getWhatsAppLinkProps('sticky_nav');
+
   return (
     <div className="bg-rfg-gradient min-h-screen">
-      <div className="container-wide flex min-h-screen flex-col items-center justify-center py-24 text-center text-white">
+      <Container
+        variant="wide"
+        as="div"
+        className="flex min-h-screen flex-col items-center justify-center py-24 text-center text-white"
+      >
         <span className="font-display text-eyebrow uppercase tracking-[0.12em] text-white/80">
           RFG Corretora de Seguros
         </span>
@@ -24,13 +33,15 @@ export default function HomePage() {
           encontrará aqui o diagnóstico patrimonial gratuito direto com os sócios.
         </p>
 
-        <div className="mt-10 flex flex-col items-center gap-3 text-body-sm text-white/80">
+        <div className="mt-10 flex flex-col items-center gap-4 text-body-sm text-white/80">
           <span>Maceió/AL · 35+ anos protegendo patrimônios em Alagoas</span>
-          <span className="rounded-full bg-white/10 px-4 py-1 text-caption font-medium text-white/90 backdrop-blur-sm">
-            Lançamento em breve
-          </span>
+          <a {...whatsappProps} className="inline-block">
+            <Button variant="primary" size="lg" tabIndex={-1}>
+              Falar com a RFG no WhatsApp
+            </Button>
+          </a>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

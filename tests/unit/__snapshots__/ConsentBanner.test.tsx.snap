@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<ConsentBanner /> snapshot > renderiza banner inicial (sem consent salvo) — snapshot 1`] = `
+<div>
+  <div
+    aria-labelledby="rfg-consent-title"
+    aria-modal="false"
+    class="fixed inset-x-4 bottom-4 z-40 mx-auto max-w-3xl rounded-xl border border-rfg-light/40 bg-info-50/95 backdrop-blur p-5 shadow-xl md:p-6"
+    data-testid="consent-banner"
+    role="dialog"
+  >
+    <div
+      class="flex flex-col gap-4"
+    >
+      <div
+        class="flex flex-col gap-2"
+      >
+        <h2
+          class="font-display text-h4 font-semibold text-neutral-900"
+          id="rfg-consent-title"
+        >
+          Sua privacidade importa
+        </h2>
+        <p
+          class="text-body-sm text-neutral-700"
+        >
+          Usamos cookies essenciais para o funcionamento do site e, com sua autorização, cookies de análise (estatísticas anônimas) e marketing (mensuração de campanhas). Você pode personalizar a qualquer momento.
+        </p>
+      </div>
+      <div
+        class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-end"
+      >
+        <button
+          class="inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all duration-normal ease-out-soft focus-visible:outline-none focus-visible:shadow-focus disabled:cursor-not-allowed bg-transparent hover:bg-neutral-100 disabled:text-neutral-400 h-9 px-4 text-body-sm rounded-md"
+          type="button"
+        >
+          <span>
+            Recusar não-essenciais
+          </span>
+        </button>
+        <button
+          class="inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all duration-normal ease-out-soft focus-visible:outline-none focus-visible:shadow-focus disabled:cursor-not-allowed bg-transparent border-2 border-rfg-dark hover:bg-rfg-dark hover:text-white active:scale-[0.98] disabled:border-neutral-300 disabled:text-neutral-400 h-9 px-4 text-body-sm rounded-md"
+          type="button"
+        >
+          <span>
+            Personalizar
+          </span>
+        </button>
+        <button
+          class="inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all duration-normal ease-out-soft focus-visible:outline-none focus-visible:shadow-focus disabled:cursor-not-allowed bg-rfg-gradient-cta shadow-cta hover:shadow-cta-hover hover:-translate-y-0.5 active:scale-[0.98] disabled:bg-none disabled:bg-neutral-300 disabled:text-neutral-500 disabled:shadow-none h-9 px-4 text-body-sm rounded-md"
+          type="button"
+        >
+          <span>
+            Aceitar todos
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
