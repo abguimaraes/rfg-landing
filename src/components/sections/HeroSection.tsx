@@ -4,11 +4,11 @@ import Image from 'next/image';
 import { useCallback, type MouseEvent } from 'react';
 
 import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { HeroTextReveal } from '@/components/animations/HeroTextReveal';
 import { hero } from '@/content/hero';
 import blurMap from '@/content/blur-placeholders.json';
+import { cn } from '@/lib/utils';
 import { trackEvent } from '@/lib/tracking';
 import { ARIA_LABELS, MESSAGES, getWhatsAppLinkProps } from '@/lib/whatsapp';
 
@@ -86,19 +86,21 @@ export function HeroSection(): React.ReactNode {
                 href={whatsappProps.href}
                 target={whatsappProps.target}
                 rel={whatsappProps.rel}
-                aria-label={whatsappProps['aria-label']}
+                aria-label={ARIA_LABELS[hero.cta.whatsappKey]}
                 onClick={handleCtaClick}
-                className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rfg-light focus-visible:ring-offset-2"
+                className={cn(
+                  'inline-flex items-center justify-center gap-2',
+                  'h-14 px-8 rounded-lg',
+                  'text-body-lg font-sans font-semibold',
+                  'text-white bg-rfg-gradient-cta shadow-cta',
+                  'hover:shadow-cta-hover hover:-translate-y-0.5',
+                  'active:scale-[0.98]',
+                  'focus-visible:outline-none focus-visible:shadow-focus',
+                  'transition-all duration-normal ease-out-soft',
+                )}
                 data-testid="hero-cta"
               >
-                <Button
-                  variant="primary"
-                  size="lg"
-                  tabIndex={-1}
-                  aria-label={ARIA_LABELS[hero.cta.whatsappKey]}
-                >
-                  {hero.cta.label}
-                </Button>
+                {hero.cta.label}
               </a>
               <span className="text-caption text-neutral-500">
                 {hero.cta.microcopy}
