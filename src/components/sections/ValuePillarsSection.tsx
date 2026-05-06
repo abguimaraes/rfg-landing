@@ -199,7 +199,7 @@ export function ValuePillarsSection(): ReactNode {
                       'tracking-[0.14em] text-white',
                     )}
                   >
-                    Proteção #1
+                    Pilar #1
                   </span>
                 </div>
 
@@ -230,17 +230,17 @@ export function ValuePillarsSection(): ReactNode {
                     <CounterTween to={1200} prefix="+" duration={1.6} />
                   </span>
                   <span className="sr-only">
-                    Mais de 1.200 famílias protegidas pela RFG
+                    Mais de 1.200 famílias asseguradas pela RFG
                   </span>
                   <p className="text-body font-medium text-neutral-600">
-                    famílias protegidas pela RFG desde 1995
+                    famílias asseguradas pela RFG desde 1995
                   </p>
 
                   {/* List reveal stagger — mini-stats que entram em sequência */}
                   <ul
                     ref={featureListRef}
                     className="mt-4 flex flex-col gap-2.5"
-                    aria-label="Diferenciais da proteção RFG"
+                    aria-label="Diferenciais da segurança RFG"
                   >
                     <li
                       data-feature-item

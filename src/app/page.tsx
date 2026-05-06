@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title:
     'RFG Corretora de Seguros — Diagnóstico Patrimonial Gratuito | Maceió/AL',
   description:
-    'Consultoria de seguros premium em Maceió/AL. 35+ anos protegendo patrimônios. Diagnóstico de Ângulo Morto Patrimonial direto com os sócios. Sem fila, sem call center.',
+    'Consultoria de seguros premium em Maceió/AL. 35+ anos cuidando de patrimônios. Diagnóstico de Ângulo Morto Patrimonial direto com os sócios. Sem fila, sem call center.',
 };
 
 export default function HomePage(): React.ReactNode {

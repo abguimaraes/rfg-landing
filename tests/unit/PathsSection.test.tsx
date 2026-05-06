@@ -47,10 +47,10 @@ describe('<PathsSection />', () => {
     const ctaUnico = screen.getByTestId('paths-cta-unico') as HTMLAnchorElement;
 
     expect(ctaEssencial.href).toContain('wa.me/');
-    expect(ctaEssencial.href).toContain(encodeURIComponent('Caminho Proteção Essencial'));
+    expect(ctaEssencial.href).toContain(encodeURIComponent('Caminho Segurança Essencial'));
 
     expect(ctaCompleta.href).toContain('wa.me/');
-    expect(ctaCompleta.href).toContain(encodeURIComponent('Caminho Proteção Completa'));
+    expect(ctaCompleta.href).toContain(encodeURIComponent('Caminho Segurança Completa'));
 
     expect(ctaLegado.href).toContain('wa.me/');
     expect(ctaLegado.href).toContain(encodeURIComponent('Legado Familiar'));

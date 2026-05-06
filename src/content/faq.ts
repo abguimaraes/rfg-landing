@@ -32,14 +32,14 @@ export const faq: FaqContent = {
   headline: 'As perguntas que você provavelmente está fazendo.',
   items: [
     {
-      question: 'Preciso ter muito dinheiro para contratar um plano de proteção?',
+      question: 'Preciso ter muito dinheiro para contratar um plano de seguros?',
       answer:
         'Não. O diagnóstico é gratuito e sem compromisso. A partir dele, montamos um plano que cabe no seu orçamento real — sem empurrar produto.',
     },
     {
       question: 'Vocês vendem só seguro de carro?',
       answer:
-        'Não. Enquanto 90% dos corretores focam só nisso, a RFG trabalha com o portfólio completo: seguro de vida, proteção de patrimônio, consórcio, previdência e responsabilidade civil profissional.',
+        'Não. Enquanto 90% dos corretores focam só nisso, a RFG trabalha com o portfólio completo: seguro de vida, blindagem patrimonial, consórcio, previdência e responsabilidade civil profissional.',
     },
     {
       question: 'Como funciona o primeiro passo?',

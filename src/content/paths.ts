@@ -25,9 +25,9 @@ export const paths: PathsContent = {
     {
       slug: 'essencial',
       emoji: '🛡️',
-      titulo: 'Caminho 1: Proteção Essencial',
+      titulo: 'Caminho 1: Segurança Essencial',
       forWho:
-        'quem ainda não tem proteção montada e quer começar pelo essencial — sem complicar, sem pagar pelo que não precisa.',
+        'quem ainda não tem cobertura montada e quer começar pelo essencial — sem complicar, sem pagar pelo que não precisa.',
       body:
         'Para quem está começando pelo mais importante: evitar que a família fique desamparada se algo acontecer.',
       planItems: [
@@ -39,22 +39,22 @@ export const paths: PathsContent = {
       bonusItems: [
         {
           label:
-            'Checklist "Meu Patrimônio Blindado — 7 Passos para a Proteção Total"',
+            'Checklist "Meu Patrimônio Blindado — 7 Passos para a Segurança Total"',
         },
       ],
-      ctaLabel: 'Quero proteger minha família — falar no WhatsApp',
+      ctaLabel: 'Quero assegurar minha família — falar no WhatsApp',
       whatsappKey: 'essencial',
       isFeatured: false,
     },
     {
       slug: 'completa',
       emoji: '🌟',
-      titulo: 'Caminho 2: Proteção Completa',
+      titulo: 'Caminho 2: Segurança Completa',
       subtitulo: '(o caminho mais procurado)',
       forWho:
         'quem já construiu patrimônio, sustenta família e quer um plano integrado — não três produtos avulsos comprados em três lugares diferentes.',
       body:
-        'Para quem quer resolver de uma vez: família protegida, patrimônio coberto e sonhos em andamento — tudo no mesmo plano.',
+        'Para quem quer resolver de uma vez: família assegurada, patrimônio coberto e sonhos em andamento — tudo no mesmo plano.',
       planItems: [
         'Diagnóstico de Ângulo Morto Patrimonial completo e personalizado',
         'Seguro de Vida com cobertura adequada ao provedor da família',
@@ -67,7 +67,7 @@ export const paths: PathsContent = {
         { label: 'Guia "Desvendando a Previdência Inteligente"' },
         {
           label:
-            'Checklist "Meu Patrimônio Blindado — 7 Passos para a Proteção Total"',
+            'Checklist "Meu Patrimônio Blindado — 7 Passos para a Segurança Total"',
         },
       ],
       ctaLabel: 'Quero o plano completo — falar no WhatsApp',
@@ -82,9 +82,9 @@ export const paths: PathsContent = {
       forWho:
         'quem já tem o presente em ordem e quer estruturar o futuro — para os filhos, para a aposentadoria, para o que fica depois da gente.',
       body:
-        'Para quem pensa no longo prazo: proteção hoje, patrimônio construído para os filhos amanhã.',
+        'Para quem pensa no longo prazo: segurança hoje, patrimônio construído para os filhos amanhã.',
       planItems: [
-        'Tudo do caminho Proteção Completa',
+        'Tudo do caminho Segurança Completa',
         'Estruturação de Previdência Privada com taxa justa e estratégia clara',
         'Planejamento de sucessão familiar (seguro de vida como instrumento de legado)',
         'Sessão estratégica de consórcio de imóvel para os filhos',
@@ -95,7 +95,7 @@ export const paths: PathsContent = {
         { label: 'Guia "Desvendando a Previdência Inteligente"' },
         {
           label:
-            'Checklist "Meu Patrimônio Blindado — 7 Passos para a Proteção Total"',
+            'Checklist "Meu Patrimônio Blindado — 7 Passos para a Segurança Total"',
         },
         {
           label:
@@ -110,7 +110,7 @@ export const paths: PathsContent = {
   investment: {
     headline: 'Como o Investimento É Definido',
     paragraphs: [
-      'Cada plano é montado com base em três variáveis: o seu perfil, o seu patrimônio e o que faz sentido proteger primeiro.',
+      'Cada plano é montado com base em três variáveis: o seu perfil, o seu patrimônio e o que faz sentido assegurar primeiro.',
       'Por isso, o investimento real só aparece depois do diagnóstico — quando a gente já sabe exatamente o que está sendo coberto, em que ordem e com qual prioridade.',
       'Não tem letra miúda. Não tem surpresa no contrato. Você vê o número antes de assinar — e só assina se fizer sentido para você.',
     ],

@@ -26,7 +26,7 @@ export const originStory: OriginStoryContent = {
     {
       year: '1995',
       title: 'O início no mercado de seguros',
-      body: 'Ricardo Farias estava no mercado de seguros e via a mesma cena se repetir toda semana: famílias sendo forçadas a escolher entre proteger o que têm e realizar o que sonham. Anderson Guimarães vivia o mesmo problema do outro lado do balcão, como gerente territorial na Mapfre — corretores que apareciam para fechar a venda e sumiam, gerentes de banco que empurravam previdência com taxas absurdas sem explicar nada.',
+      body: 'Ricardo Farias estava no mercado de seguros e via a mesma cena se repetir toda semana: famílias sendo forçadas a escolher entre assegurar o que têm e realizar o que sonham. Anderson Guimarães vivia o mesmo problema do outro lado do balcão, como gerente territorial na Mapfre — corretores que apareciam para fechar a venda e sumiam, gerentes de banco que empurravam previdência com taxas absurdas sem explicar nada.',
     },
     {
       year: '2013',
@@ -36,7 +36,7 @@ export const originStory: OriginStoryContent = {
     {
       year: 'Hoje',
       title: '1.200+ famílias, 13 anos de operação',
-      body: 'Mais de 1.200 famílias passaram pela RFG em 13 anos. Dezenas saíram do aluguel via consórcio, sem pagar juros de banco. Centenas tiveram carro, imóvel e empresa protegidos. Profissionais liberais passaram a exercer suas profissões com tranquilidade — sabendo que um processo judicial não vai destruir o que levaram anos para construir. Registro SUSEP ativo desde 1995.',
+      body: 'Mais de 1.200 famílias passaram pela RFG em 13 anos. Dezenas saíram do aluguel via consórcio, sem pagar juros de banco. Centenas tiveram carro, imóvel e empresa assegurados. Profissionais liberais passaram a exercer suas profissões com tranquilidade — sabendo que um processo judicial não vai destruir o que levaram anos para construir. Registro SUSEP ativo desde 1995.',
     },
   ],
   quote: {

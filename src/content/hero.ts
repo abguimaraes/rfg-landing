@@ -10,9 +10,9 @@ import type { HeroContent } from '@/types/content';
  * - FR-021: CTA aponta para mensagem `diagnostico`.
  */
 export const hero: HeroContent = {
-  headline: 'Você construiu muito. Sua família está protegida se algo acontecer?',
+  headline: 'Você construiu muito. Sua família está assegurada se algo acontecer?',
   subheadline:
-    'A RFG cuida da proteção da sua família e do seu patrimônio — com um plano feito para a sua realidade, não uma proposta genérica.',
+    'A RFG cuida da segurança da sua família e do seu patrimônio — com um plano feito para a sua realidade, não uma proposta genérica.',
   cta: {
     label: 'Fazer meu diagnóstico',
     whatsappKey: 'diagnostico',

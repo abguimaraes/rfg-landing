@@ -12,9 +12,9 @@ import type { OpportunityContent } from '@/types/content';
 export const opportunity: OpportunityContent = {
   eyebrow: 'A Oportunidade',
   headline:
-    'O plano que protege o que você tem e realiza o que você quer — ao mesmo tempo.',
+    'O plano que assegura o que você tem e realiza o que você quer — ao mesmo tempo.',
   paragraphs: [
-    'O primeiro passo é o Diagnóstico de Ângulo Morto Patrimonial: uma análise personalizada que mapeia o que você construiu, identifica sua vulnerabilidade real e mostra, em números concretos, o que precisa ser protegido — em que ordem e por quê. Sem produto empurrado. Sem contrato que você assina sem entender. Só clareza.',
+    'O primeiro passo é o Diagnóstico de Ângulo Morto Patrimonial: uma análise personalizada que mapeia o que você construiu, identifica sua vulnerabilidade real e mostra, em números concretos, o que precisa ser coberto — em que ordem e por quê. Sem produto empurrado. Sem contrato que você assina sem entender. Só clareza.',
     'Enquanto 90% dos corretores focam em seguro de carro porque é o produto mais fácil de vender, Ricardo Farias e Anderson Guimarães trabalham com o portfólio completo há mais de 35 anos: vida, patrimônio, consórcio sem juros de banco, previdência com taxa justa, responsabilidade civil. Tudo num plano que faz sentido para a sua vida — não para a meta do mês de alguém.',
     'É o que mais de 1.200 famílias já vivem depois do diagnóstico. Você fala diretamente com quem sabe — sem call center, sem atendente — com quem conhece a sua história pelo nome.',
   ],

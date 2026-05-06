@@ -6,7 +6,6 @@ import { type ReactNode, type MouseEvent, useCallback } from 'react';
 
 import { Container } from '@/components/ui/Container';
 import { footer } from '@/content/footer';
-import { stickyNav } from '@/content/stickyNav';
 import { cn } from '@/lib/utils';
 import { trackEvent } from '@/lib/tracking';
 
@@ -69,12 +68,15 @@ export function Footer(): ReactNode {
               aria-label="Voltar ao topo"
               className="inline-flex items-center"
             >
+              {/* Hotfix 2026-05-06: usa versão dedicada pra fundo escuro
+                  (PNG transparente com letras claras). Substitui o
+                  brightness-0 invert que sobre PNG tornava tudo branco. */}
               <Image
-                src={stickyNav.brandLogo.src}
-                alt={stickyNav.brandLogo.alt}
+                src="/logo-rfg-dark.png"
+                alt="RFG Corretora de Seguros"
                 width={210}
                 height={70}
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto"
               />
             </a>
             <p className="max-w-sm text-body text-white/75">

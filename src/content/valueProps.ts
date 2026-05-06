@@ -18,7 +18,7 @@ export const valueProps: ValuePillarsContent = {
   pillars: [
     {
       emoji: '🛡️',
-      titulo: 'Proteja o Que Já Tem',
+      titulo: 'Assegure o Que Já Tem',
       descricao:
         'Um acidente, um processo, um sinistro. Um único dia ruim pode desfazer anos de trabalho. Com a cobertura certa para o seu perfil, o que você construiu continua de pé — não importa o que aconteça.',
     },
@@ -30,7 +30,7 @@ export const valueProps: ValuePillarsContent = {
     },
     {
       emoji: '👨‍👩‍👧',
-      titulo: 'Sua Família Protegida se Você Sair de Cena',
+      titulo: 'Sua Família Assegurada se Você Sair de Cena',
       descricao:
         'Se você é o único que sustenta tudo, o que acontece com a sua família se você não puder mais trabalhar? O seguro de vida certo faz com que eles continuem bem — mesmo sem você por perto.',
     },

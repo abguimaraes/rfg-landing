@@ -11,7 +11,7 @@ import type { ProblemContent } from '@/types/content';
 export const problem: ProblemContent = {
   eyebrow: 'O Problema',
   headline:
-    'O problema não é falta de proteção. É o ângulo que você nunca conseguiu ver.',
+    'O problema não é falta de cobertura. É o ângulo que você nunca conseguiu ver.',
   paragraphs: [
     'Você sabe exatamente o que construiu. O apartamento. O carro. A carteira de clientes. Os anos de trabalho que estão por trás de cada um desses ativos.',
     'Mas existe uma zona que ninguém nunca te mostrou: o que sobra de tudo isso se um dia ruim chegar de surpresa. Não um dia ruim qualquer — um acidente, uma incapacidade, um processo judicial, um sinistro grave. O que fica para a sua família? O que continua de pé?',

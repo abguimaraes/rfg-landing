@@ -26,7 +26,7 @@ export const commitment: CommitmentContent = {
   trustLine: 'Trabalhamos com mais de 1.200 famílias em 13 anos.',
   susepLine: 'Temos registro SUSEP ativo desde 1995.',
   realCommitmentIntro:
-    'Não precisamos de cliente que não está convencido — precisamos de cliente que está protegido de verdade.',
+    'Não precisamos de cliente que não está convencido — precisamos de cliente que está assegurado de verdade.',
   realCommitmentOutroTop:
     'Esse é o nosso compromisso real: transparência total antes, durante e depois.',
   realCommitmentOutroBottom:
