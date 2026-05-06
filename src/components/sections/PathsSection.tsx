@@ -1,13 +1,23 @@
 'use client';
 
-import { useCallback, type MouseEvent, type ReactNode } from 'react';
-import { Check, Gift, Lock } from 'lucide-react';
+import gsap from 'gsap';
+import { Flip } from 'gsap/Flip';
+import { Lock } from 'lucide-react';
+import {
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  type MouseEvent,
+  type ReactNode,
+} from 'react';
 
 import { Badge } from '@/components/ui/Badge';
-import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { useScrollReveal } from '@/components/animations/useScrollReveal';
+import { useSplitText } from '@/components/animations/useSplitText';
+import { PathCard, type PathCardHandle } from '@/components/sections/paths/PathCard';
 import { paths } from '@/content/paths';
 import { cn } from '@/lib/utils';
 import { trackEvent } from '@/lib/tracking';
@@ -15,6 +25,8 @@ import { ARIA_LABELS, MESSAGES, getWhatsAppLinkProps } from '@/lib/whatsapp';
 import type { CtaCategory } from '@/types/analytics';
 import type { PathItem } from '@/types/content';
 import type { WhatsAppMessageKey } from '@/lib/whatsapp';
+
+gsap.registerPlugin(Flip);
 
 interface PathCtaTrackingMeta {
   category: CtaCategory;
@@ -43,157 +55,63 @@ const PRIMARY_LG_CLASSES =
   'transition-all duration-normal ease-out-soft ' +
   'focus-visible:outline-none focus-visible:shadow-focus';
 
-/** Classes do botão primary `md` aplicadas direto ao `<a>`. */
-const PRIMARY_MD_CLASSES =
-  'inline-flex items-center justify-center gap-2 h-11 px-6 rounded-md ' +
-  'font-sans font-semibold text-body text-white bg-rfg-gradient-cta shadow-cta ' +
-  'hover:shadow-cta-hover hover:-translate-y-0.5 active:scale-[0.98] ' +
-  'transition-all duration-normal ease-out-soft ' +
-  'focus-visible:outline-none focus-visible:shadow-focus';
-
-interface PathCardProps {
-  path: PathItem;
-}
-
-function PathCard({ path }: PathCardProps): ReactNode {
-  const whatsappProps = getWhatsAppLinkProps(path.whatsappKey);
-
-  const handleClick = useCallback(
-    (_event: MouseEvent<HTMLAnchorElement>) => {
-      fireCtaTracking({
-        category: 'secao_9',
-        label: path.slug,
-        destination: whatsappProps.href,
-        whatsappKey: path.whatsappKey,
-      });
-    },
-    [path.slug, path.whatsappKey, whatsappProps.href],
-  );
-
-  return (
-    <Card
-      variant={path.isFeatured ? 'featured' : 'default'}
-      hoverable={!path.isFeatured}
-      className={cn(
-        'flex h-full flex-col gap-5',
-        // Phase A — shadow ousada no featured ("Mais Procurado") + glow brand
-        path.isFeatured && 'pt-12 shadow-card-featured md:pt-14',
-        path.isFeatured && 'after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-xl after:shadow-glow-brand',
-      )}
-      badge={
-        path.isFeatured && path.featuredBadge ? (
-          <Badge variant="brand" size="md" className="shadow-md">
-            {path.featuredBadge}
-          </Badge>
-        ) : undefined
-      }
-    >
-      <header className="flex flex-col gap-2">
-        <span aria-hidden="true" className="text-3xl leading-none">
-          {path.emoji}
-        </span>
-        <h3 className="font-display text-h4 font-semibold leading-tight text-neutral-900">
-          {path.titulo}
-        </h3>
-        {path.subtitulo ? (
-          <p className="text-body-sm font-medium text-rfg-dark">
-            {path.subtitulo}
-          </p>
-        ) : null}
-      </header>
-
-      <p className="text-body leading-relaxed text-neutral-700">{path.body}</p>
-
-      <div className="flex flex-col gap-3">
-        <p className="text-caption font-semibold uppercase tracking-wider text-rfg-dark">
-          O que costuma fazer parte deste plano
-        </p>
-        <ul className="flex flex-col gap-2">
-          {path.planItems.map((item, i) => (
-            <li
-              key={i}
-              className="flex gap-2 text-body-sm leading-relaxed text-neutral-700"
-            >
-              <Check
-                aria-hidden="true"
-                size={16}
-                strokeWidth={2.5}
-                className="mt-1 shrink-0 text-success-700"
-              />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="flex flex-col gap-3 rounded-lg bg-neutral-50 p-4">
-        <p className="text-caption font-semibold uppercase tracking-wider text-rfg-dark">
-          Bônus inclusos
-        </p>
-        <ul className="flex flex-col gap-2">
-          {path.bonusItems.map((bonus, i) => (
-            <li
-              key={i}
-              className="flex gap-2 text-body-sm leading-relaxed text-neutral-700"
-            >
-              <Gift
-                aria-hidden="true"
-                size={16}
-                strokeWidth={2}
-                className="mt-1 shrink-0 text-rfg-mid"
-              />
-              <span>{bonus.label}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="mt-auto flex flex-col gap-2">
-        <p className="text-body-sm leading-relaxed text-neutral-700">
-          <span className="font-semibold text-neutral-900">Para quem é: </span>
-          {path.forWho}
-        </p>
-        <a
-          href={whatsappProps.href}
-          target={whatsappProps.target}
-          rel={whatsappProps.rel}
-          aria-label={ARIA_LABELS[path.whatsappKey]}
-          onClick={handleClick}
-          className={cn(PRIMARY_MD_CLASSES, 'w-full')}
-          data-testid={`paths-cta-${path.slug}`}
-        >
-          {path.ctaLabel}
-        </a>
-        <p className="text-caption text-neutral-500">{paths.ctaMicrocopy}</p>
-      </div>
-    </Card>
-  );
-}
-
 /**
  * PathsSection — Story 1.5 (FR-011, FR-021 mensagens 2/3/4/5, AC-8..20).
  *
- * Container wide, `--bg-secondary` (`bg-neutral-50`). Eyebrow + H2 Title
- * Case + subheadline + bridge + 3 cards (Caminho 2 destacado com badge
- * "Mais Procurado" via `<Card variant="featured">`). Cada card tem
- * checklist `planItems` + bônus literais `bonusItems` + CTA WhatsApp.
+ * **Tier 2 PR #21 — efeitos UAU:**
+ * - Headline em words com `useSplitText` (reveal scroll-driven).
+ * - Stagger reveal dos cards via `useScrollReveal` (mantido).
+ * - **Tilt 3D mouse-follow** em cada card (`PathCard` interno).
+ * - **Flip animation** ao trocar destaque — hover/click em outro caminho promove
+ *   ele a `featured`, com transição mágica via GSAP Flip plugin.
+ * - **IconBurst** no emoji de cada card ao entrar viewport.
+ * - **Gradient sweep** no hover (varredura azul brand).
+ * - **Glow brand** intensificado no card destacado.
+ * - Reduced-motion: cards estáticos, mantém o featured do content (CON-013 ok).
  *
  * Compliance:
  * - CON-002: SEM preços / R$ em qualquer card.
  * - CON-013: SEM "garantir/garantia" no Caminho 1.
  * - FR-011 + L-002: bônus literais (1 / 2 / 3).
  * - FR-021: chaves `essencial` / `completa` / `legado` / `cta_unico`.
+ * - A11y: cada card é `role="button"` + `tabIndex={0}` + keyboard nav (Enter/Space).
  *
  * 4 CTAs WhatsApp: 3 por caminho + 1 CTA único final.
- * Padrão `<a>` + classes do Button (PR #8 pattern — não aninhar `<a><Button>`).
  */
 export function PathsSection(): ReactNode {
+  // Slug inicial = primeiro caminho marcado como featured no content (preserva
+  // semântica original: "Caminho 2 — Proteção Completa").
+  const initialFeaturedSlug = useMemo<PathItem['slug']>(() => {
+    const featured = paths.paths.find((p) => p.isFeatured);
+    return featured?.slug ?? paths.paths[0]!.slug;
+  }, []);
+
+  const [activeSlug, setActiveSlug] = useState<PathItem['slug']>(initialFeaturedSlug);
+
   const containerRef = useScrollReveal<HTMLDivElement>({
     stagger: 0.15,
     y: 24,
     duration: 0.7,
     start: 'top 80%',
   });
+
+  const headlineRef = useSplitText<HTMLHeadingElement>({
+    mode: 'words',
+    stagger: 0.06,
+    duration: 0.7,
+    y: 28,
+    start: 'top 85%',
+  });
+
+  // Refs por slug — Flip captura `state` antes da troca, depois anima `from`.
+  const cardRefs = useRef<Record<string, PathCardHandle | null>>({});
+
+  const setCardRef = useCallback(
+    (slug: PathItem['slug']) => (handle: PathCardHandle | null) => {
+      cardRefs.current[slug] = handle;
+    },
+    [],
+  );
 
   const finalCtaProps = getWhatsAppLinkProps(paths.finalCta.whatsappKey);
 
@@ -209,6 +127,59 @@ export function PathsSection(): ReactNode {
     [finalCtaProps.href],
   );
 
+  const handleCardCtaClick = useCallback((path: PathItem, destination: string) => {
+    fireCtaTracking({
+      category: 'secao_9',
+      label: path.slug,
+      destination,
+      whatsappKey: path.whatsappKey,
+    });
+  }, []);
+
+  // Promove um caminho a destaque com Flip animation. Idempotente.
+  const handlePromote = useCallback(
+    (slug: PathItem['slug']) => {
+      setActiveSlug((current) => {
+        if (current === slug) return current;
+
+        // Flip funciona só com hover real + sem reduced-motion.
+        const supportsHover =
+          typeof window !== 'undefined' &&
+          window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const reduceMotion =
+          typeof window !== 'undefined' &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!supportsHover || reduceMotion) return slug;
+
+        const targets = Object.values(cardRefs.current)
+          .map((h) => h?.el)
+          .filter((el): el is HTMLLIElement => el !== null && el !== undefined);
+
+        if (targets.length === 0) return slug;
+
+        const state = Flip.getState(targets, {
+          props: 'boxShadow,borderRadius',
+        });
+
+        // Trigger React state change DEPOIS do snapshot
+        // (commit do novo layout acontece no próximo render).
+        queueMicrotask(() => {
+          Flip.from(state, {
+            duration: 0.7,
+            ease: 'power3.inOut',
+            absolute: false,
+            scale: true,
+            simple: false,
+          });
+        });
+
+        return slug;
+      });
+    },
+    [],
+  );
+
   return (
     <section
       id="caminhos"
@@ -221,6 +192,7 @@ export function PathsSection(): ReactNode {
             <Eyebrow data-reveal>{paths.eyebrow}</Eyebrow>
             <h2
               id="caminhos-headline"
+              ref={headlineRef}
               data-reveal
               className="font-display text-h2 font-bold leading-tight tracking-tight text-neutral-900"
             >
@@ -242,9 +214,15 @@ export function PathsSection(): ReactNode {
             aria-label="Três caminhos disponíveis após o diagnóstico"
           >
             {paths.paths.map((path) => (
-              <li key={path.slug} data-reveal className="h-full">
-                <PathCard path={path} />
-              </li>
+              <PathCard
+                key={path.slug}
+                ref={setCardRef(path.slug)}
+                path={path}
+                isActive={activeSlug === path.slug}
+                ctaMicrocopy={paths.ctaMicrocopy}
+                onPromote={handlePromote}
+                onCtaClick={handleCardCtaClick}
+              />
             ))}
           </ul>
 
