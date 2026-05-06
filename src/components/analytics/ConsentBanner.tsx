@@ -93,7 +93,14 @@ export function ConsentBanner() {
           <p className="text-body-sm text-neutral-700">
             Usamos cookies essenciais para o funcionamento do site e, com sua autorização,
             cookies de análise (estatísticas anônimas) e marketing (mensuração de campanhas).
-            Você pode personalizar a qualquer momento.
+            Você pode personalizar a qualquer momento. Saiba mais na nossa{' '}
+            <a
+              href="/politica-de-privacidade"
+              className="font-semibold text-rfg-dark underline underline-offset-2 hover:text-rfg-mid"
+            >
+              Política de Privacidade
+            </a>
+            .
           </p>
         </div>
 
