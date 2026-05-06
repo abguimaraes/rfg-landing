@@ -10,7 +10,7 @@
  * - WhatsApp: +55 82 98235-9028
  * - Email: comercial@rfgcorretora.com.br
  * - Site: www.rfgcorretora.com.br
- * - Instagram: @rfgcorretoraeconsorcio
+ * - Instagram: @rfg.seguros
  */
 
 export interface FooterLink {
@@ -68,8 +68,8 @@ export const footer: FooterContent = {
     whatsappHref: 'https://wa.me/5582982359028',
     email: 'comercial@rfgcorretora.com.br',
     emailHref: 'mailto:comercial@rfgcorretora.com.br',
-    instagram: '@rfgcorretoraeconsorcio',
-    instagramHref: 'https://instagram.com/rfgcorretoraeconsorcio',
+    instagram: '@rfg.seguros',
+    instagramHref: 'https://instagram.com/rfg.seguros',
   },
   susepLine: 'Registro SUSEP ativo desde 1995.',
   copyrightSuffix: 'RFG Corretora de Seguros · Todos os direitos reservados.',
