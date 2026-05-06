@@ -35,9 +35,11 @@ describe('<OriginStorySection />', () => {
 
   it('contém os 3 marcos: 1995, 2013, Hoje (AC-24)', () => {
     render(<OriginStorySection />);
-    expect(screen.getByText('1995')).toBeInTheDocument();
-    expect(screen.getByText('2013')).toBeInTheDocument();
-    expect(screen.getByText('Hoje')).toBeInTheDocument();
+    // Timeline pin scrub renderiza desktop + mobile (com `hidden` toggle)
+    // — os anos aparecem em ambos os tracks. Usa getAllByText pra cobrir.
+    expect(screen.getAllByText('1995').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('2013').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Hoje').length).toBeGreaterThan(0);
   });
 
   it('contém "13 anos" e NÃO "12 anos" no body (CON-013/AC-28)', () => {
