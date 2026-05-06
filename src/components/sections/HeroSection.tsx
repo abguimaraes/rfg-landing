@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ChevronDown, ShieldCheck, Users } from 'lucide-react';
+import { ShieldCheck, Users } from 'lucide-react';
 import { useCallback, useRef, type MouseEvent } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -94,38 +94,15 @@ export function HeroSection(): React.ReactNode {
     { scope: ctaRef },
   );
 
-  // ----- Tier 2: Scroll-down hint bounce -----
-  // Chevron desce/sobe levemente em loop infinito. Reduce-motion → estático.
-  const hintRef = useRef<HTMLDivElement>(null);
-  useGSAP(
-    () => {
-      if (!hintRef.current) return;
-      const mm = gsap.matchMedia();
-      mm.add(
-        { reduceMotion: '(prefers-reduced-motion: reduce)' },
-        (ctx) => {
-          if (ctx.conditions?.reduceMotion) return;
-          gsap.to(hintRef.current!, {
-            y: 8,
-            duration: 1.2,
-            ease: 'power1.inOut',
-            repeat: -1,
-            yoyo: true,
-          });
-        },
-      );
-      return () => mm.revert();
-    },
-    { scope: hintRef },
-  );
-
   return (
     <section
       id="hero"
       aria-labelledby="hero-headline"
       className={cn(
         'surface-hero relative overflow-hidden',
-        'pb-16 pt-12 md:pb-24 md:pt-20 lg:min-h-[90vh] lg:pt-28',
+        // Hotfix 2026-05-06: removido lg:min-h-[90vh] e reduzido pb pra
+        // diminuir gap pro Problema (Anderson "espaçamento muito grande").
+        'pb-12 pt-12 md:pb-16 md:pt-20 lg:pb-20 lg:pt-24',
       )}
     >
       {/* ----- Decorative background layer (z-0) — Tier 2 com parallax ----- */}
@@ -234,17 +211,17 @@ export function HeroSection(): React.ReactNode {
               </span>
             </div>
 
-            {/* Trust row — Phase B+C Tier 1: 2 cards glass-light com ícones,
-                substituindo pílulas Badge anteriores. Mantém o conteúdo literal
-                (SUSEP ativo desde 1995 + 1.200+ famílias atendidas). */}
+            {/* Trust row — Hotfix 2026-05-06: items-stretch + h-full pra
+                cards alinhados (Anderson "botões desalinhados").
+                CounterTween default render valor final imediato (sem +0). */}
             <ul
-              className="mt-2 grid w-full max-w-[560px] gap-3 sm:grid-cols-2"
+              className="mt-2 grid w-full max-w-[560px] items-stretch gap-3 sm:grid-cols-2"
               aria-label="Credenciais da RFG"
             >
-              <li>
+              <li className="h-full">
                 <div
                   className={cn(
-                    'glass-light flex items-start gap-3 rounded-xl p-4',
+                    'glass-light flex h-full items-start gap-3 rounded-xl p-4',
                     'text-left',
                   )}
                 >
@@ -263,10 +240,10 @@ export function HeroSection(): React.ReactNode {
                   </div>
                 </div>
               </li>
-              <li>
+              <li className="h-full">
                 <div
                   className={cn(
-                    'glass-light flex items-start gap-3 rounded-xl p-4',
+                    'glass-light flex h-full items-start gap-3 rounded-xl p-4',
                     'text-left',
                   )}
                 >
@@ -334,9 +311,12 @@ export function HeroSection(): React.ReactNode {
               )}
               aria-label="Sócios fundadores da RFG"
             >
+              {/* Hotfix 2026-05-06: ordem corrigida — Anderson está à
+                  ESQUERDA na foto, Ricardo à DIREITA. Legenda invertida
+                  (apontado por Anderson). */}
               <p className="font-sans text-body font-semibold text-neutral-900">
-                Ricardo Farias <span aria-hidden="true">·</span>{' '}
-                <span className="block sm:inline">Anderson Guimarães</span>
+                Anderson Guimarães <span aria-hidden="true">·</span>{' '}
+                <span className="block sm:inline">Ricardo Farias</span>
               </p>
               <p className="text-caption text-neutral-600">
                 Sócios fundadores · Desde 1995
@@ -345,22 +325,6 @@ export function HeroSection(): React.ReactNode {
           </div>
         </div>
 
-        {/* ============= Tier 2: scroll-down hint (desktop only) =============
-            Chevron com loop bounce yoyo (1.2s). Decorativo (aria-hidden), oculto
-            em mobile — em telas curtas seria distrativo. Convida ao scroll
-            sem competir com o CTA principal. */}
-        <div
-          aria-hidden="true"
-          className="mt-12 hidden flex-col items-center gap-1 lg:flex"
-          data-testid="hero-scroll-hint"
-        >
-          <span className="text-caption uppercase tracking-[0.24em] text-neutral-500">
-            Role para descobrir
-          </span>
-          <div ref={hintRef} className="text-rfg-dark/70">
-            <ChevronDown size={28} strokeWidth={2.25} />
-          </div>
-        </div>
       </Container>
     </section>
   );

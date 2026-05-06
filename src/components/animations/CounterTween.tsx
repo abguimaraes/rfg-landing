@@ -24,21 +24,29 @@ export interface CounterTweenProps {
   ariaLabel?: string;
   /** Classes adicionais. */
   className?: string;
+  /**
+   * Habilita animação from→to ao entrar viewport. Default `false` —
+   * mostra valor final imediato (evita "+0" no SSR/initial render
+   * quando ScrollTrigger não disparou ainda).
+   */
+  animate?: boolean;
 }
 
 const formatNumberPtBR = (value: number): string =>
   Math.round(value).toLocaleString('pt-BR');
 
 /**
- * CounterTween — Story 1.3, AC-20 (FR-028, Efeito #5).
+ * CounterTween — Story 1.3 (FR-028).
  *
- * Anima um número de `from` -> `to` ao entrar viewport (ScrollTrigger 80%).
- * Em `prefers-reduced-motion: reduce`, mostra o valor final direto sem animar.
+ * Exibe número com prefix/suffix opcionais. Por padrão renderiza valor
+ * FINAL imediatamente (sem animação) — garante que NUNCA aparece "+0"
+ * no SSR/initial render mesmo se ScrollTrigger não disparar.
  *
- * Uso:
- * ```tsx
- * <CounterTween to={1200} prefix="+" suffix=" famílias atendidas" />
- * ```
+ * Quando `animate={true}` é passado explicitamente:
+ * - Em SSR/initial render: mostra valor final (sem flash de 0)
+ * - Pré-mount cliente: reseta pra `from` se elemento ainda não está
+ *   visível e anima até `to` quando entrar viewport (ScrollTrigger 80%)
+ * - Em `prefers-reduced-motion: reduce`: mostra valor final direto
  */
 export function CounterTween({
   to,
@@ -49,22 +57,29 @@ export function CounterTween({
   format = formatNumberPtBR,
   ariaLabel,
   className,
+  animate = false,
 }: CounterTweenProps): ReactNode {
   const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState<string>(format(from));
+  // SSR/initial: SEMPRE valor final — evita "+0" antes do ScrollTrigger.
+  const [display, setDisplay] = useState<string>(format(to));
 
   useGSAP(
     () => {
-      if (!ref.current) return;
+      if (!animate || !ref.current) return;
+      // Se elemento já está visível (acima ou dentro do viewport) ao
+      // montar, NÃO anima — fica no valor final pra não causar flash
+      // 1.200 → 0 → 1.200.
+      const rect = ref.current.getBoundingClientRect();
+      const alreadyVisible = rect.top < window.innerHeight;
+      if (alreadyVisible) return;
 
       const mm = gsap.matchMedia();
       mm.add(
         { reduceMotion: '(prefers-reduced-motion: reduce)' },
         (ctx) => {
-          if (ctx.conditions?.reduceMotion) {
-            setDisplay(format(to));
-            return;
-          }
+          if (ctx.conditions?.reduceMotion) return; // valor final já está
+          // Reset visual pra `from` ANTES da animação começar
+          setDisplay(format(from));
           const state = { value: from };
           gsap.to(state, {
             value: to,
@@ -83,7 +98,7 @@ export function CounterTween({
 
       return () => mm.revert();
     },
-    { scope: ref, dependencies: [to, from, duration] },
+    { scope: ref, dependencies: [to, from, duration, animate] },
   );
 
   return (

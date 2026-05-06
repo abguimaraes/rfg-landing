@@ -57,15 +57,18 @@ describe('<ProblemSection />', () => {
     expect(paths.length).toBeGreaterThan(5);
   });
 
-  it('parágrafo da frase-âncora é tratado como pull-quote editorial', () => {
+  it('parágrafo da frase-âncora é tratado como pull-quote (blockquote estilizado)', () => {
     render(<ProblemSection />);
-    // O <strong> com a frase-âncora deve estar dentro de um <p> com classe
-    // de pull-quote (border-l-2 + text-display-lg + font-display).
+    // Hotfix 2026-05-06: pull-quote refeito como <blockquote> com bg
+    // glass-light + border-l-4 (era <p> com text-display-lg gigante).
     const anchor = screen.getByText(problem.anchorPhrase);
+    const quote = anchor.closest('blockquote');
+    expect(quote).not.toBeNull();
+    expect(quote).toHaveClass('border-l-4');
+    expect(quote).toHaveClass('border-rfg-light');
+    // Texto interno mantém font-display + italic (drama editorial menor).
     const paragraph = anchor.closest('p');
-    expect(paragraph).not.toBeNull();
-    expect(paragraph).toHaveClass('border-l-2');
     expect(paragraph).toHaveClass('font-display');
-    expect(paragraph).toHaveClass('text-display-lg');
+    expect(paragraph).toHaveClass('italic');
   });
 });

@@ -162,8 +162,26 @@ describe('<CounterTween />', () => {
     expect(labelled).toHaveAttribute('role', 'img');
   });
 
-  it('em prefers-reduced-motion: reduce, salta direto ao valor final (Nitpick #2)', async () => {
+  it('em prefers-reduced-motion: reduce + animate=true, salta direto ao valor final', async () => {
     setReducedMotion(true);
+    const { CounterTween } = await import('@/components/animations/CounterTween');
+    render(
+      <CounterTween
+        to={1200}
+        from={0}
+        suffix=" famílias"
+        ariaLabel="1200 famílias"
+        animate
+      />,
+    );
+    // Valor final aparece direto (não animado). pt-BR: 1.200
+    expect(screen.getByText(/1\.200\s*famílias/)).toBeInTheDocument();
+    // E gsap.to NÃO deve ter sido chamado (path animate em reduce-motion noop).
+    expect(mockGsapTo).not.toHaveBeenCalled();
+  });
+
+  it('default (animate=false) renderiza valor final imediato sem chamar GSAP', async () => {
+    setReducedMotion(false);
     const { CounterTween } = await import('@/components/animations/CounterTween');
     render(
       <CounterTween
@@ -173,11 +191,8 @@ describe('<CounterTween />', () => {
         ariaLabel="1200 famílias"
       />,
     );
-    // matchMedia.add foi invocado pelo callback do useGSAP
-    expect(mockMatchMediaAdd).toHaveBeenCalled();
-    // Valor final aparece direto (não animado). pt-BR: 1.200
+    // Hotfix 2026-05-06: default é animate=false — evita "+0" no SSR.
     expect(screen.getByText(/1\.200\s*famílias/)).toBeInTheDocument();
-    // E gsap.to NÃO deve ter sido chamado no path reduced.
     expect(mockGsapTo).not.toHaveBeenCalled();
   });
 });

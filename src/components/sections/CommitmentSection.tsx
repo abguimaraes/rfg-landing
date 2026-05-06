@@ -228,24 +228,31 @@ export function CommitmentSection(): ReactNode {
               ============================================================ */}
           <ul
             className={cn(
-              'mx-auto flex w-full max-w-3xl flex-col gap-12',
-              'sm:gap-14 md:gap-16',
+              // Hotfix 2026-05-06: gaps maiores entre bullets pra evitar
+              // headline do próximo colar no parágrafo anterior.
+              'mx-auto flex w-full max-w-3xl flex-col gap-16',
+              'sm:gap-20 md:gap-24',
             )}
             aria-label="Detalhes do nosso compromisso"
           >
-            {/* Bullet 1 — reconhecimento da dor (Eye = clareza/honestidade). */}
+            {/* Bullet 1 — reconhecimento da dor (Eye = clareza/honestidade).
+                Hotfix 2026-05-06: paragraphs[2] ("Por isso, somos diretos:")
+                era transição visual mas estava colado no fim do bullet 1
+                — movido pra headline do bullet 2 (Handshake). */}
             <CommitmentBullet icon={Eye} index={0}>
               <p>{commitment.paragraphs[0]}</p>
               <p className="mt-2 text-white/75">
                 {commitment.paragraphs[1]}
               </p>
-              <p className="mt-3 font-display text-h4 font-semibold leading-snug text-white">
-                {commitment.paragraphs[2]}
-              </p>
             </CommitmentBullet>
 
-            {/* Bullet 2 — postura sem pressão (Handshake = parceria). */}
-            <CommitmentBullet icon={Handshake} index={1}>
+            {/* Bullet 2 — postura sem pressão (Handshake = parceria).
+                Headline = "Por isso, somos diretos:" (era paragraphs[2]). */}
+            <CommitmentBullet
+              icon={Handshake}
+              index={1}
+              headline={commitment.paragraphs[2]}
+            >
               <p>{commitment.paragraphs[3]}</p>
               <p className="mt-2 text-white/85">
                 {commitment.paragraphs[4]}

@@ -14,9 +14,9 @@ export const opportunity: OpportunityContent = {
   headline:
     'O plano que protege o que você tem e realiza o que você quer — ao mesmo tempo.',
   paragraphs: [
-    'A RFG não chega com uma proposta pronta debaixo do braço. O primeiro passo é o Diagnóstico de Ângulo Morto Patrimonial: uma análise personalizada que mapeia tudo que você construiu, identifica onde está a sua vulnerabilidade real e te mostra, em números concretos, o que precisa ser protegido, em que ordem e por quê. Nada de produto empurrado. Nada de contrato que você assina sem entender. Só clareza — talvez pela primeira vez.',
-    'O que torna isso diferente de tudo que você já tentou antes: enquanto 90% dos corretores focam em seguro de carro porque é o produto mais fácil de vender, Ricardo Farias e Anderson Guimarães trabalham com o portfólio completo há mais de 35 anos. Seguro de vida, proteção de patrimônio, consórcio sem juros de banco, previdência com taxa justa, responsabilidade civil para profissionais liberais. Tudo integrado num plano que faz sentido para a sua vida — não para a meta do mês de alguém.',
-    'Imagine chegar em casa sabendo que, se algo acontecer com você amanhã, sua família está protegida. Que o apartamento continua. Que a escola dos filhos continua. Que o seu negócio tem cobertura. Essa não é uma promessa distante — é o que mais de 1.200 famílias já vivem depois de passar pelo diagnóstico com a RFG. Você fala diretamente com quem sabe. Sem call center. Sem atendente. Com quem conhece a sua história pelo nome.',
+    'O primeiro passo é o Diagnóstico de Ângulo Morto Patrimonial: uma análise personalizada que mapeia o que você construiu, identifica sua vulnerabilidade real e mostra, em números concretos, o que precisa ser protegido — em que ordem e por quê. Sem produto empurrado. Sem contrato que você assina sem entender. Só clareza.',
+    'Enquanto 90% dos corretores focam em seguro de carro porque é o produto mais fácil de vender, Ricardo Farias e Anderson Guimarães trabalham com o portfólio completo há mais de 35 anos: vida, patrimônio, consórcio sem juros de banco, previdência com taxa justa, responsabilidade civil. Tudo num plano que faz sentido para a sua vida — não para a meta do mês de alguém.',
+    'É o que mais de 1.200 famílias já vivem depois do diagnóstico. Você fala diretamente com quem sabe — sem call center, sem atendente — com quem conhece a sua história pelo nome.',
   ],
   highlights: [
     { text: 'Diagnóstico de Ângulo Morto Patrimonial' },
