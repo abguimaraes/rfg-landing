@@ -15,6 +15,8 @@ import { ProblemSection } from '@/components/sections/ProblemSection';
 import { ProofSection } from '@/components/sections/ProofSection';
 import { ValuePillarsSection } from '@/components/sections/ValuePillarsSection';
 import { VisionSection } from '@/components/sections/VisionSection';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { getFaqPageSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
   title:
@@ -26,20 +28,25 @@ export const metadata: Metadata = {
 export default function HomePage(): React.ReactNode {
   return (
     <>
-      <HeroSection />
-      <CurveDivider fromColor="#FFFFFF" toColor="#F7F9FC" />
-      <ProblemSection />
-      <OpportunitySection />
-      <PersonasSection />
-      <ValuePillarsSection />
-      <ProofSection />
-      <OriginStorySection />
-      <HowItWorksSection />
-      <PathsSection />
-      <CommitmentSection />
-      <VisionSection />
-      <ObjectionsSection />
-      <FaqSection />
+      {/* FAQPage JSON-LD — habilita rich snippets de FAQ no Google.
+          APENAS nesta página (não duplica nas legais). */}
+      <JsonLd data={getFaqPageSchema()} />
+      <main id="conteudo">
+        <HeroSection />
+        <CurveDivider fromColor="#FFFFFF" toColor="#F7F9FC" />
+        <ProblemSection />
+        <OpportunitySection />
+        <PersonasSection />
+        <ValuePillarsSection />
+        <ProofSection />
+        <OriginStorySection />
+        <HowItWorksSection />
+        <PathsSection />
+        <CommitmentSection />
+        <VisionSection />
+        <ObjectionsSection />
+        <FaqSection />
+      </main>
       <Footer />
     </>
   );

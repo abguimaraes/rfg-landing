@@ -24,7 +24,15 @@ exports[`<ConsentBanner /> snapshot > renderiza banner inicial (sem consent salv
         <p
           class="text-body-sm text-neutral-700"
         >
-          Usamos cookies essenciais para o funcionamento do site e, com sua autorização, cookies de análise (estatísticas anônimas) e marketing (mensuração de campanhas). Você pode personalizar a qualquer momento.
+          Usamos cookies essenciais para o funcionamento do site e, com sua autorização, cookies de análise (estatísticas anônimas) e marketing (mensuração de campanhas). Você pode personalizar a qualquer momento. Saiba mais na nossa
+           
+          <a
+            class="font-semibold text-rfg-dark underline underline-offset-2 hover:text-rfg-mid"
+            href="/politica-de-privacidade"
+          >
+            Política de Privacidade
+          </a>
+          .
         </p>
       </div>
       <div
