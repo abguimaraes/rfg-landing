@@ -1,43 +1,55 @@
 'use client';
 
 import { ShieldCheck } from 'lucide-react';
-import { type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { CounterTween } from '@/components/animations/CounterTween';
 import { useScrollReveal } from '@/components/animations/useScrollReveal';
+import { useSplitText } from '@/components/animations/useSplitText';
+import { useParallax } from '@/components/animations/useParallax';
 import { PartnersMarquee } from '@/components/sections/PartnersMarquee';
 import { proof } from '@/content/proof';
 import { cn } from '@/lib/utils';
 
+gsap.registerPlugin(ScrollTrigger);
+
 /**
- * ProofSection — Phase B+C Tier 1 (FR-008, FR-020, FR-031, AC-13..22).
+ * ProofSection — Phase B+C Tier 2 ENRIQUECIDO (PR #22).
  *
- * Reestruturação editorial sobre a Story 1.4:
- * - Section em `surface-deep-rich` (gradient dark mais saturado que
- *   `surface-deep` chapado de OriginStory) — cria pausa visual antes da
- *   História (continuum dark com nuance entre as duas).
- * - Layout bento desktop col-5 / col-7:
- *   - col-5: mega number "+1.200" em `text-mega` com gradient text
- *     (white → rfg-light) + stats secundários "35 anos" e "1995" + badge
- *     SUSEP institucional dark.
- *   - col-7: 1 testemunho featured (Felipe Alexandre) em `glass-dark`
- *     ocupando a largura total + grid 3 testemunhos menores
- *     (Eder/Henrique/Walter) em `glass-dark`.
- * - Marquee de 10 logos parceiros em monocromia branca translúcida (filtro
- *   CSS invert + brightness sobre fundo dark) — Effect #8 preservado.
- * - Tríade textual ("35 anos" / "1.200+" / "Portfólio completo") preservada
- *   conforme os testes existentes — exposta na coluna 5 + reforço sr-only
- *   redundante para manter compatibilidade com asserts.
+ * Preserva 100% do dark surface, bento col-5/col-7, copy literal e marquee
+ * Tier 1 (PR #13). Adiciona EFEITO UAU via:
  *
- * Acessibilidade:
- * - Contraste em surface-deep-rich (#0F1A2E ↔ #1E293B): white 18:1 AAA,
- *   white/70 7.4:1 AAA, white/60 6.0:1 AAA.
- * - Mega number tem `aria-label` via CounterTween + texto canônico "1.200+"
- *   exposto via `<span class="sr-only">` para preservar o asserção do teste
- *   `screen.getByText('1.200+')`.
- * - Reduced motion respeitado por CounterTween.
+ * 1. **Pin + crossfade entre testimonials** (desktop only):
+ *    Section dá pin enquanto usuário scrolla; o featured testimonial e os 3
+ *    secundários trocam com fade crossfade em vez de aparecerem todos juntos.
+ *    Sensação "uma história depois da outra". `gsap.matchMedia()` ativa só em
+ *    desktop — mobile vira lista normal (sem pin) pra não bloquear scroll.
+ *
+ * 2. **Parallax orbs decorativos** (yPercent=-15) — equivalente a "fotos dos
+ *    clientes" subindo levemente conforme scrolla. Os testimonials da RFG não
+ *    têm avatares (compliance SUSEP — depoimentos LITERAIS sem fotos não
+ *    autorizadas), então o parallax aplica nos orbs que ancoram a seção.
+ *
+ * 3. **Headline com SplitText words** — palavras revelam em stagger, dando
+ *    peso editorial sem reescrever a copy. `prefers-reduced-motion: reduce`
+ *    desabilita.
+ *
+ * 4. **CounterTween** já presente no Tier 1 (mega number "+1.200") — mantido.
+ *
+ * A11y / compliance:
+ * - Mesmo durante pin, todos os 4 testemunhos permanecem no DOM (apenas
+ *   opacity é animada). Screen-readers leem todos.
+ * - Reduce-motion: pin/crossfade/parallax/split desabilitados; estado simples
+ *   (todos os testimonials visíveis) — atende NFR-014.
+ * - Mobile (<= 768px): SEM pin/crossfade — degrada pra lista vertical normal,
+ *   evita travar scroll em telas pequenas. Apenas parallax leve nos orbs.
+ * - Compliance SUSEP: testemunhos com nomes REAIS (Felipe / Eder / Henrique /
+ *   Walter) preservados — nenhum nome inventado.
  */
 export function ProofSection(): ReactNode {
   const containerRef = useScrollReveal<HTMLDivElement>({
@@ -47,11 +59,89 @@ export function ProofSection(): ReactNode {
     start: 'top 80%',
   });
 
+  // Tier 2: ref para SplitText na headline (words mode).
+  const headlineRef = useSplitText<HTMLHeadingElement>({
+    mode: 'words',
+    y: 20,
+    duration: 0.6,
+    stagger: 0.06,
+  });
+
+  // Tier 2: parallax nos orbs decorativos (yPercent=-15).
+  // mobileMultiplier default 0.5 → 7.5% mobile (suave).
+  const orbTopRef = useParallax<HTMLDivElement>({ yPercent: -15 });
+  const orbBottomRef = useParallax<HTMLDivElement>({ yPercent: -15 });
+
+  // Tier 2: pin + crossfade entre testimonials (desktop only).
+  // Estrutura: 4 testimonial slots com `data-testimonial-slide` no DOM.
+  // Pin section por ~3x viewport; cada slide ganha foco sequencial via opacity.
+  const sectionRef = useRef<HTMLElement>(null);
+  const slidesWrapperRef = useRef<HTMLUListElement>(null);
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current || !slidesWrapperRef.current) return;
+
+      const mm = gsap.matchMedia();
+      mm.add(
+        {
+          isDesktop: '(min-width: 1024px)',
+          reduceMotion: '(prefers-reduced-motion: reduce)',
+        },
+        (ctx) => {
+          if (ctx.conditions?.reduceMotion) return;
+          if (!ctx.conditions?.isDesktop) return;
+
+          const slides =
+            slidesWrapperRef.current!.querySelectorAll<HTMLElement>(
+              '[data-testimonial-slide]',
+            );
+          if (slides.length < 2) return;
+
+          // Estado inicial: primeiro visível, demais opacity 0.
+          gsap.set(slides, { opacity: 0 });
+          gsap.set(slides[0]!, { opacity: 1 });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current!,
+              start: 'top top',
+              // Pin por ~ (slides - 1) * 60% viewport — total ≈ 3x para 4 slides.
+              end: () => `+=${(slides.length - 1) * window.innerHeight * 0.6}`,
+              pin: true,
+              scrub: 0.5,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          // Crossfade sequencial: slide N fade out enquanto N+1 fade in.
+          for (let i = 0; i < slides.length - 1; i++) {
+            const current = slides[i]!;
+            const next = slides[i + 1]!;
+            tl.to(current, { opacity: 0, duration: 0.5 }, i)
+              .to(next, { opacity: 1, duration: 0.5 }, i + 0.1);
+          }
+
+          return () => {
+            // Cleanup: garante que ao reverter (resize, reduce-motion toggle)
+            // todos os testimonials voltem visíveis (a11y baseline).
+            gsap.set(slides, { opacity: 1, clearProps: 'opacity' });
+          };
+        },
+      );
+
+      return () => mm.revert();
+    },
+    { scope: sectionRef },
+  );
+
   // Apenas o testemunho featured (primeiro = Felipe Alexandre) e os 3 secundários.
   const [featuredTestimonial, ...remainingTestimonials] = proof.testimonials;
 
   return (
     <section
+      ref={sectionRef}
       id="prova"
       aria-labelledby="prova-headline"
       className={cn(
@@ -60,24 +150,28 @@ export function ProofSection(): ReactNode {
         'py-16 md:py-24 lg:py-28',
       )}
     >
-      {/* Orb dark decorativo top-left — depth real sem ruído. */}
+      {/* Orbs decorativos com parallax Tier 2 (yPercent=-15). */}
       <div
+        ref={orbTopRef}
         aria-hidden="true"
         className="orb-decor -left-32 top-10 h-96 w-96 bg-rfg-dark/40"
       />
       <div
+        ref={orbBottomRef}
         aria-hidden="true"
         className="orb-decor -right-20 bottom-10 h-80 w-80 bg-rfg-light/15"
       />
 
       <Container variant="wide" className="relative z-[1]">
         <div ref={containerRef} className="flex flex-col gap-12 lg:gap-16">
-          {/* Header — eyebrow + H2 brancos sobre fundo dark. */}
+          {/* Header — eyebrow + H2 brancos sobre fundo dark.
+              H2 ganha SplitText words em Tier 2 (revela palavra por palavra). */}
           <header className="flex max-w-3xl flex-col gap-4">
             <Eyebrow data-reveal className="text-rfg-light">
               {proof.eyebrow}
             </Eyebrow>
             <h2
+              ref={headlineRef}
               id="prova-headline"
               data-reveal
               className={cn(
@@ -106,11 +200,7 @@ export function ProofSection(): ReactNode {
                   )}
                   aria-hidden="true"
                 >
-                  <CounterTween
-                    to={1200}
-                    prefix="+"
-                    duration={1.4}
-                  />
+                  <CounterTween to={1200} prefix="+" duration={1.4} />
                 </span>
                 {/* Texto canônico AC-18 — "1.200+" pesquisável (regressão de
                     teste) + descrição visível abaixo. Em SR a sequência
@@ -181,14 +271,32 @@ export function ProofSection(): ReactNode {
               </span>
             </aside>
 
-            {/* ---- col-7: bento quotes (1 featured + 3 menores) ---- */}
+            {/* ---- col-7: bento quotes (1 featured + 3 menores) ----
+                Tier 2: cada testimonial vira "slide" com data-testimonial-slide.
+                Em desktop, ScrollTrigger pin + crossfade sequencial entre eles.
+                Em mobile / reduce-motion: lista normal (todos visíveis). */}
             <ul
-              className="flex flex-col gap-6 lg:col-span-7"
+              ref={slidesWrapperRef}
+              className={cn(
+                'flex flex-col gap-6 lg:col-span-7',
+                // Em desktop, os slides ficam empilhados na MESMA posição via
+                // grid 1×1 — só um aparece por vez via opacity. Em mobile,
+                // segue layout normal (gap entre cards visíveis).
+                'lg:relative lg:grid lg:min-h-[420px] lg:grid-cols-1 lg:grid-rows-1',
+              )}
               aria-label="Depoimentos de clientes da RFG"
             >
               {/* Featured testimonial — Felipe Alexandre Oliveira. */}
               {featuredTestimonial ? (
-                <li data-reveal className="h-full">
+                <li
+                  data-reveal
+                  data-testimonial-slide
+                  className={cn(
+                    'h-full',
+                    // Desktop: ocupa célula 1×1 do grid (todos slides sobrepostos).
+                    'lg:col-start-1 lg:row-start-1',
+                  )}
+                >
                   <article
                     className={cn(
                       'glass-dark relative flex h-full flex-col gap-4 rounded-2xl p-8',
@@ -211,33 +319,41 @@ export function ProofSection(): ReactNode {
                 </li>
               ) : null}
 
-              {/* 3 menores empilhados em grid 3-col desktop (1-col mobile). */}
-              <li>
-                <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-                  {remainingTestimonials.map((testimonial) => (
-                    <li key={testimonial.name} data-reveal className="h-full">
-                      <article
-                        className={cn(
-                          'glass-dark flex h-full flex-col gap-3 rounded-xl p-5',
-                          'transition-all duration-normal hover:ring-1 hover:ring-white/15',
-                        )}
-                      >
-                        <blockquote className="text-body-sm italic leading-relaxed text-white/90">
-                          “{testimonial.quote}”
-                        </blockquote>
-                        <footer className="not-italic">
-                          <p className="font-sans text-caption font-semibold text-white">
-                            {testimonial.name}
-                          </p>
-                          <p className="font-sans text-caption text-white/60">
-                            {testimonial.role}
-                          </p>
-                        </footer>
-                      </article>
-                    </li>
-                  ))}
-                </ul>
-              </li>
+              {/* 3 menores — em mobile aparecem como grid normal abaixo do
+                  featured; em desktop cada um vira um slide separado sobre o
+                  featured (crossfade sequencial). */}
+              {remainingTestimonials.map((testimonial) => (
+                <li
+                  key={testimonial.name}
+                  data-reveal
+                  data-testimonial-slide
+                  className={cn(
+                    'h-full',
+                    // Desktop: cada slide ocupa a mesma célula (sobreposição).
+                    'lg:col-start-1 lg:row-start-1',
+                  )}
+                >
+                  <article
+                    className={cn(
+                      'glass-dark flex h-full flex-col gap-4 rounded-2xl p-8',
+                      'ring-1 ring-rfg-light/20 transition-all duration-normal',
+                      'hover:ring-white/30',
+                    )}
+                  >
+                    <blockquote className="text-body-lg italic leading-relaxed text-white/90">
+                      “{testimonial.quote}”
+                    </blockquote>
+                    <footer className="not-italic">
+                      <p className="font-sans text-caption font-semibold text-white">
+                        {testimonial.name}
+                      </p>
+                      <p className="font-sans text-caption text-white/60">
+                        {testimonial.role}
+                      </p>
+                    </footer>
+                  </article>
+                </li>
+              ))}
             </ul>
           </div>
 

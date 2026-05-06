@@ -1,11 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { ShieldCheck, Users } from 'lucide-react';
-import { useCallback, type MouseEvent } from 'react';
+import { ChevronDown, ShieldCheck, Users } from 'lucide-react';
+import { useCallback, useRef, type MouseEvent } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 import { Container } from '@/components/ui/Container';
 import { CounterTween } from '@/components/animations/CounterTween';
+import { useParallax } from '@/components/animations/useParallax';
 import { hero } from '@/content/hero';
 import blurMap from '@/content/blur-placeholders.json';
 import { cn } from '@/lib/utils';
@@ -15,35 +18,26 @@ import { ARIA_LABELS, MESSAGES, getWhatsAppLinkProps } from '@/lib/whatsapp';
 const HERO_BLUR_KEY = 'public/images/socios/socios-01-perfil-rfg.webp';
 
 /**
- * HeroSection — Phase B+C Tier 1 (FR-003, FR-017, FR-024).
+ * HeroSection — Phase B+C Tier 2 ENRIQUECIDO (PR #22).
  *
- * Reestruturação editorial sobre o Hero original (Story 1.3):
- * - Layout asymmetric desktop col-7 / col-5 (texto à esquerda, foto à direita)
- *   com gap generoso (48-80px) — substitui grid 50/50 simétrico chato.
- * - Headline em 2 linhas misturando peso 800 (declarativa) + peso 400 italic
- *   (pergunta), tamanhos `text-display-xl` / `text-display-lg`.
- * - Eyebrow editorial "Estabelecida em 1995" (tracking-widest).
- * - Foto sócios com `photo-ring-glow` + `photo-fade-left` + shadow-2xl,
- *   ancorada sobre `orb-mega-brand` 720px (z-0) e `shape-pill-decorative`.
- * - Vinheta "Ricardo Farias · Anderson Guimarães · Sócios fundadores desde
- *   1995" abaixo da foto em card glass-light com border-left rfg.
- * - Trust row (2 cards glass-light): SUSEP ativo desde 1995 + 1.200+ famílias
- *   atendidas (CounterTween) — substitui pílulas-Badge da versão anterior.
- * - Background `surface-hero` (gradient azul wash) substitui bg-white chapado.
- * - CTA gradient mantido literal (label + microcopy + tracking inalterado).
+ * ENRIQUECIMENTO sobre o Tier 1 (PR #13) — preserva 100% do layout asymmetric
+ * col-7 / col-5, copy literal, tracking e a11y. Adiciona EFEITO UAU via:
  *
- * Mobile: stack vertical preservando ordem texto → foto → vinheta → CTA →
- * trust row, conforme plano §3.1.
+ * 1. **Parallax background ornaments** (yPercent=-25):
+ *    - `orb-mega-brand` (top-right, desktop)
+ *    - `orb-decor` (top-left, ambos breakpoints)
+ *    - `shape-pill-decorative` (right, desktop)
+ *    O fundo "fica" enquanto o texto sobe — depth real sem mexer no layout.
  *
- * Tracking:
- * - Dispara `cta_click` (category: 'hero') + `whatsapp_redirect`
- *   (destination: 'diagnostico') antes do redirect.
+ * 2. **CTA micro-pulse infinito** (scale 1 → 1.03 → 1, duration 2s, yoyo):
+ *    Convida ao clique sem ser distrativo. Power1.inOut suave; respeita
+ *    `prefers-reduced-motion: reduce` (sem pulse).
  *
- * A11y:
- * - `<h1>` único da landing (NFR-013).
- * - Foto com `alt` descritivo, `priority`, `fetchPriority="high"`.
- * - Reduced-motion respeitado pelo `<HeroTextReveal>` e `<CounterTween>`.
- * - Trust row em `<ul aria-label>` mantida.
+ * 3. **Scroll-down hint** abaixo do bento — chevron com loop bounce
+ *    (yoyo true, repeat -1, duration 1.2s). Aria-hidden, decorativo, somente
+ *    desktop (`lg:block`). Reduzido em mobile pra não poluir hero curto.
+ *
+ * Layout / copy / tracking: INALTERADOS vs Tier 1.
  */
 export function HeroSection(): React.ReactNode {
   const whatsappProps = getWhatsAppLinkProps(hero.cta.whatsappKey);
@@ -67,6 +61,64 @@ export function HeroSection(): React.ReactNode {
 
   const blurDataURL = (blurMap as Record<string, string>)[HERO_BLUR_KEY];
 
+  // ----- Tier 2: parallax refs (ornamentos decorativos) -----
+  // Yperc=-25 conforme briefing — fundo "respira" enquanto texto sobe.
+  // mobileMultiplier=0.5 (default do helper) reduz pra 12.5% em mobile.
+  const orbMegaRef = useParallax<HTMLDivElement>({ yPercent: -25 });
+  const orbDecorRef = useParallax<HTMLDivElement>({ yPercent: -25 });
+  const pillRef = useParallax<HTMLDivElement>({ yPercent: -25 });
+
+  // ----- Tier 2: CTA micro-pulse infinito -----
+  // Scale 1 → 1.03 → 1, 2s, yoyo, repeat -1. `prefers-reduced-motion: reduce`
+  // desabilita totalmente. Tween direto via gsap.to com matchMedia.
+  const ctaRef = useRef<HTMLAnchorElement>(null);
+  useGSAP(
+    () => {
+      if (!ctaRef.current) return;
+      const mm = gsap.matchMedia();
+      mm.add(
+        { reduceMotion: '(prefers-reduced-motion: reduce)' },
+        (ctx) => {
+          if (ctx.conditions?.reduceMotion) return;
+          gsap.to(ctaRef.current!, {
+            scale: 1.03,
+            duration: 2,
+            ease: 'power1.inOut',
+            repeat: -1,
+            yoyo: true,
+          });
+        },
+      );
+      return () => mm.revert();
+    },
+    { scope: ctaRef },
+  );
+
+  // ----- Tier 2: Scroll-down hint bounce -----
+  // Chevron desce/sobe levemente em loop infinito. Reduce-motion → estático.
+  const hintRef = useRef<HTMLDivElement>(null);
+  useGSAP(
+    () => {
+      if (!hintRef.current) return;
+      const mm = gsap.matchMedia();
+      mm.add(
+        { reduceMotion: '(prefers-reduced-motion: reduce)' },
+        (ctx) => {
+          if (ctx.conditions?.reduceMotion) return;
+          gsap.to(hintRef.current!, {
+            y: 8,
+            duration: 1.2,
+            ease: 'power1.inOut',
+            repeat: -1,
+            yoyo: true,
+          });
+        },
+      );
+      return () => mm.revert();
+    },
+    { scope: hintRef },
+  );
+
   return (
     <section
       id="hero"
@@ -76,19 +128,22 @@ export function HeroSection(): React.ReactNode {
         'pb-16 pt-12 md:pb-24 md:pt-20 lg:min-h-[90vh] lg:pt-28',
       )}
     >
-      {/* ----- Decorative background layer (z-0) ----- */}
+      {/* ----- Decorative background layer (z-0) — Tier 2 com parallax ----- */}
       {/* Orb mega brand atrás da foto — cria depth sem chamar atenção. */}
       <div
+        ref={orbMegaRef}
         aria-hidden="true"
         className="orb-mega-brand -right-40 -top-40 hidden lg:block"
       />
       {/* Orb mid à esquerda — ancoragem visual da coluna texto. */}
       <div
+        ref={orbDecorRef}
         aria-hidden="true"
         className="orb-decor -left-40 top-40 h-96 w-96 bg-rfg-light/30"
       />
       {/* Pílula decorativa à direita — companion da foto (desktop only). */}
       <div
+        ref={pillRef}
         aria-hidden="true"
         className="shape-pill-decorative -right-10 top-32 hidden rotate-12 lg:block"
       />
@@ -149,9 +204,10 @@ export function HeroSection(): React.ReactNode {
               {hero.subheadline}
             </p>
 
-            {/* CTA primário — preservado literal (mesmo label, microcopy, tracking). */}
+            {/* CTA primário — preservado literal + Tier 2 micro-pulse infinito. */}
             <div className="flex flex-col items-start gap-2">
               <a
+                ref={ctaRef}
                 href={whatsappProps.href}
                 target={whatsappProps.target}
                 rel={whatsappProps.rel}
@@ -165,7 +221,9 @@ export function HeroSection(): React.ReactNode {
                   'hover:shadow-cta-hover hover:-translate-y-0.5',
                   'active:scale-[0.98]',
                   'focus-visible:outline-none focus-visible:shadow-focus',
-                  'transition-all duration-normal ease-out-soft',
+                  'transition-shadow duration-normal ease-out-soft',
+                  // Origem do scale fixa no centro pra pulse simétrico.
+                  'origin-center',
                 )}
                 data-testid="hero-cta"
               >
@@ -284,6 +342,23 @@ export function HeroSection(): React.ReactNode {
                 Sócios fundadores · Desde 1995
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* ============= Tier 2: scroll-down hint (desktop only) =============
+            Chevron com loop bounce yoyo (1.2s). Decorativo (aria-hidden), oculto
+            em mobile — em telas curtas seria distrativo. Convida ao scroll
+            sem competir com o CTA principal. */}
+        <div
+          aria-hidden="true"
+          className="mt-12 hidden flex-col items-center gap-1 lg:flex"
+          data-testid="hero-scroll-hint"
+        >
+          <span className="text-caption uppercase tracking-[0.24em] text-neutral-500">
+            Role para descobrir
+          </span>
+          <div ref={hintRef} className="text-rfg-dark/70">
+            <ChevronDown size={28} strokeWidth={2.25} />
           </div>
         </div>
       </Container>
