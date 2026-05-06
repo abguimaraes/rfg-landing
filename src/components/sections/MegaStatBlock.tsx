@@ -63,13 +63,17 @@ export function MegaStatBlock({
 }: MegaStatBlockProps): ReactNode {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState<string>('');
+  // SSR/initial: SEMPRE valor final — evita ficar vazio antes do ScrollTrigger.
+  const finalText = `${prefix}${formatNumberPtBR(value)}${suffix}`;
+  const [display, setDisplay] = useState<string>(finalText);
 
   useGSAP(
     () => {
       if (!numberRef.current || !wrapperRef.current) return;
 
-      const finalText = `${prefix}${formatNumberPtBR(value)}${suffix}`;
+      // Se já visível ao montar, mantém valor final (sem reset pra evitar flash).
+      const rect = wrapperRef.current.getBoundingClientRect();
+      if (rect.top < window.innerHeight) return;
 
       const mm = gsap.matchMedia();
       mm.add(

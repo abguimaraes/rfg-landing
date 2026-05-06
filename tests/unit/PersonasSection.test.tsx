@@ -72,67 +72,20 @@ describe('<PersonasSection />', () => {
   });
 
   // ============================================================
-  // Tier 2 PR #18 — hierarquia + Flip interaction
+  // Hotfix 2026-05-06 — Flip click-to-feature REMOVIDO.
+  // Cards uniformes em grid 3-col (Anderson "animação esquisita").
   // ============================================================
-
-  it('inicia com a primeira persona em destaque (aria-pressed=true)', () => {
-    render(<PersonasSection />);
-    const featured = screen.getByRole('button', {
-      name: /Pais e Provedores de Família — em destaque/i,
-    });
-    expect(featured).toHaveAttribute('aria-pressed', 'true');
-  });
-
-  it('expõe cards secundários como `role="button"` clicáveis', () => {
-    render(<PersonasSection />);
-    const secondary = screen.getByRole('button', {
-      name: /Selecionar Profissionais Liberais e Autônomos como destaque/i,
-    });
-    expect(secondary).toHaveAttribute('aria-pressed', 'false');
-    expect(secondary).toHaveAttribute('tabindex', '0');
-  });
-
-  it('click numa persona secundária promove ela ao destaque', async () => {
-    render(<PersonasSection />);
-    const secondary = screen.getByRole('button', {
-      name: /Selecionar Profissionais Liberais e Autônomos como destaque/i,
-    });
-    fireEvent.click(secondary);
-    // Após click, a persona clicada vira "em destaque" (async pq setState
-    // ocorre dentro de microtask — Flip captura state via dynamic import).
-    const promoted = await screen.findByRole('button', {
-      name: /Profissionais Liberais e Autônomos — em destaque/i,
-    });
-    expect(promoted).toHaveAttribute('aria-pressed', 'true');
-  });
-
-  it('Enter ativa a troca de destaque (keyboard a11y)', async () => {
-    render(<PersonasSection />);
-    const secondary = screen.getByRole('button', {
-      name: /Selecionar Quem Quer Realizar Sonhos sem Pagar Juros de Banco como destaque/i,
-    });
-    fireEvent.keyDown(secondary, { key: 'Enter' });
-    const promoted = await screen.findByRole('button', {
-      name: /Quem Quer Realizar Sonhos sem Pagar Juros de Banco — em destaque/i,
-    });
-    expect(promoted).toHaveAttribute('aria-pressed', 'true');
-  });
-
-  it('Space ativa a troca de destaque (keyboard a11y)', async () => {
-    render(<PersonasSection />);
-    const secondary = screen.getByRole('button', {
-      name: /Selecionar Profissionais Liberais e Autônomos como destaque/i,
-    });
-    fireEvent.keyDown(secondary, { key: ' ' });
-    const promoted = await screen.findByRole('button', {
-      name: /Profissionais Liberais e Autônomos — em destaque/i,
-    });
-    expect(promoted).toHaveAttribute('aria-pressed', 'true');
-  });
 
   it('headline visível "Para quem a RFG é feita" como h2', () => {
     render(<PersonasSection />);
     const h2 = screen.getByRole('heading', { level: 2 });
     expect(h2).toHaveTextContent('Para quem a RFG é feita');
+  });
+
+  it('cards renderizam como <li> uniformes (sem botões clicáveis)', () => {
+    render(<PersonasSection />);
+    // Não deve haver botões interativos nos cards (Flip removido).
+    const buttons = screen.queryAllByRole('button');
+    expect(buttons).toHaveLength(0);
   });
 });

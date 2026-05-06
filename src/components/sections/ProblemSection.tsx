@@ -79,7 +79,7 @@ export function ProblemSection(): ReactNode {
   });
 
   // Split words na pull-quote da frase-âncora — entrada dramática.
-  const pullQuoteRef = useSplitText<HTMLParagraphElement>({
+  const pullQuoteRef = useSplitText<HTMLQuoteElement>({
     mode: 'words',
     stagger: 0.09,
     duration: 0.7,
@@ -128,7 +128,7 @@ export function ProblemSection(): ReactNode {
       />
 
       <Container variant="narrow" className="relative z-[1]">
-        <div ref={containerRef} className="flex flex-col gap-7">
+        <div ref={containerRef} className="flex flex-col gap-10 md:gap-12">
           <Eyebrow data-reveal>{problem.eyebrow}</Eyebrow>
 
           {/* Headline — split words via useSplitText (reveal palavra-a-palavra).
@@ -142,26 +142,31 @@ export function ProblemSection(): ReactNode {
           </h2>
 
           {/* Parágrafos com parallax sutil — profundidade scroll-driven. */}
-          <div ref={paragraphsRef} className="flex flex-col gap-5">
+          <div ref={paragraphsRef} className="flex flex-col gap-6">
             {problem.paragraphs.map((paragraph, i) => {
-              // O parágrafo que contém a frase-âncora vira pull-quote
-              // editorial (text-display-lg + reveal palavra-a-palavra).
+              // Hotfix 2026-05-06: pull-quote refeito.
+              // Era text-display-lg (5rem) — Anderson "ficou horrível".
+              // Agora: blockquote estilizado, text-h3, glass-light bg,
+              // ícone de aspas decorativo, mais compacto e legível.
               const containsAnchor = paragraph.includes(problem.anchorPhrase);
               if (containsAnchor) {
                 return (
-                  <p
+                  <blockquote
                     key={i}
                     ref={pullQuoteRef}
                     data-reveal
-                    // Pull-quote — bordo lateral azul + tipografia maior
-                    // (text-display-lg) para "atingir" o leitor visualmente.
-                    // Usa string literal direta (sem cn/twMerge) para
-                    // preservar o token customizado `text-display-lg` que
-                    // o twMerge sem config remove ao colidir com `text-*`.
-                    className="mt-2 border-l-2 border-rfg-light/60 pl-5 font-display text-display-lg font-medium leading-tight tracking-tight text-neutral-900 md:pl-6"
+                    className="relative my-2 rounded-2xl border-l-4 border-rfg-light bg-white/60 p-6 shadow-card-default backdrop-blur-sm md:p-8"
                   >
-                    {renderParagraph(paragraph, problem.anchorPhrase)}
-                  </p>
+                    <span
+                      aria-hidden="true"
+                      className="absolute -top-3 left-5 select-none font-display text-display-lg leading-none text-rfg-light/40"
+                    >
+                      &ldquo;
+                    </span>
+                    <p className="font-display text-h3 font-semibold italic leading-snug tracking-tight text-neutral-900">
+                      {renderParagraph(paragraph, problem.anchorPhrase)}
+                    </p>
+                  </blockquote>
                 );
               }
               return (

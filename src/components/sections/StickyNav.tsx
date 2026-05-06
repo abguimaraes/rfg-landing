@@ -79,9 +79,10 @@ export function StickyNav(): ReactNode {
         className={cn(
           'mx-auto flex max-w-container items-center justify-between px-4 md:px-6 lg:px-8',
           'transition-[height] duration-[200ms] ease-out',
-          // Mobile 56px / Desktop 72px (recolhe 4px ao scroll)
-          'h-14 lg:h-[72px]',
-          scrolled && 'lg:h-[68px]',
+          // Hotfix 2026-05-06: aumentar altura pra dar mais peso ao menu
+          // (era h-14 / lg:h-[72px], feedback Anderson "menu acanhado").
+          'h-16 lg:h-[88px]',
+          scrolled && 'lg:h-[80px]',
         )}
       >
         {/* Logo */}
@@ -93,27 +94,27 @@ export function StickyNav(): ReactNode {
           <Image
             src={stickyNav.brandLogo.src}
             alt={stickyNav.brandLogo.alt}
-            width={156}
-            height={52}
+            width={210}
+            height={70}
             priority
             className={cn(
               'object-contain transition-all duration-[200ms]',
-              // Phase B+C Tier 1: logo aumentada (era h-8 / lg:h-10)
-              // pra dar peso visual à marca (feedback Anderson 2026-05-05).
-              'h-10 w-auto lg:h-[52px]',
-              scrolled && 'lg:h-11',
+              // Hotfix 2026-05-06: logo proporcional (era h-10/lg:h-13).
+              // Anderson "logo muito pequeno, desproporcional".
+              'h-12 w-auto lg:h-[64px]',
+              scrolled && 'lg:h-[56px]',
             )}
           />
         </a>
 
-        {/* Links desktop */}
-        <ul className="hidden items-center gap-8 lg:flex">
+        {/* Links desktop — Hotfix 2026-05-06: mais peso visual */}
+        <ul className="hidden items-center gap-10 lg:flex">
           {stickyNav.links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
                 className={cn(
-                  'text-body-sm font-medium text-neutral-700',
+                  'text-body font-semibold text-neutral-800',
                   'transition-colors duration-150',
                   'hover:text-rfg-dark focus-visible:text-rfg-dark',
                   'focus-visible:outline-none focus-visible:underline focus-visible:underline-offset-4',
@@ -134,7 +135,7 @@ export function StickyNav(): ReactNode {
           onClick={handleCtaClick}
           className={cn(
             'hidden lg:inline-flex items-center justify-center gap-2',
-            'h-11 px-6 rounded-md',
+            'h-12 px-7 rounded-md',
             'text-body font-sans font-semibold',
             'text-rfg-dark bg-transparent border-2 border-rfg-dark',
             'hover:bg-rfg-dark hover:text-white',
