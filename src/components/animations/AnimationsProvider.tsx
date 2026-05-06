@@ -3,12 +3,14 @@
 import { useEffect, type ReactNode } from 'react';
 
 /**
- * AnimationsProvider — Story 1.2 (AC-8, ADR-003, Risco R1).
+ * AnimationsProvider — registra plugins GSAP globalmente via dynamic import.
  *
- * Registra ScrollTrigger uma única vez via dynamic import e dispara
- * `ScrollTrigger.refresh()` em `requestAnimationFrame` pós-mount, mitigando
- * layout calc antes de fonts/imagens estarem prontas. NÃO importa GSAP no
- * bundle inicial — `await import()` mantém GSAP fora do chunk shared (ADR-003).
+ * GSAP é 100% free desde mai/2024 (Webflow). Todos plugins premium
+ * (SplitText, DrawSVG, MorphSVG, ScrambleText, MotionPath, Flip, Observer)
+ * vêm dentro do pacote `gsap` 3.13+. Mantém pattern de dynamic import para
+ * isolar GSAP do chunk shared (ADR-003).
+ *
+ * Refresh pós-mount em rAF mitiga layout calc antes de fonts/imagens prontas.
  */
 export function AnimationsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -16,13 +18,42 @@ export function AnimationsProvider({ children }: { children: ReactNode }) {
 
     (async () => {
       try {
-        const { gsap } = await import('gsap');
-        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        const [
+          { gsap },
+          { ScrollTrigger },
+          { SplitText },
+          { DrawSVGPlugin },
+          { MorphSVGPlugin },
+          { ScrambleTextPlugin },
+          { MotionPathPlugin },
+          { Flip },
+          { Observer },
+        ] = await Promise.all([
+          import('gsap'),
+          import('gsap/ScrollTrigger'),
+          import('gsap/SplitText'),
+          import('gsap/DrawSVGPlugin'),
+          import('gsap/MorphSVGPlugin'),
+          import('gsap/ScrambleTextPlugin'),
+          import('gsap/MotionPathPlugin'),
+          import('gsap/Flip'),
+          import('gsap/Observer'),
+        ]);
         if (cancelled) return;
-        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.registerPlugin(
+          ScrollTrigger,
+          SplitText,
+          DrawSVGPlugin,
+          MorphSVGPlugin,
+          ScrambleTextPlugin,
+          MotionPathPlugin,
+          Flip,
+          Observer,
+        );
         gsap.config({ nullTargetWarn: false });
         gsap.defaults({ ease: 'power2.out' });
-        // Refresh pós-mount num próximo frame, evita medir layout estale
+
         requestAnimationFrame(() => {
           if (!cancelled) ScrollTrigger.refresh();
         });
