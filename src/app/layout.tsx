@@ -6,6 +6,7 @@ import { AnimationsProvider } from '@/components/animations/AnimationsProvider';
 import { ConsentBanner } from '@/components/analytics/ConsentBanner';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { MetaPixel } from '@/components/analytics/MetaPixel';
+import { MetaPixelEvents } from '@/components/analytics/MetaPixelEvents';
 import { ScrollDepthTracker } from '@/components/analytics/ScrollDepthTracker';
 import { VercelAnalytics } from '@/components/analytics/VercelAnalytics';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -131,6 +132,7 @@ export default function RootLayout({
         <VercelAnalytics />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
         <MetaPixel pixelId={process.env.NEXT_PUBLIC_META_PIXEL_ID} />
+        <MetaPixelEvents />
       </body>
     </html>
   );
