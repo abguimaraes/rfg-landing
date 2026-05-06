@@ -14,7 +14,14 @@ export type EventName =
   | 'consent_granted'
   | 'consent_declined';
 
-export type CtaCategory = 'hero' | 'secao_9' | 'secao_12' | 'footer' | 'sticky_nav';
+export type CtaCategory =
+  | 'hero'
+  | 'secao_9'
+  | 'secao_12'
+  | 'objections'
+  | 'faq'
+  | 'footer'
+  | 'sticky_nav';
 export type WhatsAppDestination =
   | 'diagnostico'
   | 'essencial'
