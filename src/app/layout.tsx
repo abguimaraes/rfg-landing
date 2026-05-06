@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     template: '%s | RFG Corretora de Seguros',
   },
   description:
-    'Consultoria de seguros premium em Maceió/AL. 35+ anos protegendo patrimônios. Diagnóstico gratuito direto com os sócios. Sem fila, sem call center.',
+    'Consultoria de seguros premium em Maceió/AL. 35+ anos cuidando de patrimônios. Diagnóstico gratuito direto com os sócios. Sem fila, sem call center.',
   applicationName: 'RFG Corretora de Seguros',
   authors: [{ name: 'RFG Corretora de Seguros' }],
   creator: 'RFG Corretora de Seguros',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: 'RFG Corretora de Seguros',
     title: 'RFG Corretora de Seguros — Diagnóstico Patrimonial Gratuito',
     description:
-      'Consultoria de seguros premium em Maceió/AL. 35+ anos protegendo patrimônios em Alagoas.',
+      'Consultoria de seguros premium em Maceió/AL. 35+ anos cuidando de patrimônios em Alagoas.',
   },
   robots: {
     index: true,

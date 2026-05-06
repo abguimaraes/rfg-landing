@@ -5,7 +5,7 @@
  * Mantém compliance SUSEP (registro ativo desde 1995, sem mencionar nº).
  *
  * Contato literal de `docs/briefing/03-contato.md`:
- * - Endereço: Av. Álvaro Otacílio, 3051 — Jatiúca — Maceió-AL — 57036-150
+ * - Endereço: Rua José Pontes Magalhães, 70 · Edifício Itália, salas 506-509 · Jatiúca · Maceió/AL
  * - Telefone fixo: (82) 3142-1018
  * - WhatsApp: +55 82 98235-9028
  * - Email: comercial@rfgcorretora.com.br
@@ -60,7 +60,8 @@ export const footer: FooterContent = {
     { label: 'Termos de Uso', href: '/termos-de-uso' },
   ],
   contact: {
-    address: 'Av. Álvaro Otacílio, 3051 — Jatiúca — Maceió/AL — 57036-150',
+    address:
+      'Rua José Pontes Magalhães, 70 · Edifício Itália, salas 506-509 · Jatiúca · Maceió/AL',
     phone: '(82) 3142-1018',
     phoneHref: 'tel:+558231421018',
     whatsapp: '+55 82 98235-9028',

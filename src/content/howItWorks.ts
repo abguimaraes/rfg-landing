@@ -23,7 +23,7 @@ export const howItWorks: HowItWorksContent = {
         'Você nos conta o que tem — família, patrimônio, renda, planos. Nós mostramos o que sobra disso tudo se um imprevisto chegar amanhã. É a primeira vez que alguém ilumina o ponto que ninguém nunca te mostrou.',
       bullets: [
         'Mapeamos tudo que você construiu: imóvel, veículo, renda, negócio',
-        'Identificamos onde a proteção está ausente, insuficiente ou mal alocada',
+        'Identificamos onde a cobertura está ausente, insuficiente ou mal alocada',
         'Traduzimos risco abstrato em números concretos — sem enrolação',
       ],
     },
@@ -33,7 +33,7 @@ export const howItWorks: HowItWorksContent = {
       emoji: '🛡️',
       titulo: 'Passo 2: O Plano Personalizado',
       body:
-        'Com o diagnóstico em mãos, montamos o seu plano completo. Proteção da família. Cobertura do patrimônio. Realização dos seus sonhos. Tudo junto — sem precisar escolher entre um e outro.',
+        'Com o diagnóstico em mãos, montamos o seu plano completo. Segurança da família. Cobertura do patrimônio. Realização dos seus sonhos. Tudo junto — sem precisar escolher entre um e outro.',
       bullets: [
         'Selecionamos os produtos certos para o seu perfil — e só eles',
         'Integramos seguro de vida, cobertura de bens, consórcio e previdência em um único plano claro',

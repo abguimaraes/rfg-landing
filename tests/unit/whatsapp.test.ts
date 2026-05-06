@@ -15,9 +15,9 @@ const EXPECTED_URLS: Record<WhatsAppMessageKey, string> = {
   diagnostico:
     'https://wa.me/5582982359028?text=Ol%C3%A1!%20Quero%20agendar%20meu%20Diagn%C3%B3stico%20de%20%C3%82ngulo%20Morto%20Patrimonial.',
   essencial:
-    'https://wa.me/5582982359028?text=Ol%C3%A1!%20Quero%20proteger%20minha%20fam%C3%ADlia%20%E2%80%94%20Caminho%20Prote%C3%A7%C3%A3o%20Essencial.',
+    'https://wa.me/5582982359028?text=Ol%C3%A1!%20Quero%20assegurar%20minha%20fam%C3%ADlia%20%E2%80%94%20Caminho%20Seguran%C3%A7a%20Essencial.',
   completa:
-    'https://wa.me/5582982359028?text=Ol%C3%A1!%20Quero%20o%20plano%20completo%20para%20minha%20fam%C3%ADlia%20%E2%80%94%20Caminho%20Prote%C3%A7%C3%A3o%20Completa.',
+    'https://wa.me/5582982359028?text=Ol%C3%A1!%20Quero%20o%20plano%20completo%20para%20minha%20fam%C3%ADlia%20%E2%80%94%20Caminho%20Seguran%C3%A7a%20Completa.',
   legado:
     'https://wa.me/5582982359028?text=Ol%C3%A1!%20Quero%20construir%20um%20legado%20%E2%80%94%20Caminho%20Legado%20Familiar.',
   cta_unico:

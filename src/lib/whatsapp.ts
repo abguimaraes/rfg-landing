@@ -23,8 +23,8 @@ export type WhatsAppMessageKey =
  */
 export const MESSAGES: Record<WhatsAppMessageKey, string> = {
   diagnostico: 'Olá! Quero agendar meu Diagnóstico de Ângulo Morto Patrimonial.',
-  essencial: 'Olá! Quero proteger minha família — Caminho Proteção Essencial.',
-  completa: 'Olá! Quero o plano completo para minha família — Caminho Proteção Completa.',
+  essencial: 'Olá! Quero assegurar minha família — Caminho Segurança Essencial.',
+  completa: 'Olá! Quero o plano completo para minha família — Caminho Segurança Completa.',
   legado: 'Olá! Quero construir um legado — Caminho Legado Familiar.',
   cta_unico: 'Olá! Quero fazer meu diagnóstico gratuito.',
   sticky_nav: 'Olá! Vim pela landing. Quero falar com a RFG.',
@@ -36,8 +36,8 @@ export const MESSAGES: Record<WhatsAppMessageKey, string> = {
 export const ARIA_LABELS: Record<WhatsAppMessageKey, string> = {
   diagnostico:
     'Falar no WhatsApp para agendar o Diagnóstico de Ângulo Morto Patrimonial',
-  essencial: 'Falar no WhatsApp sobre o Caminho Proteção Essencial',
-  completa: 'Falar no WhatsApp sobre o Caminho Proteção Completa',
+  essencial: 'Falar no WhatsApp sobre o Caminho Segurança Essencial',
+  completa: 'Falar no WhatsApp sobre o Caminho Segurança Completa',
   legado: 'Falar no WhatsApp sobre o Caminho Legado Familiar',
   cta_unico: 'Falar no WhatsApp para fazer o diagnóstico gratuito',
   sticky_nav: 'Falar no WhatsApp com a RFG Corretora',

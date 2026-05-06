@@ -169,7 +169,7 @@ export function HeroSection(): React.ReactNode {
                     'leading-[1.05] text-neutral-700',
                   )}
                 >
-                  Sua família está protegida se algo acontecer?
+                  Sua família está assegurada se algo acontecer?
                 </span>
               </span>
             </h1>
