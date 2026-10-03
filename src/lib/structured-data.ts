@@ -13,8 +13,7 @@
  * Referência: https://schema.org / https://search.google.com/test/rich-results
  */
 
-import { footer } from '@/content/footer';
-import { faq } from '@/content/faq';
+import { faq, footer } from '@/content/site';
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.rfgcorretora.com.br';
@@ -35,9 +34,9 @@ export function getOrganizationSchema() {
     legalName: 'RFG Corretora de Seguros',
     url: SITE_URL,
     logo: `${SITE_URL}/logo-rfg.png`,
-    foundingDate: '1995',
+    foundingDate: '2013',
     description:
-      'Corretora de seguros premium em Maceió/AL. Diagnóstico de Ângulo Morto Patrimonial direto com os sócios fundadores. 35 anos de experiência combinada. Registro SUSEP ativo desde 1995.',
+      'Corretora de seguros em Maceió/AL, fundada em 2013. Diagnóstico de Ângulo Morto Patrimonial direto com os sócios fundadores, com 35 anos de experiência combinada no mercado desde 1995.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Rua José Pontes Magalhães, 70 — Edifício Itália, salas 506-509',

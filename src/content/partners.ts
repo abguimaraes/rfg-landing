@@ -1,4 +1,11 @@
-import type { PartnerLogo } from '@/types/content';
+export interface PartnerLogo {
+  name: string;
+  slug: string;
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+}
 
 /**
  * Logos das 10 seguradoras parceiras (Seção 6) — FR-020, FR-031.

@@ -5,7 +5,7 @@ exports[`<ConsentBanner /> snapshot > renderiza banner inicial (sem consent salv
   <div
     aria-labelledby="rfg-consent-title"
     aria-modal="false"
-    class="fixed inset-x-4 bottom-4 z-40 mx-auto max-w-3xl rounded-xl border border-rfg-light/40 bg-info-50/95 backdrop-blur p-5 shadow-xl md:p-6"
+    class="fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 mx-auto max-w-2xl max-h-[70vh] overflow-y-auto rounded-2xl border border-neutral-200 bg-white p-4 shadow-2xl md:p-5"
     data-testid="consent-banner"
     role="dialog"
   >
@@ -16,7 +16,7 @@ exports[`<ConsentBanner /> snapshot > renderiza banner inicial (sem consent salv
         class="flex flex-col gap-2"
       >
         <h2
-          class="font-display text-h4 font-semibold text-neutral-900"
+          class="font-display text-body font-semibold text-neutral-900"
           id="rfg-consent-title"
         >
           Sua privacidade importa
@@ -24,7 +24,7 @@ exports[`<ConsentBanner /> snapshot > renderiza banner inicial (sem consent salv
         <p
           class="text-body-sm text-neutral-700"
         >
-          Usamos cookies essenciais para o funcionamento do site e, com sua autorização, cookies de análise (estatísticas anônimas) e marketing (mensuração de campanhas). Você pode personalizar a qualquer momento. Saiba mais na nossa
+          Usamos cookies essenciais e, com sua autorização, de análise e marketing. Veja a
            
           <a
             class="font-semibold text-rfg-dark underline underline-offset-2 hover:text-rfg-mid"
@@ -36,31 +36,29 @@ exports[`<ConsentBanner /> snapshot > renderiza banner inicial (sem consent salv
         </p>
       </div>
       <div
-        class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-end"
+        class="flex flex-col gap-2"
       >
-        <button
-          class="inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all duration-normal ease-out-soft focus-visible:outline-none focus-visible:shadow-focus disabled:cursor-not-allowed bg-transparent hover:bg-neutral-100 disabled:text-neutral-400 h-9 px-4 text-body-sm rounded-md"
-          type="button"
+        <div
+          class="grid grid-cols-2 gap-2"
         >
-          <span>
-            Recusar não-essenciais
-          </span>
-        </button>
-        <button
-          class="inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all duration-normal ease-out-soft focus-visible:outline-none focus-visible:shadow-focus disabled:cursor-not-allowed bg-transparent border-2 border-rfg-dark hover:bg-rfg-dark hover:text-white active:scale-[0.98] disabled:border-neutral-300 disabled:text-neutral-400 h-9 px-4 text-body-sm rounded-md"
-          type="button"
-        >
-          <span>
-            Personalizar
-          </span>
-        </button>
-        <button
-          class="inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all duration-normal ease-out-soft focus-visible:outline-none focus-visible:shadow-focus disabled:cursor-not-allowed bg-rfg-gradient-cta shadow-cta hover:shadow-cta-hover hover:-translate-y-0.5 active:scale-[0.98] disabled:bg-none disabled:bg-neutral-300 disabled:text-neutral-500 disabled:shadow-none h-9 px-4 text-body-sm rounded-md"
-          type="button"
-        >
-          <span>
+          <button
+            class="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]"
+            type="button"
+          >
+            Recusar
+          </button>
+          <button
+            class="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]"
+            type="button"
+          >
             Aceitar todos
-          </span>
+          </button>
+        </div>
+        <button
+          class="h-11 text-[0.875rem] font-medium text-neutral-600 underline underline-offset-4 hover:text-rfg-dark"
+          type="button"
+        >
+          Personalizar
         </button>
       </div>
     </div>

@@ -5,7 +5,6 @@ import { ArrowLeft } from 'lucide-react';
 import { type ReactNode } from 'react';
 
 import { Container } from '@/components/ui/Container';
-import { Footer } from '@/components/sections/Footer';
 import { cn } from '@/lib/utils';
 
 export interface LegalLayoutProps {
@@ -87,7 +86,6 @@ export function LegalLayout({
           </div>
         </Container>
       </main>
-      <Footer />
     </>
   );
 }

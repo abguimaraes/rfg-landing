@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { LegalLayout } from '@/components/sections/LegalLayout';
-import { footer } from '@/content/footer';
+import { footer } from '@/content/site';
 
 export const metadata: Metadata = {
   title: 'Política de Privacidade — RFG Corretora de Seguros',
@@ -28,8 +28,7 @@ export default function PoliticaDePrivacidadePage(): React.ReactNode {
 
       <h2>1. Quem somos (Controlador dos Dados)</h2>
       <p>
-        <strong>RFG Corretora de Seguros</strong> — registro SUSEP ativo desde
-        1995, atuando em Maceió/AL. Contato:
+        <strong>RFG Corretora de Seguros</strong> — corretora registrada na SUSEP desde 2013, atuando em Maceió/AL. Contato:
       </p>
       <ul>
         <li>

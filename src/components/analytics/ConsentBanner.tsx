@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button } from '@/components/ui/Button';
 import { getConsent, setConsent } from '@/lib/consent';
 import { trackEvent } from '@/lib/tracking';
 import { cn } from '@/lib/utils';
@@ -80,20 +79,19 @@ export function ConsentBanner() {
       aria-labelledby={titleId}
       data-testid="consent-banner"
       className={cn(
-        'fixed inset-x-4 bottom-4 z-40 mx-auto max-w-3xl',
-        'rounded-xl border border-rfg-light/40 bg-info-50/95 backdrop-blur',
-        'p-5 shadow-xl md:p-6',
+        'fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 mx-auto max-w-2xl max-h-[70vh] overflow-y-auto',
+        'rounded-2xl border border-neutral-200 bg-white',
+        'p-4 shadow-2xl md:p-5',
       )}
     >
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <h2 id={titleId} className="font-display text-h4 font-semibold text-neutral-900">
+          <h2 id={titleId} className="font-display text-body font-semibold text-neutral-900">
             Sua privacidade importa
           </h2>
           <p className="text-body-sm text-neutral-700">
-            Usamos cookies essenciais para o funcionamento do site e, com sua autorização,
-            cookies de análise (estatísticas anônimas) e marketing (mensuração de campanhas).
-            Você pode personalizar a qualquer momento. Saiba mais na nossa{' '}
+            Usamos cookies essenciais e, com sua autorização, de análise e marketing.
+            Veja a{' '}
             <a
               href="/politica-de-privacidade"
               className="font-semibold text-rfg-dark underline underline-offset-2 hover:text-rfg-mid"
@@ -152,29 +150,28 @@ export function ConsentBanner() {
           </fieldset>
         ) : null}
 
-        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-end">
-          {showCustomize ? (
-            <>
-              <Button variant="ghost" size="sm" onClick={() => setShowCustomize(false)}>
-                Voltar
-              </Button>
-              <Button variant="secondary" size="sm" onClick={handleSavePreferences}>
-                Salvar preferências
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button variant="ghost" size="sm" onClick={handleRejectAll}>
-                Recusar não-essenciais
-              </Button>
-              <Button variant="secondary" size="sm" onClick={() => setShowCustomize(true)}>
-                Personalizar
-              </Button>
-            </>
-          )}
-          <Button variant="primary" size="sm" onClick={handleAcceptAll}>
-            Aceitar todos
-          </Button>
+        <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-2 gap-2">
+            {showCustomize ? (
+              <button type="button" className="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]" onClick={handleSavePreferences}>
+                Salvar
+              </button>
+            ) : (
+              <button type="button" className="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]" onClick={handleRejectAll}>
+                Recusar
+              </button>
+            )}
+            <button type="button" className="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]" onClick={handleAcceptAll}>
+              Aceitar todos
+            </button>
+          </div>
+          <button
+            type="button"
+            className="h-11 text-[0.875rem] font-medium text-neutral-600 underline underline-offset-4 hover:text-rfg-dark"
+            onClick={() => setShowCustomize((v) => !v)}
+          >
+            {showCustomize ? 'Voltar' : 'Personalizar'}
+          </button>
         </div>
       </div>
     </div>

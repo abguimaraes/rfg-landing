@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { LegalLayout } from '@/components/sections/LegalLayout';
-import { footer } from '@/content/footer';
+import { footer } from '@/content/site';
 
 export const metadata: Metadata = {
   title: 'Termos de Uso — RFG Corretora de Seguros',
@@ -28,7 +28,7 @@ export default function TermosDeUsoPage(): React.ReactNode {
 
       <h2>1. Sobre a RFG</h2>
       <p>
-        A RFG é corretora de seguros com registro SUSEP ativo desde 1995,
+        A RFG é corretora de seguros registrada na SUSEP desde 2013,
         atuando em Maceió/AL na intermediação de produtos de seguros,
         consórcios, previdência privada e responsabilidade civil
         profissional.

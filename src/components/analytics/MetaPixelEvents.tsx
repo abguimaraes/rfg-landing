@@ -29,9 +29,7 @@ interface SectionTracker {
 }
 
 const SECTIONS_TO_TRACK: ReadonlyArray<SectionTracker> = [
-  // Anderson pediu "sobre" — usa #historia (a <section> real;
-  // #sobre é só um divisor sr-only de 1x1px que não dispara bem).
-  { id: 'historia', name: 'Sobre / Nossa História' },
+  { id: 'sobre', name: 'Sobre / Nossa História' },
   { id: 'como-funciona', name: 'Como Funciona' },
   { id: 'caminhos', name: 'Caminhos' },
   { id: 'faq', name: 'Perguntas' },
