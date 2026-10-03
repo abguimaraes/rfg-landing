@@ -36,30 +36,30 @@ exports[`<ConsentBanner /> snapshot > renderiza banner inicial (sem consent salv
         </p>
       </div>
       <div
-        class="flex flex-col gap-2"
+        class="flex flex-col gap-1 sm:flex-row-reverse sm:items-center sm:justify-between"
       >
-        <div
-          class="grid grid-cols-2 gap-2"
-        >
-          <button
-            class="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]"
-            type="button"
-          >
-            Recusar
-          </button>
-          <button
-            class="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]"
-            type="button"
-          >
-            Aceitar todos
-          </button>
-        </div>
         <button
-          class="h-11 text-[0.875rem] font-medium text-neutral-600 underline underline-offset-4 hover:text-rfg-dark"
+          class="h-11 w-full rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895] sm:w-auto"
           type="button"
         >
-          Personalizar
+          Aceitar todos
         </button>
+        <div
+          class="flex justify-center gap-4 sm:justify-start"
+        >
+          <button
+            class="h-11 px-2 text-[0.875rem] font-medium text-neutral-500 underline underline-offset-4 hover:text-rfg-dark"
+            type="button"
+          >
+            Recusar não-essenciais
+          </button>
+          <button
+            class="h-11 px-2 text-[0.875rem] font-medium text-neutral-500 underline underline-offset-4 hover:text-rfg-dark"
+            type="button"
+          >
+            Personalizar
+          </button>
+        </div>
       </div>
     </div>
   </div>

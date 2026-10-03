@@ -150,28 +150,28 @@ export function ConsentBanner() {
           </fieldset>
         ) : null}
 
-        <div className="flex flex-col gap-2">
-          <div className="grid grid-cols-2 gap-2">
-            {showCustomize ? (
-              <button type="button" className="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]" onClick={handleSavePreferences}>
-                Salvar
-              </button>
-            ) : (
-              <button type="button" className="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]" onClick={handleRejectAll}>
-                Recusar
-              </button>
-            )}
-            <button type="button" className="h-11 rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895]" onClick={handleAcceptAll}>
-              Aceitar todos
-            </button>
-          </div>
+        <div className="flex flex-col gap-1 sm:flex-row-reverse sm:items-center sm:justify-between">
           <button
             type="button"
-            className="h-11 text-[0.875rem] font-medium text-neutral-600 underline underline-offset-4 hover:text-rfg-dark"
-            onClick={() => setShowCustomize((v) => !v)}
+            className="h-11 w-full rounded-full bg-rfg-dark px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-[#1d5895] sm:w-auto"
+            onClick={showCustomize ? handleSavePreferences : handleAcceptAll}
           >
-            {showCustomize ? 'Voltar' : 'Personalizar'}
+            {showCustomize ? 'Salvar preferências' : 'Aceitar todos'}
           </button>
+          <div className="flex justify-center gap-4 sm:justify-start">
+            {showCustomize ? null : (
+              <button type="button" className="h-11 px-2 text-[0.875rem] font-medium text-neutral-500 underline underline-offset-4 hover:text-rfg-dark" onClick={handleRejectAll}>
+                Recusar não-essenciais
+              </button>
+            )}
+            <button
+              type="button"
+              className="h-11 px-2 text-[0.875rem] font-medium text-neutral-500 underline underline-offset-4 hover:text-rfg-dark"
+              onClick={() => setShowCustomize((v) => !v)}
+            >
+              {showCustomize ? 'Voltar' : 'Personalizar'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
